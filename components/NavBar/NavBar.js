@@ -34,7 +34,7 @@ const NavBar = () => {
                         noWrap
                         className={classes.toolbarTitle}
                     >
-                        Company name
+                        Logo Here
                     </Typography>
                     {/* <img src="../../soclogo.png" alt="logo" /> */}
                     <Link
@@ -51,7 +51,7 @@ const NavBar = () => {
                         color="textPrimary"
                         className={classes.link}
                     >
-                        Event
+                        Events
                     </Link>
 
                     <Button
