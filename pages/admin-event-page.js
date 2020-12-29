@@ -1,5 +1,5 @@
 function SpecificEventPage() {
-    return <div>Event</div>
+    return <div>Event - Admin view</div>
 }
 
 export default SpecificEventPage
