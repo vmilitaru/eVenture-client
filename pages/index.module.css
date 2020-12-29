@@ -1,0 +1,18 @@
+.div {
+    display: flex;
+    flex-direction: column;
+}
+.intro {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+}
+.event {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: ; */
+    align-items: stretch;
+    color: blue;
+    padding: 30px;
+}
