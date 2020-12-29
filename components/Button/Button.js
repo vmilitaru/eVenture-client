@@ -2,10 +2,10 @@ import React from 'react'
 
 function ButtonGeneral({ text, onClick }) {
     return (
-        <div className={Button}>
-            <Button color="primary" variant="outlined" onClick={onClick}>
+        <div className="Button">
+            <button color="primary" variant="outlined" onClick={onClick}>
                 {text}
-            </Button>
+            </button>
         </div>
     )
 }
