@@ -36,7 +36,7 @@ const NavBar = () => {
                     >
                         Logo Here
                     </Typography>
-                    {/* <img src="../../soclogo.png" alt="logo" /> */}
+                    <img src="../../soclogo.png" alt="logo" />
                     <Link
                         variant="h6"
                         color="textPrimary"
