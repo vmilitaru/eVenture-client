@@ -14,41 +14,24 @@ const useStyles = makeStyles({
     }
 })
 
-export default function EventCard() {
+export default function EventCard({ event }) {
     const classes = useStyles()
-
+    console.log(event)
     return (
         <React.Fragment>
             <Card className={classes.root}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
-                        alt="Contemplative Reptile"
                         height="140"
-                        image={eventData.banner}
-                        title="Contemplative Reptile"
+                        image={event.banner ? event.banner : null}
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {eventData.title}
-                        </Typography>
                         <Typography gutterBottom variant="h3" component="h3">
-                            {eventData.date}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            color="textSecondary"
-                            component="p"
-                        >
-                            {eventData.description}
+                            {event.title}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        Learn More
-                    </Button>
-                </CardActions>
             </Card>
         </React.Fragment>
     )

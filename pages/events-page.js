@@ -2,10 +2,11 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import NavBar from '../components/NavBar/NavBar'
-//import Footer from '../components/Footer/Footer'
+import EventCard from '../components/EventCard/EventCard'
 import fetch from 'isomorphic-unfetch'
 
 const EventsPage = ({ events }) => {
+    console.log(events)
     return (
         <div>
             <Head>
@@ -20,7 +21,9 @@ const EventsPage = ({ events }) => {
                     {events.map((event) => (
                         <li key={event.id}>
                             <Link href="/event/[id]" as={`/event/${event.id}`}>
-                                <a>{event.title}</a>
+                                <a>
+                                    <EventCard event={event} />
+                                </a>
                             </Link>
                         </li>
                     ))}
