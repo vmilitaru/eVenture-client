@@ -1,8 +1,13 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import NavBar from '../components/NavBar/NavBar'
+import ButtonGeneral from '../components/Button/Button'
 // import { getStaticProps } from '../pages/api/events'
+
 import styling from '../pages/index.module.css'
+
+import React from 'react'
+
 function Home() {
     return (
         <div className={styling.div}>
@@ -11,6 +16,7 @@ function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <NavBar />
+
             <div className={styling.intro}>
                 <h1>Develop with our community</h1>
                 <h3>Checkout our latest event</h3>
@@ -25,6 +31,7 @@ function Home() {
                     learning for a few weeks slowly, come join us.
                 </p>
             </div>
+      <ButtonGeneral text={'find out more'} />
             <div>
                 <img
                     className={styling.img}
