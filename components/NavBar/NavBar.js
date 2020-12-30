@@ -6,8 +6,13 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import LoginButton from '../../pages/login'
+import LoginButton from '../LoginButton/index'
+
+import LogoutButton from '../LogoutButton/index'
+
+import Profile from '../Profile/index'
 import Link from '@material-ui/core/Link'
+import { useAuth0 } from '@auth0/auth0-react'
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -19,6 +24,8 @@ const NavBar = () => {
         setAnchorEl(null)
     }
     const classes = useStyles()
+
+    const { isAuthenticated } = useAuth0()
 
     return (
         <React.Fragment>
@@ -54,30 +61,9 @@ const NavBar = () => {
                     >
                         Events
                     </Link>
-                    <LoginButton />
 
-                    <Button
-                        aria-controls="simple-menu"
-                        aria-haspopup="true"
-                        color="primary"
-                        variant="outlined"
-                        onClick={handleClick}
-                        className={classes.link}
-                    >
-                        <Link href="/login">
-                            <Typography variant="h6">LogIn</Typography>
-                        </Link>
-                    </Button>
-                    {/* <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
-                    </Menu> */}
+                    <Profile />
+                    <LoginButton />
                 </Toolbar>
             </AppBar>
         </React.Fragment>
