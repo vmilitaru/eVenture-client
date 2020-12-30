@@ -11,8 +11,20 @@
 .event {
     display: flex;
     flex-direction: column;
-    /* flex-wrap: ; */
     align-items: stretch;
     color: blue;
     padding: 30px;
+    word-wrap: break-word;
+    width: 40%;
+    border: 1px solid #000000;
+    border-width: 2px;
+    margin: 2%;
+}
+
+.img {
+    display: flex;
+    flex-direction: row;
+    width: 40%;
+    height: auto;
+    margin: 2%;
 }
