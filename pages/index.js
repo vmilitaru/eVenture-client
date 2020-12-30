@@ -7,6 +7,7 @@ import ButtonGeneral from '../components/Button/Button'
 import styling from '../pages/index.module.css'
 
 import React from 'react'
+import Footer from '../components/Footer/Footer'
 
 function Home() {
     return (
@@ -16,6 +17,8 @@ function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <NavBar />
+
+            <Footer />
 
             <div className={styling.intro}>
                 <h1>Develop with our community</h1>
@@ -39,6 +42,8 @@ function Home() {
                     alt="panda"
                 />
             </div>
+       <Footer />
+
         </div>
     )
 }
