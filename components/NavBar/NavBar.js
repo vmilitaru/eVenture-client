@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+import LoginButton from '../../pages/login'
 import Link from '@material-ui/core/Link'
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null)
@@ -53,6 +54,7 @@ const NavBar = () => {
                     >
                         Events
                     </Link>
+                    <LoginButton />
 
                     <Button
                         aria-controls="simple-menu"
