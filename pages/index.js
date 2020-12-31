@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import NavBar from '../components/NavBar/NavBar'
 import ButtonGeneral from '../components/Button/Button'
+import Countdown from '../components/Countdown/Countdown'
 // import { getStaticProps } from '../pages/api/events'
 
 import RandomEvent from '../components/RandomEvent/index'
@@ -21,6 +22,8 @@ function Home() {
             <NavBar />
 
             <RandomEvent />
+
+            <Countdown />
 
             <Footer />
 
