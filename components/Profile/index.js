@@ -6,35 +6,37 @@ const Profile = () => {
     const [userMetadata, setUserMetadata] = useState(null)
 
     useEffect(() => {
-        const getUserMetadata = async () => {
-            const domain = 'dev-49ka9ni6.eu.auth0.com'
+        if (user && isAuthenticated) {
+            const getUserMetadata = async () => {
+                const domain = 'dev-49ka9ni6.eu.auth0.com'
 
-            try {
-                const accessToken = await getAccessTokenSilently({
-                    audience: `https://${domain}/api/v2/`,
-                    scope: 'read:current_user'
-                })
+                try {
+                    const accessToken = await getAccessTokenSilently({
+                        audience: `https://${domain}/api/v2/`,
+                        scope: 'read:current_user'
+                    })
 
-                const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`
+                    const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`
 
-                const metadataResponse = await fetch(userDetailsByIdUrl, {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`
-                    }
-                })
+                    const metadataResponse = await fetch(userDetailsByIdUrl, {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`
+                        }
+                    })
 
-                const { user_metadata } = await metadataResponse.json()
+                    const { user_metadata } = await metadataResponse.json()
 
-                // console.log(user_metadata)
+                    // console.log(user_metadata)
 
-                setUserMetadata(user_metadata)
-            } catch (e) {
-                console.log(e.message)
+                    setUserMetadata(user_metadata)
+                } catch (e) {
+                    console.log(e.message)
+                }
             }
-        }
 
-        getUserMetadata()
-    }, [userMetadata])
+            getUserMetadata()
+        }
+    }, [user, isAuthenticated, getAccessTokenSilently])
 
     return (
         isAuthenticated && (

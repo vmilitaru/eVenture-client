@@ -4,6 +4,8 @@ import NavBar from '../components/NavBar/NavBar'
 import ButtonGeneral from '../components/Button/Button'
 // import { getStaticProps } from '../pages/api/events'
 
+import RandomEvent from '../components/RandomEvent/index'
+
 import styling from '../pages/index.module.css'
 
 import React from 'react'
@@ -17,6 +19,8 @@ function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <NavBar />
+
+            <RandomEvent />
 
             <Footer />
 
@@ -34,7 +38,7 @@ function Home() {
                     learning for a few weeks slowly, come join us.
                 </p>
             </div>
-      <ButtonGeneral text={'find out more'} />
+            <ButtonGeneral text={'find out more'} />
             <div>
                 <img
                     className={styling.img}
@@ -42,8 +46,7 @@ function Home() {
                     alt="panda"
                 />
             </div>
-       <Footer />
-
+            <Footer />
         </div>
     )
 }
