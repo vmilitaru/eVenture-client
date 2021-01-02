@@ -6,6 +6,7 @@ import Countdown from '../components/Countdown/Countdown'
 // import { getStaticProps } from '../pages/api/events'
 
 import RandomEvent from '../components/RandomEvent/index'
+import RoleButton from '../components/role-button/index'
 
 import styling from '../pages/index.module.css'
 
@@ -24,6 +25,8 @@ function Home() {
             <RandomEvent />
 
             <Countdown />
+
+            <RoleButton />
 
             <Footer />
 

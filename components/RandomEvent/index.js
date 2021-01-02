@@ -16,7 +16,7 @@ const RandomEvent = () => {
 
                 const accessToken = await getAccessTokenSilently({
                     audience: `https://${domain}/api/v2/`,
-                    scope: 'read:current_user'
+                    scope: 'read:current_user use:role'
                 })
 
                 const response = await fetch(`${BACKEND_URL}/protected/1`, {
