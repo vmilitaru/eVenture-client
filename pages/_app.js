@@ -22,8 +22,6 @@ export default function MyApp(props) {
             domain="dev-49ka9ni6.eu.auth0.com"
             clientId="hN7wzIS4Il754IZnMXX3VvgbDGLUE3t5"
             redirectUri="http://localhost:3000"
-            audience="https://dev-49ka9ni6.eu.auth0.com/api/v2/"
-            scope="read:current_user use:role"
         >
             <React.Fragment>
                 <Head>

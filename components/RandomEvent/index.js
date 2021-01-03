@@ -12,11 +12,11 @@ const RandomEvent = () => {
     useEffect(() => {
         if (user && isAuthenticated) {
             async function getEvent() {
-                const domain = 'dev-49ka9ni6.eu.auth0.com'
+                // const domain = 'dev-49ka9ni6.eu.auth0.com'
 
                 const accessToken = await getAccessTokenSilently({
-                    audience: `https://${domain}/api/v2/`,
-                    scope: 'read:current_user use:role'
+                    audience: `localhost:5000`,
+                    scope: 'read:events'
                 })
 
                 const response = await fetch(`${BACKEND_URL}/protected/1`, {

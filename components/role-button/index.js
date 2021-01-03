@@ -10,7 +10,7 @@ const RoleButton = () => {
         user,
         isAuthenticated,
         getAccessTokenSilently,
-        getIdTokenClaims
+        getAccessTokenWithPopup
     } = useAuth0()
     const [clicked, setClicked] = useState(false)
     const [msg, setMsg] = useState('')
@@ -20,19 +20,15 @@ const RoleButton = () => {
     }
 
     useEffect(() => {
-        if (clicked) {
+        if (clicked && user) {
             async function getMsg() {
-                const accessToken = await getAccessTokenSilently({
+                const accessToken = await getAccessTokenWithPopup({
                     audience: `https://${DOMAIN}/api/v2/`,
-                    scope: 'read:current_user use:role'
+                    aud: 'localhost:5000',
+                    scope: 'read:permissions'
                 })
 
-                const claims = await getIdTokenClaims()
-                // if you need the raw id_token, you can access it
-                // using the __raw property
-                console.log(claims)
-
-                // console.log(accessToken)
+                console.log(accessToken)
 
                 const response = await fetch(`${BACKEND_URL}/role`, {
                     headers: {
@@ -49,7 +45,7 @@ const RoleButton = () => {
 
             getMsg()
         }
-    }, [clicked, isAuthenticated])
+    }, [clicked, isAuthenticated, user])
 
     return (
         <div className="Button">
