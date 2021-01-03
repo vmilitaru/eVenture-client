@@ -2,16 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 
-const BACKEND_URL = 'http://localhost:5000'
-const DOMAIN = 'dev-49ka9ni6.eu.auth0.com'
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
+// const domain = process.env.NEXT_PUBLIC_AUTH0_DOMAIN
 
 const RoleButton = () => {
-    const {
-        user,
-        isAuthenticated,
-        getAccessTokenSilently,
-        getAccessTokenWithPopup
-    } = useAuth0()
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
     const [clicked, setClicked] = useState(false)
     const [msg, setMsg] = useState('')
 
@@ -22,25 +17,21 @@ const RoleButton = () => {
     useEffect(() => {
         if (clicked && user) {
             async function getMsg() {
-                const accessToken = await getAccessTokenWithPopup({
-                    audience: `https://${DOMAIN}/api/v2/`,
-                    aud: 'localhost:5000',
-                    scope: 'read:permissions'
-                })
+                const accessToken = await getAccessTokenSilently()
 
                 console.log(accessToken)
 
-                const response = await fetch(`${BACKEND_URL}/role`, {
+                const response = await fetch(`${serverUrl}/role`, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`
                     }
                 })
 
-                //const result = response.statusText
+                const result = await response.json()
 
-                //setMsg(result.msg)
+                setMsg(result.payload.message)
 
-                console.log(response)
+                console.log(result.payload.message)
             }
 
             getMsg()
@@ -52,7 +43,7 @@ const RoleButton = () => {
             <Button color="primary" variant="outlined" onClick={handleClick}>
                 Role
             </Button>
-            <p>{/*msg*/}</p>
+            <p>{msg}</p>
         </div>
     )
 }

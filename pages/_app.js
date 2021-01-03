@@ -9,6 +9,10 @@ import { Auth0Provider } from '@auth0/auth0-react'
 export default function MyApp(props) {
     const { Component, pageProps } = props
 
+    const domain = process.env.NEXT_PUBLIC_AUTH0_DOMAIN
+    const clientId = process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID
+    const audience = process.env.NEXT_PUBLIC_AUTH0_AUDIENCE
+
     React.useEffect(() => {
         // Remove the server-side injected CSS.
         const jssStyles = document.querySelector('#jss-server-side')
@@ -19,9 +23,10 @@ export default function MyApp(props) {
 
     return (
         <Auth0Provider
-            domain="dev-49ka9ni6.eu.auth0.com"
-            clientId="hN7wzIS4Il754IZnMXX3VvgbDGLUE3t5"
+            domain={domain}
+            clientId={clientId}
             redirectUri="http://localhost:3000"
+            audience={audience}
         >
             <React.Fragment>
                 <Head>

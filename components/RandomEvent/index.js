@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 
-const BACKEND_URL = 'http://localhost:5000'
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
 
 const RandomEvent = () => {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -12,14 +12,9 @@ const RandomEvent = () => {
     useEffect(() => {
         if (user && isAuthenticated) {
             async function getEvent() {
-                // const domain = 'dev-49ka9ni6.eu.auth0.com'
+                const accessToken = await getAccessTokenSilently()
 
-                const accessToken = await getAccessTokenSilently({
-                    audience: `localhost:5000`,
-                    scope: 'read:events'
-                })
-
-                const response = await fetch(`${BACKEND_URL}/protected/1`, {
+                const response = await fetch(`${serverUrl}/protected/1`, {
                     headers: {
                         Authorization: `Bearer ${accessToken}`
                     }

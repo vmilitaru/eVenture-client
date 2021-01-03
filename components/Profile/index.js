@@ -5,11 +5,11 @@ const Profile = () => {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
     const [userMetadata, setUserMetadata] = useState(null)
 
+    const domain = process.env.NEXT_PUBLIC_AUTH0_DOMAIN
+
     useEffect(() => {
         if (user && isAuthenticated) {
             const getUserMetadata = async () => {
-                const domain = 'dev-49ka9ni6.eu.auth0.com'
-
                 try {
                     const accessToken = await getAccessTokenSilently({
                         audience: `https://${domain}/api/v2/`,
