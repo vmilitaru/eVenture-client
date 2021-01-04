@@ -17,7 +17,7 @@ import {
 } from '@material-ui/pickers'
 import Grid from '@material-ui/core/Grid'
 
-const BACKEND_URL = process.env.BACKEND_URL
+import { serverUrl } from '../environment'
 
 const useStyles = makeStyles((theme) => ({
     //this styling would be good to replace with css modules
@@ -93,7 +93,7 @@ function AdminEventPage() {
             },
             body: JSON.stringify(newEvent)
         }
-        const response = await fetch(`${BACKEND_URL}/events`, requestOptions) //post request is sent to events listing
+        const response = await fetch(`${serverUrl}/events`, requestOptions) //post request is sent to events listing
         const data = await response.json()
         console.log(data)
 
