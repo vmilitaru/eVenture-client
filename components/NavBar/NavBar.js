@@ -7,6 +7,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link'
+import styles from './NavBar.module.css'
+
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -34,7 +36,12 @@ const NavBar = () => {
                         noWrap
                         className={classes.toolbarTitle}
                     >
-                        <img src="/soc.png" alt="logo" />
+                        <img
+                            className={styles.logo}
+                            id="logo"
+                            src="/soc.png"
+                            alt="logo"
+                        />
                     </Typography>
 
                     <Link
