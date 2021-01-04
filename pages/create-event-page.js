@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 //import ImageUploader from 'react-images-upload'
 import LuxonUtils from '@date-io/luxon'
+
 import SaveIcon from '@material-ui/icons/Save'
 import Button from '@material-ui/core/Button'
 import {
@@ -17,10 +18,9 @@ import {
 import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles((theme) => ({
+    //this styling would be good to replace with css modules
     title: {
         margin: theme.spacing(2),
-        top: 40, //doesnt work
-        right: 40, //doesnt work
         height: 20,
         width: 500
     },
@@ -38,41 +38,49 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1)
     }
 }))
+//FORMAT
 // const emptyEvent = {
-//   title: '',
+//   title: '', completed
 //   banner: '',
 //   date: '',
 //   speaker: '',
-//   description: '',
+//   description: '',completed
 //   numtickets: '',
 //   location: ''
 // }
 
 function AdminEventPage() {
     const emptyEvent = {
-        title: 'hey',
-        description: 'hi'
+        title: 'empty title',
+        description: 'empty description',
+        date: 'empty date',
+        time: 'empty time'
     }
     const [newEvent, setNewEvent] = useState(emptyEvent)
     const [selectedDate, setSelectedDate] = useState(
-        new Date('2021-01-01T02:00:00.000Z')
+        new Date('2021-01-01T02:00:00.000Z') //date is formated as ISO865
     )
     ///2020-12-30T00:00:00.000Z
 
     const handleDateChange = (date) => {
+        //
         setSelectedDate(date)
+
+        console.log(selectedDate)
     }
     const classes = useStyles()
 
     function populateObject(event) {
+        //the empty object is populated by grabbing id and input data
         setNewEvent({ ...newEvent, [event.target.id]: event.target.value })
     }
 
     async function handleSubmit(event) {
+        //after populating the empty object from all inputs the event does the post request to the database
         event.preventDefault()
         console.log('clicked')
         console.log(newEvent)
-        //app.post on server end
+
         const requestOptions = {
             mode: 'cors',
             method: 'POST',
@@ -86,17 +94,18 @@ function AdminEventPage() {
         const response = await fetch(
             `http://localhost:6000/events`,
             requestOptions
-        )
+        ) //post request is sent to events listing
         const data = await response.json()
         console.log(data)
-        event.target.reset()
+
+        event.target.reset() //reset input boxes
     }
 
     return (
         <form
             noValidate
             autoComplete="off"
-            onSubmit={(event) => handleSubmit(event)}
+            onSubmit={(event) => handleSubmit(event)} //on button click post request is fired
         >
             <div>
                 <TextField
@@ -113,7 +122,8 @@ function AdminEventPage() {
                 <MuiPickersUtilsProvider
                     utils={LuxonUtils}
                     direction="row"
-                    //onChange={(event) => populateObject(event)}
+                    //id="date"
+                    // onChange={(event) => populateObject(event)}
                 >
                     <Grid container justify="space-around" direction="row">
                         <KeyboardDatePicker
@@ -127,11 +137,12 @@ function AdminEventPage() {
                                 'aria-label': 'change date'
                             }}
                             className={classes.datetime}
+                            //onChange={(event) => populateObject(event)}
                         />
 
                         <KeyboardTimePicker
                             margin="normal"
-                            id="date"
+                            id="time"
                             label="Time"
                             value={selectedDate}
                             onChange={handleDateChange}
@@ -139,6 +150,7 @@ function AdminEventPage() {
                                 'aria-label': 'change time'
                             }}
                             className={classes.datetime}
+                            // onChange={(event) => populateObject(event)}
                         />
                     </Grid>
                 </MuiPickersUtilsProvider>
@@ -168,48 +180,3 @@ function AdminEventPage() {
     )
 }
 export default AdminEventPage
-
-/*
-
-  import comments from '../comments.json' //or can get object from payload
-
-export default (req, res) => {
-  res.status(200).json({ post: req.query.id, comments })
-}
-
-*/
-
-/* 
-function userHandler(req, res) {
-  const {
-    query: { title, banner, description, date, time },
-    method,
-  } = req
-
-  switch (method) {
-    case 'GET':
-    //const res = await fetch(`http://localhost:6000/events/${id}`)
-    //const data = await res.json()
-
-      res.status(200).json({ id,banner, description, date, time })
-      break
-    case 'POST':
-      //create an entry in your database
-      break
-    case 'PUT':
-      // Update your database
-      res.status(200).json({ id, banner, description, date, time  })
-      break
-    default:
-      res.setHeader('Allow', ['GET', 'PUT', 'POST'])
-      res.status(405).end(`Method ${method} Not Allowed`)
-  }
-}
-    return (
-        <React.Fragment>
-            <NavBar />
-            <Input />
-        </React.Fragment>
-    )
-}
-*/
