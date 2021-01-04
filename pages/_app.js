@@ -1,19 +1,24 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+// imports
+import React from 'react'
+import { Auth0Provider } from '@auth0/auth0-react'
 import Head from 'next/head'
+import PropTypes from 'prop-types'
+
+// style imports
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
-import { Auth0Provider } from '@auth0/auth0-react'
 
-const redirectUrl = process.env.NEXT_PUBLIC_CLIENT_URL
+// env imports
+import {
+    redirectUrl,
+    auth0Audience,
+    auth0ClientId,
+    auth0Domain
+} from '../environment'
 
 export default function MyApp(props) {
     const { Component, pageProps } = props
-
-    const domain = process.env.NEXT_PUBLIC_AUTH0_DOMAIN
-    const clientId = process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID
-    const audience = process.env.NEXT_PUBLIC_AUTH0_AUDIENCE
 
     React.useEffect(() => {
         // Remove the server-side injected CSS.
@@ -25,10 +30,10 @@ export default function MyApp(props) {
 
     return (
         <Auth0Provider
-            domain={domain}
-            clientId={clientId}
+            domain={auth0Domain}
+            clientId={auth0ClientId}
             redirectUri={`${redirectUrl}${props.router.pathname}`}
-            audience={audience}
+            audience={auth0Audience}
         >
             <React.Fragment>
                 <Head>

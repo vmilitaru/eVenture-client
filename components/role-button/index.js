@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { useAuth0 } from '@auth0/auth0-react'
 
-const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL
-// const domain = process.env.NEXT_PUBLIC_AUTH0_DOMAIN
+import { serverUrl } from '../../environment'
 
 const RoleButton = () => {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
