@@ -2,12 +2,17 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import Popover from '@material-ui/core/Popover'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link'
 import styles from './NavBar.module.css'
+import { useStyles } from './NavBarMaterialCss.js'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
+import Grow from '@material-ui/core/Grow'
+import Paper from '@material-ui/core/Paper'
+import Popper from '@material-ui/core/Popper'
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null)
@@ -22,92 +27,69 @@ const NavBar = () => {
     const classes = useStyles()
 
     return (
-        <React.Fragment>
-            <AppBar
-                position="static"
-                color="default"
-                elevation={0}
-                className={classes.appBar}
-            >
-                <Toolbar className={classes.toolbar}>
-                    <Typography
-                        variant="h6"
-                        color="inherit"
-                        noWrap
-                        className={classes.toolbarTitle}
-                    >
+        <div>
+            <React.Fragment>
+                <AppBar className={classes.appBar}>
+                    <Toolbar className={classes.toolbar}>
+                        <Typography
+                            variant="h6"
+                            color="inherit"
+                            noWrap
+                            className={classes.toolbarTitle}
+                        ></Typography>
                         <img
                             className={styles.logo}
                             id="logo"
                             src="/soc.png"
                             alt="logo"
                         />
-                    </Typography>
-
-                    <Link
-                        variant="h6"
-                        color="textPrimary"
-                        href="/"
-                        className={classes.link}
-                    >
-                        Home
-                    </Link>
-                    <Link
-                        href="/events-page"
-                        variant="h6"
-                        color="textPrimary"
-                        className={classes.link}
-                    >
-                        Events
-                    </Link>
-
-                    <Button
-                        aria-controls="simple-menu"
-                        aria-haspopup="true"
-                        color="primary"
-                        variant="outlined"
-                        onClick={handleClick}
-                        className={classes.link}
-                    >
-                        <Link href="/login">
-                            <Typography variant="h6">LogIn</Typography>
+                        <Link
+                            variant="h6"
+                            color="textPrimary"
+                            href="/"
+                            className={classes.link}
+                        >
+                            Home
                         </Link>
-                    </Button>
-                    {/* <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
-                    </Menu> */}
-                </Toolbar>
-            </AppBar>
-        </React.Fragment>
+                        <Link
+                            href="/events-page"
+                            variant="h6"
+                            color="textPrimary"
+                            className={classes.link}
+                        >
+                            Events
+                        </Link>
+
+                        <Button
+                            aria-controls="simple-menu"
+                            aria-haspopup="true"
+                            color="primary"
+                            variant="outlined"
+                            onClick={handleClick}
+                            className={classes.link}
+                        >
+                            <Link href="/login">
+                                <Typography variant="h6">LogIn</Typography>
+                            </Link>
+                        </Button>
+
+                        <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onHover={handleClose}>
+                                My account
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        </Menu>
+                    </Toolbar>
+                </AppBar>
+            </React.Fragment>
+        </div>
     )
 }
 
-const useStyles = makeStyles((theme) => ({
-    '@global': {
-        ul: {
-            margin: 0,
-            padding: 0,
-            listStyle: 'none'
-        }
-    },
-    appBar: {
-        borderBottom: `1px solid ${theme.palette.divider}`
-    },
-    toolbar: {
-        flexWrap: 'wrap'
-    },
-    toolbarTitle: {
-        flexGrow: 1
-    },
-    link: {
-        margin: theme.spacing(1, 10)
-    }
-}))
 export default NavBar

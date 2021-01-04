@@ -11,7 +11,7 @@ import Footer from '../components/Footer/Footer'
 
 function Home() {
     return (
-        <div className={styling.div}>
+        <div className={styling.div} style={{ backgroundColor: 'whitesmoke' }}>
             <Head>
                 <title>Communiteam</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -34,7 +34,7 @@ function Home() {
                     learning for a few weeks slowly, come join us.
                 </p>
             </div>
-      <ButtonGeneral text={'find out more'} />
+            <ButtonGeneral text={'find out more'} />
             <div>
                 <img
                     className={styling.img}
@@ -42,8 +42,7 @@ function Home() {
                     alt="panda"
                 />
             </div>
-       <Footer />
-
+            <Footer />
         </div>
     )
 }
