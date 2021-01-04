@@ -5,9 +5,19 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
 import { Auth0Provider } from '@auth0/auth0-react'
-
+import { useRouter } from 'next/router'
 export default function MyApp(props) {
     const { Component, pageProps } = props
+
+    const router = useRouter()
+
+    const onRedirectCallback = (appState) => {
+        // Use Next.js's Router.replace method to replace the url
+
+        Router.replace(appState?.returnTo || router.pathname)
+    }
+
+    console.log(router)
 
     const domain = process.env.NEXT_PUBLIC_AUTH0_DOMAIN
     const clientId = process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID
@@ -25,7 +35,10 @@ export default function MyApp(props) {
         <Auth0Provider
             domain={domain}
             clientId={clientId}
-            redirectUri="http://localhost:3000"
+            redirectUri={
+                typeof window !== 'undefined' && window.location.origin
+            }
+            onRedirectCallback={onRedirectCallback}
             audience={audience}
         >
             <React.Fragment>

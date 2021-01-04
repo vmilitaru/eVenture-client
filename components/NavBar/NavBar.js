@@ -8,8 +8,6 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import LoginButton from '../LoginButton/index'
 
-import LogoutButton from '../LogoutButton/index'
-
 import Profile from '../Profile/index'
 import Link from '@material-ui/core/Link'
 import { useAuth0 } from '@auth0/auth0-react'
