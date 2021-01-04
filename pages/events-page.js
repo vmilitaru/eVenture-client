@@ -1,9 +1,28 @@
+// imports
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import fetch from 'isomorphic-unfetch'
 
+// import components
 import NavBar from '../components/NavBar/NavBar'
 import EventCard from '../components/EventCard/EventCard'
-import fetch from 'isomorphic-unfetch'
+
+// import env
+import { serverUrl } from '../environment'
+
+function EventsPage() {
+    const [events, setEvents] = useState([])
+
+    useEffect(() => {
+        async function getEvents() {
+            const response = await fetch(`${serverUrl}/events`)
+            const data = await response.json()
+            setEvents(data.payload)
+        }
+
+        getEvents()
+    }, [])
 
 const BACKEND_URL = process.env.BACKEND_URL
 

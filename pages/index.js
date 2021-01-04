@@ -1,13 +1,13 @@
+import React from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+
+// import components
 import NavBar from '../components/NavBar/NavBar'
 import ButtonGeneral from '../components/Button/Button'
-// import { getStaticProps } from '../pages/api/events'
-
-import styling from '../pages/index.module.css'
-
-import React from 'react'
 import Footer from '../components/Footer/Footer'
+
+// import styles
+import styling from '../pages/index.module.css'
 
 function Home() {
     return (
@@ -17,9 +17,7 @@ function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <NavBar />
-
             <Footer />
-
             <div className={styling.intro}>
                 <h1>Develop with our community</h1>
                 <h3>Checkout our latest event</h3>
@@ -34,7 +32,7 @@ function Home() {
                     learning for a few weeks slowly, come join us.
                 </p>
             </div>
-      <ButtonGeneral text={'find out more'} />
+            <ButtonGeneral text={'find out more'} />
             <div>
                 <img
                     className={styling.img}
@@ -42,8 +40,7 @@ function Home() {
                     alt="panda"
                 />
             </div>
-       <Footer />
-
+            <Footer />
         </div>
     )
 }

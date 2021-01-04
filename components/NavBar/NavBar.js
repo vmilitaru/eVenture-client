@@ -1,4 +1,6 @@
 import React from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
+
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -6,7 +8,11 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
+
+import LoginButton from '../LoginButton/index'
+import Profile from '../Profile/index'
 import Link from '@material-ui/core/Link'
+
 import styles from './NavBar.module.css'
 
 const NavBar = () => {
@@ -20,6 +26,8 @@ const NavBar = () => {
         setAnchorEl(null)
     }
     const classes = useStyles()
+
+    const { isAuthenticated } = useAuth0()
 
     return (
         <React.Fragment>
@@ -61,28 +69,8 @@ const NavBar = () => {
                         Events
                     </Link>
 
-                    <Button
-                        aria-controls="simple-menu"
-                        aria-haspopup="true"
-                        color="primary"
-                        variant="outlined"
-                        onClick={handleClick}
-                        className={classes.link}
-                    >
-                        <Link href="/login">
-                            <Typography variant="h6">LogIn</Typography>
-                        </Link>
-                    </Button>
-                    {/* <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                        <MenuItem onClick={handleClose}>Logout</MenuItem>
-                    </Menu> */}
+                    <Profile />
+                    <LoginButton />
                 </Toolbar>
             </AppBar>
         </React.Fragment>
