@@ -1,23 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
 import { Auth0Provider } from '@auth0/auth0-react'
-import { useRouter } from 'next/router'
+
+const redirectUrl = process.env.NEXT_PUBLIC_CLIENT_URL
+
 export default function MyApp(props) {
     const { Component, pageProps } = props
-
-    const router = useRouter()
-
-    const onRedirectCallback = (appState) => {
-        // Use Next.js's Router.replace method to replace the url
-
-        Router.replace(appState?.returnTo || router.pathname)
-    }
-
-    console.log(router)
 
     const domain = process.env.NEXT_PUBLIC_AUTH0_DOMAIN
     const clientId = process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID
@@ -35,10 +27,7 @@ export default function MyApp(props) {
         <Auth0Provider
             domain={domain}
             clientId={clientId}
-            redirectUri={
-                typeof window !== 'undefined' && window.location.origin
-            }
-            onRedirectCallback={onRedirectCallback}
+            redirectUri={`${redirectUrl}${props.router.pathname}`}
             audience={audience}
         >
             <React.Fragment>
