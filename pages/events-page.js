@@ -5,6 +5,8 @@ import NavBar from '../components/NavBar/NavBar'
 import EventCard from '../components/EventCard/EventCard'
 import fetch from 'isomorphic-unfetch'
 
+const BACKEND_URL = process.env.BACKEND_URL
+
 const EventsPage = ({ events }) => {
     console.log(events)
     return (
@@ -36,7 +38,7 @@ const EventsPage = ({ events }) => {
 }
 
 export async function getServerSideProps() {
-    const res = await fetch('http://localhost:6000/events')
+    const res = await fetch(`${BACKEND_URL}/events`)
     const data = await res.json()
     const listOfEvents = data.payload
     console.log(listOfEvents)
