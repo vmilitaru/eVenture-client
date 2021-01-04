@@ -2,7 +2,7 @@
 //import NavBar from '../../../components/NavBar/NavBar'
 //import Footer from '../../../components/Footer/Footer'
 
-const BACKEND_URL = process.env.BACKEND_URL
+import { serverUrl } from '../../environment'
 
 export default function SpecificEventPage({ event }) {
     return (
@@ -22,7 +22,7 @@ export default function SpecificEventPage({ event }) {
 
 export async function getServerSideProps(context) {
     const { id } = context.query
-    const res = await fetch(`${BACKEND_URL}/events/${id}`)
+    const res = await fetch(`${serverUrl}/events/${id}`)
     const data = await res.json()
     console.log(data)
     const event = data.payload
