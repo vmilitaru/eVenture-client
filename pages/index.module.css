@@ -1,12 +1,14 @@
 .div {
     display: flex;
     flex-direction: column;
+    margin-top: 1.75 rem;
 }
 .intro {
     display: flex;
     flex-direction: column;
     padding: 20px;
     align-items: center;
+    padding-top: 7%;
 }
 .event {
     display: flex;

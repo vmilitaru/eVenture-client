@@ -58,7 +58,7 @@ const NavBar = () => {
                         <Button
                             aria-controls="simple-menu"
                             aria-haspopup="true"
-                            color="primary"
+                            color="white"
                             variant="outlined"
                             onClick={handleClick}
                             className={classes.link}

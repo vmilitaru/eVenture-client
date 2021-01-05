@@ -11,7 +11,7 @@ import Footer from '../components/Footer/Footer'
 
 function Home() {
     return (
-        <div className={styling.div} style={{ backgroundColor: 'whitesmoke' }}>
+        <div className={styling.div} style={{ backgroundColor: '#F2F2F2' }}>
             <Head>
                 <title>Communiteam</title>
                 <link rel="icon" href="/favicon.ico" />
