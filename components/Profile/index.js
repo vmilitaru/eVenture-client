@@ -9,7 +9,7 @@ import { auth0Domain } from '../../environment'
 const Profile = () => {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
-    console.log(getAccessTokenSilently())
+    // console.log(getAccessTokenSilently())
 
     return (
         isAuthenticated && (
