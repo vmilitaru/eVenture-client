@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import NavBar from '../components/NavBar/NavBar'
 import ButtonGeneral from '../components/Button/Button'
+import { makeStyles } from '@material-ui/core/styles'
 // import { getStaticProps } from '../pages/api/events'
 
 import styling from '../pages/index.module.css'
@@ -33,8 +34,9 @@ function Home() {
                     things css and html. whether you are a newbie or been a
                     learning for a few weeks slowly, come join us.
                 </p>
+                <ButtonGeneral text={'find out more'} />
             </div>
-            <ButtonGeneral text={'find out more'} />
+
             <div>
                 <img
                     className={styling.img}
