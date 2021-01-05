@@ -23,6 +23,8 @@ export const useStyles = makeStyles((theme) => ({
         flexGrow: 1
     },
     link: {
-        margin: theme.spacing(1, 10)
+        margin: theme.spacing(1, 10),
+        color: theme.palette.primary.contrastText,
+        border: theme.palette.primary.light
     }
 }))
