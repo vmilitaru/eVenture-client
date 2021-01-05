@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography'
 
 function Home() {
     return (
-        <Grid className={styling.div} style={{ backgroundColor: '#fffde7' }}>
+        <div style={{ backgroundColor: '#fffde7' }}>
             <Head>
                 <title>Communiteam</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -20,17 +20,17 @@ function Home() {
             <NavBar />
 
             <Footer />
-            <Grid spacing={5}>
-                <Grid>
-                    <Grid item className={styling.intro}>
-                        <Typography variant="h2">
-                            Develop with our community
-                        </Typography>
-                        <Typography variant="h3">
-                            Checkout our latest event
-                        </Typography>
-                    </Grid>
-                    <Grid className={styling.event}>
+            <div className={styling.div}>
+                <div item className={styling.intro}>
+                    <Typography variant="h2">
+                        Develop with our community
+                    </Typography>
+                    <Typography variant="h3">
+                        Checkout our latest event
+                    </Typography>
+                </div>
+                <div className={styling.event}>
+                    <div className={styling.eventDetails}>
                         <Typography variant="h3">Event Name</Typography>
                         <Typography variant="h5">
                             Date and time displayed here
@@ -43,16 +43,16 @@ function Home() {
                             come join us.
                         </p>
                         <ButtonGeneral text={'find out more'} />
-                        <img
-                            className={styling.img}
-                            src="https://media.newyorker.com/photos/5f414de2840e569c23e39066/2:1/w_2559,h_1279,c_limit/Wright-Panda01.jpg"
-                            alt="panda"
-                        />
-                    </Grid>
-                </Grid>
-            </Grid>
+                    </div>
+                    <img
+                        className={styling.img}
+                        src="https://media.newyorker.com/photos/5f414de2840e569c23e39066/2:1/w_2559,h_1279,c_limit/Wright-Panda01.jpg"
+                        alt="panda"
+                    />
+                </div>
+            </div>
             <Footer />
-        </Grid>
+        </div>
     )
 }
 

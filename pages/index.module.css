@@ -1,7 +1,9 @@
 .div {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: 1.75 rem;
+    text-align: justify;
 }
 .intro {
     display: flex;
@@ -12,21 +14,23 @@
 }
 .event {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    align-items: center;
+    flex-direction: row;
     color: blue;
     padding: 30px;
     word-wrap: break-word;
-    width: 40%;
+    width: 90%;
     border: 1px solid #000000;
     border-width: 2px;
-    margin: 2%;
+    margin: auto;
 }
-
+.eventDetails {
+    margin: 1%;
+}
 .img {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 40%;
     height: auto;
-    margin: 2%;
+    margin: 1%;
 }
