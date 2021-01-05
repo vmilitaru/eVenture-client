@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 //import ImageUploader from 'react-images-upload'
 import LuxonUtils from '@date-io/luxon'
-
+import { DateTime } from 'luxon'
 import SaveIcon from '@material-ui/icons/Save'
 import Button from '@material-ui/core/Button'
 import {
@@ -38,49 +38,59 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1)
     }
 }))
-//FORMAT
-// const emptyEvent = {
-//   title: '', completed
-//   banner: '',
-//   date: '',
-//   speaker: '',
-//   description: '',completed
-//   numtickets: '',
-//   location: ''
-// }
 
 function AdminEventPage() {
-    const emptyEvent = {
-        title: 'empty title',
-        description: 'empty description',
-        date: 'empty date',
-        time: 'empty time'
+    const [title, setTitle] = useState('empty title')
+    const [date, setDate] = useState(DateTime.utc())
+    const [timeObj, setTime] = useState(DateTime.utc())
+
+    const handleDateChange = (d) => {
+        console.log(d)
+        console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
+        setDate(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
     }
-    const [newEvent, setNewEvent] = useState(emptyEvent)
-    const [selectedDate, setSelectedDate] = useState(
-        new Date('2021-01-01T02:00:00.000Z') //date is formated as ISO865
-    )
-    ///2020-12-30T00:00:00.000Z
+    const handleTimeChange = (t) => {
+        console.log(
+            DateTime.utc()
+                .set({
+                    hour: t.c.hour,
+                    minute: t.c.minute,
+                    seconds: 0,
+                    milliseconds: 0
+                })
+                .toISOTime({
+                    suppressSeconds: true,
+                    includeOffset: false,
+                    suppressMilliseconds: true
+                })
+        )
 
-    const handleDateChange = (date) => {
-        //
-        setSelectedDate(date)
-
-        console.log(selectedDate)
+        setTime(
+            DateTime.utc().set({
+                hour: t.c.hour,
+                minute: t.c.minute,
+                seconds: 0,
+                millisecond: 0
+            })
+        )
     }
     const classes = useStyles()
-
-    function populateObject(event) {
-        //the empty object is populated by grabbing id and input data
-        setNewEvent({ ...newEvent, [event.target.id]: event.target.value })
-    }
 
     async function handleSubmit(event) {
         //after populating the empty object from all inputs the event does the post request to the database
         event.preventDefault()
         console.log('clicked')
-        console.log(newEvent)
 
+        console.log(title)
+        console.log(date)
+        console.log(time)
+        const time = timeObj.toISOTime({
+            suppressSeconds: true,
+            includeOffset: false,
+            suppressMilliseconds: true
+        })
+
+        console.log({ title, date, time })
         const requestOptions = {
             mode: 'cors',
             method: 'POST',
@@ -89,10 +99,10 @@ function AdminEventPage() {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*'
             },
-            body: JSON.stringify(newEvent)
+            body: JSON.stringify({ title, date, time })
         }
         const response = await fetch(
-            `http://localhost:6000/events`,
+            `http://localhost:5000/events`,
             requestOptions
         ) //post request is sent to events listing
         const data = await response.json()
@@ -116,41 +126,34 @@ function AdminEventPage() {
                     placeholder="Enter title of event"
                     variant="outlined"
                     InputProps={{ classes: { input: classes.title } }}
-                    onChange={(event) => populateObject(event)}
+                    onChange={(e) => setTitle(e.target.value)}
                 />
 
-                <MuiPickersUtilsProvider
-                    utils={LuxonUtils}
-                    direction="row"
-                    //id="date"
-                    // onChange={(event) => populateObject(event)}
-                >
+                <MuiPickersUtilsProvider utils={LuxonUtils} direction="row">
                     <Grid container justify="space-around" direction="row">
                         <KeyboardDatePicker
                             margin="normal"
                             id="date"
                             label="Date"
                             format="dd/MM/yyyy"
-                            value={selectedDate}
-                            onChange={handleDateChange}
+                            value={date}
+                            onChange={(d) => handleDateChange(d)}
                             KeyboardButtonProps={{
                                 'aria-label': 'change date'
                             }}
                             className={classes.datetime}
-                            //onChange={(event) => populateObject(event)}
                         />
 
                         <KeyboardTimePicker
                             margin="normal"
                             id="time"
                             label="Time"
-                            value={selectedDate}
-                            onChange={handleDateChange}
+                            value={timeObj}
+                            onChange={(t) => handleTimeChange(t)}
                             KeyboardButtonProps={{
                                 'aria-label': 'change time'
                             }}
                             className={classes.datetime}
-                            // onChange={(event) => populateObject(event)}
                         />
                     </Grid>
                 </MuiPickersUtilsProvider>
@@ -162,7 +165,6 @@ function AdminEventPage() {
                     plceholder="Enter Event Title"
                     variant="outlined"
                     InputProps={{ classes: { input: classes.description } }}
-                    onChange={(event) => populateObject(event)}
                 />
             </div>
             <Button
