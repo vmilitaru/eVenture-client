@@ -1,12 +1,29 @@
+// imports
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-
-import NavBar from '../components/NavBar/NavBar'
-import EventCard from '../components/EventCard/EventCard'
 import fetch from 'isomorphic-unfetch'
 
-const EventsPage = ({ events }) => {
-    console.log(events)
+// import components
+import NavBar from '../components/NavBar/NavBar'
+import EventCard from '../components/EventCard/EventCard'
+
+// import env
+import { serverUrl } from '../environment'
+
+function EventsPage() {
+    const [events, setEvents] = useState([])
+
+    useEffect(() => {
+        async function getEvents() {
+            const response = await fetch(`${serverUrl}/events`)
+            const data = await response.json()
+            setEvents(data.payload)
+        }
+
+        getEvents()
+    }, [])
+
     return (
         <div>
             <Head>
@@ -35,16 +52,4 @@ const EventsPage = ({ events }) => {
     )
 }
 
-export async function getServerSideProps() {
-    const res = await fetch('http://localhost:6000/events')
-    const data = await res.json()
-    const listOfEvents = data.payload
-    console.log(listOfEvents)
-
-    return {
-        props: {
-            events: listOfEvents
-        }
-    }
-}
 export default EventsPage

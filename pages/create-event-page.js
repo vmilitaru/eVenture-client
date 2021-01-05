@@ -17,6 +17,8 @@ import {
 } from '@material-ui/pickers'
 import Grid from '@material-ui/core/Grid'
 
+import { serverUrl } from '../environment'
+
 const useStyles = makeStyles((theme) => ({
     //this styling would be good to replace with css modules
     title: {
@@ -101,10 +103,14 @@ function AdminEventPage() {
             },
             body: JSON.stringify({ title, date, time })
         }
+
         const response = await fetch(
             `http://localhost:5000/events`,
             requestOptions
         ) //post request is sent to events listing
+
+        //const response = await fetch(`${serverUrl}/events`, requestOptions) //post request is sent to events listing
+
         const data = await response.json()
         console.log(data)
 

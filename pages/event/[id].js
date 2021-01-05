@@ -2,6 +2,8 @@
 //import NavBar from '../../../components/NavBar/NavBar'
 //import Footer from '../../../components/Footer/Footer'
 
+import { serverUrl } from '../../environment'
+
 export default function SpecificEventPage({ event }) {
     return (
         <div>
@@ -20,7 +22,7 @@ export default function SpecificEventPage({ event }) {
 
 export async function getServerSideProps(context) {
     const { id } = context.query
-    const res = await fetch(`http://localhost:6000/events/${id}`)
+    const res = await fetch(`${serverUrl}/events/${id}`)
     const data = await res.json()
     console.log(data)
     const event = data.payload
