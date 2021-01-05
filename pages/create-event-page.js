@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-//import NavBar from '../components/NavBar/NavBar'
+import React, {useState } from 'react'
+import NavBar from '../components/NavBar/NavBar'
 //import Footer from '../component/Footer/Footer'
 //import Input from '../components/Input/Input'
 import fetch from 'isomorphic-unfetch'
@@ -16,6 +16,7 @@ import {
     KeyboardDatePicker
 } from '@material-ui/pickers'
 import Grid from '@material-ui/core/Grid'
+import {useAuth0} from '@auth0/auth0-react'
 
 import { serverUrl } from '../environment'
 
@@ -42,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function AdminEventPage() {
+    const { user, isAuthenticated,getAccessTokenSilently } = useAuth0()
+    console.log(user)
+    console.log(isAuthenticated)
     const [title, setTitle] = useState('empty title')
     const [date, setDate] = useState(DateTime.utc())
     const [timeObj, setTime] = useState(DateTime.utc())
@@ -77,47 +81,61 @@ function AdminEventPage() {
         )
     }
     const classes = useStyles()
+   
+    
+        
+            async function handleSubmit(event) {
+                if(user&&isAuthenticated){
+                //after populating the empty object from all inputs the event does the post request to the database
+                const accessToken = await getAccessTokenSilently()
+                console.log(accessToken)
+                event.preventDefault()
+                console.log('clicked')
+        
+                console.log(title)
+                console.log(date)
+                console.log(time)
+                const time = timeObj.toISOTime({
+                    suppressSeconds: true,
+                    includeOffset: false,
+                    suppressMilliseconds: true
+                })
+        
+                console.log({ title, date, time })
+                const requestOptions = {
+                    mode: 'cors',
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
 
-    async function handleSubmit(event) {
-        //after populating the empty object from all inputs the event does the post request to the database
-        event.preventDefault()
-        console.log('clicked')
-
-        console.log(title)
-        console.log(date)
-        console.log(time)
-        const time = timeObj.toISOTime({
-            suppressSeconds: true,
-            includeOffset: false,
-            suppressMilliseconds: true
-        })
-
-        console.log({ title, date, time })
-        const requestOptions = {
-            mode: 'cors',
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            body: JSON.stringify({ title, date, time })
+                        
+                    },
+                    body: JSON.stringify({ title, date, time })
+                }
+        
+                const response = await fetch(
+                    ` ${serverUrl}/org`,
+                    requestOptions
+                ) //post request is sent to events listing
+        
+                //const response = await fetch(`${serverUrl}/events`, requestOptions) //post request is sent to events listing
+        
+                const data = await response.json()
+                console.log(data)
+        
+                event.target.reset() //reset input boxes
+            }
+            
         }
-
-        const response = await fetch(
-            `http://localhost:5000/events`,
-            requestOptions
-        ) //post request is sent to events listing
-
-        //const response = await fetch(`${serverUrl}/events`, requestOptions) //post request is sent to events listing
-
-        const data = await response.json()
-        console.log(data)
-
-        event.target.reset() //reset input boxes
-    }
+    
+    
 
     return (
+        <>
+        <NavBar/>
         <form
             noValidate
             autoComplete="off"
@@ -185,6 +203,7 @@ function AdminEventPage() {
                 Save
             </Button>
         </form>
+        </>
     )
 }
 export default AdminEventPage
