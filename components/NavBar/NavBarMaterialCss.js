@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
         elevation: 0,
         position: 'fixed',
         borderBottom: `1px solid ${theme.palette.divider}`,
-        marginTop: '1rem',
+        marginTop: '1.75rem',
         backgroundColor: 'skyBlue',
         boxShadow: '0px 1.75px 1px -1px grey'
     },

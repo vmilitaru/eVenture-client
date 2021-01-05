@@ -2,17 +2,12 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import Popover from '@material-ui/core/Popover'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
-import Grow from '@material-ui/core/Grow'
-import Paper from '@material-ui/core/Paper'
-import Popper from '@material-ui/core/Popper'
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null)
