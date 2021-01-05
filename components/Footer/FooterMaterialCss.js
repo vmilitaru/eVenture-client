@@ -9,10 +9,8 @@ export const useStyles = makeStyles((theme) => ({
     toolbar: {
         display: 'flex',
         justifyContent: 'space-evenly'
+    },
+    div: {
+        alignItems: 'center'
     }
-    // div: {
-    //     display: 'flex',
-    //     justifyContent: 'space-evenly',
-    //     alignItems: 'center'
-    // }
 }))

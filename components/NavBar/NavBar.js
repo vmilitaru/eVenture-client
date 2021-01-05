@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import AppBar from '@material-ui/core/AppBar'
@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
+import ButtonGeneral from '../Button/Button'
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null)
@@ -54,21 +55,16 @@ const NavBar = () => {
                         >
                             Events
                         </Link>
-
-                        <Button
-                            aria-controls="simple-menu"
-                            aria-haspopup="true"
-                            color="white"
-                            variant="outlined"
-                            onClick={handleClick}
-                            className={classes.link}
-                        >
-                            <Link href="/login">
-                                <Typography variant="h6">LogIn</Typography>
-                            </Link>
-                        </Button>
-
-                        <Menu
+                        <Link href="/login">
+                            <ButtonGeneral
+                                className={classes.button}
+                                onClick={handleClick}
+                                text={'Log in'}
+                                // backgroundColor={'#004a9f'}
+                            />
+                        </Link>
+                        {/* functionality is needed for when logged in */}
+                        {/* <Menu
                             id="simple-menu"
                             anchorEl={anchorEl}
                             keepMounted
@@ -79,7 +75,7 @@ const NavBar = () => {
                                 My account
                             </MenuItem>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
-                        </Menu>
+                        </Menu> */}
                     </Toolbar>
                 </AppBar>
             </React.Fragment>

@@ -39,18 +39,21 @@ const Footer = () => {
                         <Link
                             href="https://twitter.com/theSchoolOfCode"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             <Icon className="fab fa-twitter-square" />
                         </Link>
                         <Link
                             href="https://www.linkedin.com/school/school-of-code/"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             <Icon className="fab fa-linkedin" />
                         </Link>
                         <Link
                             href="https://www.youtube.com/channel/UCKBzheEKcrqsaJhMV0f_Dmg"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             <Icon className="fab fa-youtube" />
                         </Link>
@@ -60,6 +63,7 @@ const Footer = () => {
                         <Link
                             href="mailto:info@schoolofcode.co.uk"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             <Icon className="fas fa-envelope" />
                         </Link>
