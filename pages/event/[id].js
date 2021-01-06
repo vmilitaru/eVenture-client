@@ -6,7 +6,6 @@ import { serverUrl } from '../../environment'
 export default function SpecificEventPage({ event }) {
     return (
         <React.Fragment>
-            <NavBar />
             <div>
                 <Typography gutterBottom variant="h3" component="h3">
                     {event.title}
@@ -21,7 +20,6 @@ export default function SpecificEventPage({ event }) {
                 {event.date}
                 {event.time}
             </div>
-            <Footer />
         </React.Fragment>
     )
 }
