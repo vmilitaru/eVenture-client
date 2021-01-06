@@ -1,11 +1,18 @@
 import React from 'react'
-// import Button from '@material-ui/core/Button'
+import { useAuth0 } from '@auth0/auth0-react'
+
+import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+
+import LoginButton from '../LoginButton/index'
+import Profile from '../Profile/index'
 import Link from '@material-ui/core/Link'
+
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
 import ButtonGeneral from '../Button/Button'
@@ -21,6 +28,8 @@ const NavBar = () => {
         setAnchorEl(null)
     }
     const classes = useStyles()
+
+    const { isAuthenticated } = useAuth0()
 
     return (
         <div>
@@ -76,6 +85,8 @@ const NavBar = () => {
                             </MenuItem>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
                         </Menu> */}
+                        <Profile />
+                        <LoginButton />
                     </Toolbar>
                 </AppBar>
             </React.Fragment>

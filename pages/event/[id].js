@@ -1,28 +1,32 @@
-//import { db } from '../../../db'
 //import NavBar from '../../../components/NavBar/NavBar'
 //import Footer from '../../../components/Footer/Footer'
-
-const BACKEND_URL = process.env.BACKEND_URL
+import Typography from '@material-ui/core/Typography'
+import { serverUrl } from '../../environment'
 
 export default function SpecificEventPage({ event }) {
     return (
-        <div>
-            {/* Specific event page layout here
-
-     title,
-    date,
-    speaker,
-    banner,
-    description,
-    location */}
-            {event[0].title}
-        </div>
+        <React.Fragment>
+            <div>
+                <Typography gutterBottom variant="h3" component="h3">
+                    {event.title}
+                </Typography>
+                <img src={event.banner} alt={event.banner} />
+            </div>
+            <section>
+                {event.description} {event.speaker}
+                {event.location}
+            </section>
+            <div>
+                {event.date}
+                {event.time}
+            </div>
+        </React.Fragment>
     )
 }
 
 export async function getServerSideProps(context) {
     const { id } = context.query
-    const res = await fetch(`${BACKEND_URL}/events/${id}`)
+    const res = await fetch(`${serverUrl}/events/${id}`)
     const data = await res.json()
     console.log(data)
     const event = data.payload

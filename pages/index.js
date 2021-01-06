@@ -1,5 +1,7 @@
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+
+// import components
 import NavBar from '../components/NavBar/NavBar'
 import ButtonGeneral from '../components/Button/Button'
 import { makeStyles } from '@material-ui/core/styles'
@@ -9,6 +11,7 @@ import Grid from '@material-ui/core/Grid'
 import React, { useState, useEffect } from 'react'
 import Footer from '../components/Footer/Footer'
 import Typography from '@material-ui/core/Typography'
+import { serverUrl } from '../environment'
 
 function Home() {
     const [event, setEvent] = useState({})
@@ -39,7 +42,7 @@ function Home() {
                 </div>
                 <div className={styling.event}>
                     <div className={styling.eventDetails}>
-                        <Typography variant="h3">{event.title}}</Typography>
+                        <Typography variant="h3">{event.title}</Typography>
                         <Typography variant="h5">
                             {event.date}, {event.time}
                         </Typography>
