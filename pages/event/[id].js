@@ -1,5 +1,5 @@
-import NavBar from '../../../components/NavBar/NavBar'
-import Footer from '../../../components/Footer/Footer'
+//import NavBar from '../../../components/NavBar/NavBar'
+//import Footer from '../../../components/Footer/Footer'
 import Typography from '@material-ui/core/Typography'
 import { serverUrl } from '../../environment'
 
