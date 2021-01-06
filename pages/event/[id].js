@@ -15,7 +15,7 @@ export default function SpecificEventPage({ event }) {
     banner,
     description,
     location */}
-            {event[0].title}
+            {event.title}
         </div>
     )
 }

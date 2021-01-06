@@ -5,6 +5,7 @@ import Fab from '@material-ui/core/Fab'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '../Button/Button'
+import Image from 'next/image'
 import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../../environment/index'
 
@@ -16,109 +17,96 @@ const useStyles = makeStyles(() => ({
 
 const UploadImage = () => {
     const classes = useStyles()
-    const [selectedImage, setSelectedImage] = useState(null)
+    /* const [imageInputState, setImageInputState] = useState('') */
+    const [selectedImage, setSelectedImage] = useState('')
+    const [previewSource, setPreviewSource] = useState('')
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
-    console.log(selectedImage)
+    //console.log(imageInputState)
 
-    const handleChange = (e) => {
-        setSelectedImage(e.target.files[0])
-        console.log(e.target.files[0])
+    const handleFileInputChange = (e) => {
+        const file = e.target.files[0]
+        previewImage(file)
+        setSelectedImage(file)
     }
 
-    async function handleImageUpload(event) {
-        if (user && isAuthenticated) {
-            const accessToken = await getAccessTokenSilently()
-            //console.log(accessToken)
-            event.preventDefault()
-            //console.log('clicked')
-            if (!selectedImage) return
-            //console.log(selectedImage)
-            let formData = new FormData()
-            let body = new FormData()
-            //console.log(formData)
-            formData.append('image',selectedImage)
-            //console.log (uploadedImage)
-            //console.log(selectedImage)
-            /* let requestOptions = {
-                mode: 'cors',
-                method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                    // Accept: 'application/json',
-                    'Content-Type': 'multipart/form-data',
-                    'Access-Control-Allow-Origin': '*' 
-                },
-                body: formData
-            } */
-            const response = await fetch(` ${serverUrl}/org`, {
-                mode: 'cors',
-                method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${accessToken}`,
-                    // Accept: 'application/json',
-                    'Content-Type': 'multipart/form-data',
-                    'Access-Control-Allow-Origin': '*' 
-                },
-                body: formData
-            })
-            const data = await response.json()
-            console.log(data)
-            //event.target.reset()
+    const previewImage = (file) => {
+        console.log(file)
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+            setPreviewSource(reader.result)
         }
     }
 
-    /* const  handleImageUpload = () => {
-        if (!setSelectedImage) return
-        
-            const formData = new FormData()
-            formData.append('image',selectedImage)
-            console.log(selectedImage)
-            const uploadedImage = handleSubmit(formData)
-            console.log(uploadedImage) 
-            .then(uploadedImage =>{
-                console.log (uploadedImage);
-            }).catch(()=>{
-                console.log('Something went wrong!')
-            }) 
-         
-        
-    } 
- */
+    const handleImageUpload = (e) => {
+        e.preventDefault()
+        if (!selectedImage) return
+        uploadImage(previewSource)
+    }
+
+    const uploadImage = async (base64EncodedImage) => {
+        console.log(base64EncodedImage)
+        if (user && isAuthenticated) {
+            const accessToken = await getAccessTokenSilently()
+            try {
+                let requestOptions = {
+                    mode: 'cors',
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    body: JSON.stringify({ banner: base64EncodedImage })
+                }
+                await fetch(` ${serverUrl}/org`, requestOptions)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
 
     return (
         <>
-            
             <CardContent>
                 <Grid container justify="center" alignItems="center">
-                
-                <form
-                id='formElem'
-                noValidate
-                autoComplete="off"
-                onSubmit={(event) => handleImageUpload(event)}
-            >
-                <input
-                    onChange={handleChange}
-                    accept=".png"
-                    id="contained-button-file"
-                    multiple
-                    type="file"
-                    className={classes.input}
-                />
-                <label htmlFor="contained-button-file">
-                    <Fab component="span">
-                        <AddPhotoAlternateIcon />
-                    </Fab>
-                </label>
-                <Button
-                    disabled={!selectedImage}
-                    text={'Upload'}
-                    type="submit"
-                />
-            </form>
-            </Grid>
+                    <form
+                        id="formElem"
+                        noValidate
+                        autoComplete="off"
+                        onSubmit={handleImageUpload}
+                    >
+                        <input
+                            onChange={handleFileInputChange}
+                            accept=".png, .jpeg, .jpg"
+                            id="contained-button-file"
+                            multiple
+                            type="file"
+                            className={classes.input}
+                        />
+                        <label htmlFor="contained-button-file">
+                            <Fab component="span">
+                                <AddPhotoAlternateIcon />
+                            </Fab>
+                        </label>
+                        <Button
+                            disabled={!selectedImage}
+                            text={'Upload'}
+                            type="submit"
+                        />
+                    </form>
+                </Grid>
             </CardContent>
+            {previewSource && (
+                <Image
+                    src={previewSource}
+                    alt="Event Image"
+                    width={400}
+                    height={400}
+                />
+            )}
         </>
     )
 }

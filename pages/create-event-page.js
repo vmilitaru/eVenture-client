@@ -113,7 +113,7 @@ function AdminEventPage() {
 
                         
                     },
-                    body: JSON.stringify({ title, date, time })
+                    body: JSON.stringify({ title, date, time, })
                 }
         
                 const response = await fetch(
