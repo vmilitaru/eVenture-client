@@ -3,7 +3,7 @@ import { useStyles } from './ButtonMaterialCss'
 import Button from '@material-ui/core/Button'
 
 
-function ButtonGeneral({ text, onClick, ...props,disabled,type }) {
+function ButtonGeneral({ text, onClick,disabled,type,...props }) {
     const classes = useStyles()
     return (
         <div className="Button">

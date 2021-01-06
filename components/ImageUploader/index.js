@@ -49,6 +49,7 @@ const UploadImage = () => {
         console.log(base64EncodedImage)
         if (user && isAuthenticated) {
             const accessToken = await getAccessTokenSilently()
+            console.log(accessToken)
             try {
                 let requestOptions = {
                     mode: 'cors',
@@ -69,7 +70,7 @@ const UploadImage = () => {
     }
 
     return (
-        <>
+        <div style={{position:'relative',top:'300px'}}>
             <CardContent>
                 <Grid container justify="center" alignItems="center">
                     <form
@@ -107,7 +108,7 @@ const UploadImage = () => {
                     height={400}
                 />
             )}
-        </>
+        </div>
     )
 }
 export default UploadImage

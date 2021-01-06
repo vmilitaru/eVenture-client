@@ -141,7 +141,6 @@ function AdminEventPage() {
 
     return (
         <React.Fragment>
-            <NavBar />
             <form
                 noValidate
                 autoComplete="off"
