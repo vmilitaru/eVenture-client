@@ -57,10 +57,9 @@ const NavBar = () => {
                         </Link>
                         <Link href="/login">
                             <ButtonGeneral
-                                className={classes.button2}
+                                className={classes.button}
                                 onClick={handleClick}
                                 text={'Log in'}
-                                // backgroundColor={'#004a9f'}
                             />
                         </Link>
 

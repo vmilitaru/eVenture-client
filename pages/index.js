@@ -6,11 +6,20 @@ import { makeStyles } from '@material-ui/core/styles'
 // import { getStaticProps } from '../pages/api/events'
 import styling from '../pages/index.module.css'
 import Grid from '@material-ui/core/Grid'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Footer from '../components/Footer/Footer'
 import Typography from '@material-ui/core/Typography'
 
 function Home() {
+    const [event, setEvent] = useState({})
+    useEffect(() => {
+        async function getData() {
+            const res = await fetch(`${serverUrl}/events/date`)
+            const { payload } = await res.json()
+            setEvent(payload[0])
+        }
+        getData()
+    }, [])
     return (
         <div className={styling.background}>
             <Head>
@@ -30,17 +39,11 @@ function Home() {
                 </div>
                 <div className={styling.event}>
                     <div className={styling.eventDetails}>
-                        <Typography variant="h3">Event Name</Typography>
+                        <Typography variant="h3">{event.title}}</Typography>
                         <Typography variant="h5">
-                            Date and time displayed here
+                            {event.date}, {event.time}
                         </Typography>
-                        <p>
-                            Event description mini will go here... it will
-                            display max 400 characters? Such as join us for an
-                            event about all things css and html. whether you are
-                            a newbie or been a learning for a few weeks slowly,
-                            come join us.
-                        </p>
+                        <p>{event.description}</p>
                         <ButtonGeneral text={'find out more'} />
                     </div>
                     <img
