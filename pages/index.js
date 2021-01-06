@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 
 // import components
@@ -9,7 +9,21 @@ import Footer from '../components/Footer/Footer'
 // import styles
 import styling from '../pages/index.module.css'
 
+import { serverUrl } from '../environment'
+
 function Home() {
+    const [event, setEvent] = useState({})
+
+    useEffect(() => {
+        async function getData() {
+            const res = await fetch(`${serverUrl}/events/date`)
+            const { payload } = await res.json()
+            setEvent(payload[0])
+        }
+
+        getData()
+    }, [])
+
     return (
         <div className={styling.div}>
             <Head>
@@ -23,14 +37,11 @@ function Home() {
                 <h3>Checkout our latest event</h3>
             </div>
             <div className={styling.event}>
-                <h2>Event Name</h2>
-                <h3>Date and time displayed here</h3>
-                <p>
-                    Event description mini will go here... it will display max
-                    400 characters? Such as join us for an event about all
-                    things css and html. whether you are a newbie or been a
-                    learning for a few weeks slowly, come join us.
-                </p>
+                <h2>{event.title}</h2>
+                <h3>
+                    {event.date}, {event.time}
+                </h3>
+                <p>{event.description}</p>
             </div>
             <ButtonGeneral text={'find out more'} />
             <div>
