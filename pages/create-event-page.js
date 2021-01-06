@@ -224,9 +224,13 @@ function AdminEventPage() {
                         label="Tickets"
                         multiline
                         rows={4}
+                        type="number"
                         placeholder="Enter number of tickets available"
                         variant="outlined"
-                        InputProps={{ classes: { input: classes.title } }}
+                        InputProps={{
+                            shrink: true,
+                            classes: { input: classes.title }
+                        }}
                         onChange={(e) => setNumTickets(e.target.value)}
                     />
                 </div>
