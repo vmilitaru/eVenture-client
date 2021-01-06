@@ -23,44 +23,63 @@ const Footer = () => {
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.div}>
                         <Typography variant="h6">Follow Us</Typography>
+
                         <Link
                             href="https://www.facebook.com/schoolofcode"
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Icon className="fab fa-facebook-square" />
+                            <Icon
+                                className="fab fa-facebook-square"
+                                color="primary"
+                            />
                         </Link>
+
                         <Link
                             href="https://twitter.com/theSchoolOfCode"
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Icon className="fab fa-twitter-square" />
+                            <Icon
+                                className="fab fa-twitter-square"
+                                color="primary"
+                            />
                         </Link>
+
                         <Link
                             href="https://www.linkedin.com/school/school-of-code/"
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Icon className="fab fa-linkedin" />
+                            <Icon className="fab fa-linkedin" color="primary" />
                         </Link>
+
                         <Link
                             href="https://www.youtube.com/channel/UCKBzheEKcrqsaJhMV0f_Dmg"
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Icon className="fab fa-youtube" />
+                            <Icon
+                                className="fab fa-youtube"
+                                color="primary"
+                                style={{ display: 'inline' }}
+                            />
                         </Link>
                     </div>
-                    <div>
+                    <div className={classes.div}>
                         <Typography variant="h6">Contact Us</Typography>
-                        <Link
-                            href="mailto:info@schoolofcode.co.uk"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            <Icon className="fas fa-envelope" />
-                        </Link>
+                        <div className={classes.icons}>
+                            <Link
+                                href="mailto:info@schoolofcode.co.uk"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <Icon
+                                    className="fas fa-envelope"
+                                    color="primary"
+                                />
+                            </Link>
+                        </div>
                     </div>
                 </Toolbar>
             </AppBar>

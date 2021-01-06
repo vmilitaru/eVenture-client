@@ -1,3 +1,4 @@
+import { Icon } from '@material-ui/core'
 import { createMuiTheme } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
@@ -19,6 +20,10 @@ const theme = createMuiTheme({
             main: '#31996a',
             dark: '#006a3f',
             contrastText: '#fafafa'
+        },
+        fourth: {
+            dark: '#0063b0',
+            main: '#fafafa'
         },
         action: {
             active: 'rgba(0, 0, 0, 0.54)',
@@ -93,6 +98,21 @@ const theme = createMuiTheme({
             letterSpacing: '0.06em',
             color: 'white',
             textShadow: '1px 1px 1px black'
+        }
+    },
+    overrides: {
+        MuiIcon: {
+            colorPrimary: {
+                color: '#0063b0'
+            },
+            colorSecondary: {
+                color: 'black'
+            },
+            fontSizeSmall: {
+                small: '10rem'
+            }
+            // colorSecondary: 'blue',
+            // colorAction: 'green'
         }
     }
 })

@@ -1,3 +1,4 @@
+import { yellow } from '@material-ui/core/colors'
 import { makeStyles } from '@material-ui/core/styles'
 export const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -15,6 +16,17 @@ export const useStyles = makeStyles((theme) => ({
     div: {
         display: 'flex',
         justifyContent: 'space-evenly',
-        alignItems: 'center'
+        alignItems: 'center',
+        color: 'primary',
+        // backgroundColor: 'white',
+        width: '15rem',
+        padding: '0.2rem'
     }
+    // // icons: {
+    //     // display: 'flex',
+    //     // alignItems: 'center',
+    //     backgroundColor: 'white',
+    //     borderRadius: '90%',
+    //     padding: '0.2rem'
+    // }
 }))
