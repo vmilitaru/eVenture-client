@@ -63,6 +63,7 @@ const NavBar = () => {
                                 // backgroundColor={'#004a9f'}
                             />
                         </Link>
+
                         {/* functionality is needed for when logged in */}
                         {/* <Menu
                             id="simple-menu"

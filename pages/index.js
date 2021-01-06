@@ -12,13 +12,12 @@ import Typography from '@material-ui/core/Typography'
 
 function Home() {
     return (
-        <div style={{ backgroundColor: '#fffde7' }}>
+        <div className={styling.background}>
             <Head>
                 <title>Communiteam</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <NavBar />
-
             <Footer />
             <div className={styling.div}>
                 <div item className={styling.intro}>
