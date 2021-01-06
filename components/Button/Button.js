@@ -1,9 +1,9 @@
 import React from 'react'
 import { useStyles } from './ButtonMaterialCss'
 import Button from '@material-ui/core/Button'
-<<<<<<< HEAD
 
-function ButtonGeneral({ text, onClick, ...props }) {
+
+function ButtonGeneral({ text, onClick, ...props,disabled,type }) {
     const classes = useStyles()
     return (
         <div className="Button">
@@ -11,13 +11,7 @@ function ButtonGeneral({ text, onClick, ...props }) {
                 onClick={onClick}
                 className={!props.secondary ? classes.Button : classes.Button2}
                 {...props}
-            >
-=======
-function ButtonGeneral({ text, onClick,disabled,type}) {
-    return (
-        <div className="Button">
-            <Button color="primary" variant="outlined" onClick={onClick} disabled={disabled} type={type}>
->>>>>>> val-image-uploader
+                disabled={disabled} type={type}>
                 {text}
             </Button>
         </div>
