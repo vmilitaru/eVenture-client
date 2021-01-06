@@ -14,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
         borderBottom: `1px solid ${theme.palette.divider}`,
         marginTop: '1.75rem',
         boxShadow: '0px 1.75px 1px -1px grey',
-        backgroundColor: `${theme.palette.secondary.main}`
+        backgroundColor: `${theme.palette.third.light}`
     },
     toolbar: {
         flexWrap: 'wrap'

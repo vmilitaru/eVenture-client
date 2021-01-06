@@ -19,16 +19,10 @@ const Footer = () => {
 
     return (
         <React.Fragment>
-            <AppBar
-                position="static"
-                color="default"
-                elevation={0}
-                className={classes.appBar}
-            >
+            <AppBar position="static" elevation={0} className={classes.appBar}>
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.div}>
-                        {' '}
-                        <h2>Follow Us</h2>
+                        <Typography variant="h6">Follow Us</Typography>
                         <Link
                             href="https://www.facebook.com/schoolofcode"
                             target="_blank"
@@ -59,7 +53,7 @@ const Footer = () => {
                         </Link>
                     </div>
                     <div>
-                        <h2>Contact Us</h2>
+                        <Typography variant="h6">Contact Us</Typography>
                         <Link
                             href="mailto:info@schoolofcode.co.uk"
                             target="_blank"

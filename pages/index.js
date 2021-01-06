@@ -18,7 +18,7 @@ function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <NavBar />
-            <Footer />
+
             <div className={styling.div}>
                 <div item className={styling.intro}>
                     <Typography variant="h2">

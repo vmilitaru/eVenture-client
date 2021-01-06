@@ -2,8 +2,10 @@ import { makeStyles } from '@material-ui/core/styles'
 export const useStyles = makeStyles((theme) => ({
     appBar: {
         position: 'fixed',
-        backgroundColor: `${theme.palette.primary.contrastText}`,
-        bottom: 0
+        backgroundColor: `${theme.palette.third.light}`,
+        bottom: 0,
+        borderTop: `2px solid ${theme.palette.hint} `,
+        boxShadow: `0px 0.6px 3px 1.5px ${theme.palette.third.dark}`
     },
 
     toolbar: {
@@ -11,6 +13,8 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-evenly'
     },
     div: {
+        display: 'flex',
+        justifyContent: 'space-evenly',
         alignItems: 'center'
     }
 }))
