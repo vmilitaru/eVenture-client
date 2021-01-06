@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     }
 }))
 
-const UploadImage = () => {
+const UploadImage = ({ setBanner }) => {
     const classes = useStyles()
     /* const [imageInputState, setImageInputState] = useState('') */
     const [selectedImage, setSelectedImage] = useState('')
@@ -46,7 +46,7 @@ const UploadImage = () => {
     }
 
     const uploadImage = async (base64EncodedImage) => {
-        console.log(base64EncodedImage)
+        // console.log(base64EncodedImage)
         if (user && isAuthenticated) {
             const accessToken = await getAccessTokenSilently()
             console.log(accessToken)
@@ -62,7 +62,13 @@ const UploadImage = () => {
                     },
                     body: JSON.stringify({ banner: base64EncodedImage })
                 }
-                await fetch(` ${serverUrl}/org`, requestOptions)
+                const response = await fetch(
+                    ` ${serverUrl}/org/banner`,
+                    requestOptions
+                )
+                const data = await response.json()
+                console.log(data)
+                setBanner(data.url)
             } catch (error) {
                 console.log(error)
             }
@@ -70,7 +76,7 @@ const UploadImage = () => {
     }
 
     return (
-        <div style={{position:'relative',top:'300px'}}>
+        <div style={{ position: 'relative', top: '0px' }}>
             <CardContent>
                 <Grid container justify="center" alignItems="center">
                     <form

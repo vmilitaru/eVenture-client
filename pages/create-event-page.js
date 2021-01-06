@@ -13,6 +13,8 @@ import {
 } from '@material-ui/pickers'
 import Grid from '@material-ui/core/Grid'
 
+import UploadImage from '../components/ImageUploader/index'
+
 // ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../environment'
@@ -51,6 +53,7 @@ function AdminEventPage() {
     const [speaker, setSpeaker] = useState('empty speaker')
     const [location, setLocation] = useState('empty location')
     const [numtickets, setNumTickets] = useState(0)
+    const [banner, setBanner] = useState('')
 
     const handleDateChange = (d) => {
         console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
@@ -87,6 +90,7 @@ function AdminEventPage() {
 
     async function handleSubmit(event) {
         if (user && isAuthenticated) {
+            console.log('in handle submit Fn')
             //after populating the empty object from all inputs the event does the post request to the database
             event.preventDefault()
 
@@ -102,6 +106,7 @@ function AdminEventPage() {
                 description,
                 location,
                 speaker,
+                banner,
                 numtickets
             })
 
@@ -127,11 +132,15 @@ function AdminEventPage() {
                     description,
                     speaker,
                     numtickets,
-                    location
+                    location,
+                    banner
                 })
             }
 
-            const response = await fetch(` ${serverUrl}/org`, requestOptions) //post request is sent to events listing
+            const response = await fetch(
+                ` ${serverUrl}/org/listing`,
+                requestOptions
+            ) //post request is sent to events listing
             const data = await response.json()
             console.log(data)
 
@@ -243,6 +252,7 @@ function AdminEventPage() {
                     Save
                 </Button>
             </form>
+            <UploadImage setBanner={setBanner} />
         </React.Fragment>
     )
 }
