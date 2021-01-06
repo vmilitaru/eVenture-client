@@ -1,17 +1,16 @@
-// imports
 import React from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
 
-// style imports
+// STYLES
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
 import NavBar from '../components/NavBar/NavBar'
 import Footer from '../components/Footer/Footer'
 
-// env imports
+// ENVIRONMENT VARIABLES
 import {
     redirectUrl,
     auth0Audience,

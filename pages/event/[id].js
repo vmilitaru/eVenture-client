@@ -1,11 +1,13 @@
 //import NavBar from '../../../components/NavBar/NavBar'
 //import Footer from '../../../components/Footer/Footer'
 import Typography from '@material-ui/core/Typography'
+
+// ENVIRONMENT VARIABLES
 import { serverUrl } from '../../environment'
 
 export default function SpecificEventPage({ event }) {
     return (
-        <React.Fragment>
+        <>
             <div>
                 <Typography gutterBottom variant="h3" component="h3">
                     {event.title}
@@ -20,7 +22,7 @@ export default function SpecificEventPage({ event }) {
                 {event.date}
                 {event.time}
             </div>
-        </React.Fragment>
+        </>
     )
 }
 

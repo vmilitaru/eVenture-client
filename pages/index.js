@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 
-// import components
-import NavBar from '../components/NavBar/NavBar'
+// COMPONENTS
 import ButtonGeneral from '../components/Button/Button'
-import { makeStyles } from '@material-ui/core/styles'
 // import { getStaticProps } from '../pages/api/events'
 import styling from '../pages/index.module.css'
-import Grid from '@material-ui/core/Grid'
-import React, { useState, useEffect } from 'react'
-import Footer from '../components/Footer/Footer'
 import Typography from '@material-ui/core/Typography'
+import Link from '@material-ui/core/Link'
+
 import { serverUrl } from '../environment'
 
 function Home() {
     const [event, setEvent] = useState({})
+
     useEffect(() => {
         async function getData() {
             const res = await fetch(`${serverUrl}/events/date`)
@@ -23,13 +21,13 @@ function Home() {
         }
         getData()
     }, [])
+
     return (
         <div className={styling.background}>
             <Head>
                 <title>Communiteam</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <NavBar />
 
             <div className={styling.div}>
                 <div item className={styling.intro}>
@@ -47,7 +45,9 @@ function Home() {
                             {event.date}, {event.time}
                         </Typography>
                         <p>{event.description}</p>
-                        <ButtonGeneral text={'find out more'} />
+                        <Link href={`/event/${event.id}`}>
+                            <ButtonGeneral text={'find out more'} />
+                        </Link>
                     </div>
                     <img
                         className={styling.img}
@@ -56,7 +56,6 @@ function Home() {
                     />
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

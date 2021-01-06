@@ -1,14 +1,13 @@
-// imports
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 
-// import components
+// COMPONENTS
 import NavBar from '../components/NavBar/NavBar'
 import EventCard from '../components/EventCard/EventCard'
 
-// import env
+// ENVIRONMENT VARIABLES
 import { serverUrl } from '../environment'
 
 function EventsPage() {

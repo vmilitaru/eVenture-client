@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import NavBar from '../components/NavBar/NavBar'
-//import Footer from '../component/Footer/Footer'
 import fetch from 'isomorphic-unfetch'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -14,6 +12,8 @@ import {
     KeyboardDatePicker
 } from '@material-ui/pickers'
 import Grid from '@material-ui/core/Grid'
+
+// ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../environment'
 
