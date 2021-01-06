@@ -1,22 +1,28 @@
-//import { db } from '../../../db'
-//import NavBar from '../../../components/NavBar/NavBar'
-//import Footer from '../../../components/Footer/Footer'
-
+import NavBar from '../../../components/NavBar/NavBar'
+import Footer from '../../../components/Footer/Footer'
+import Typography from '@material-ui/core/Typography'
 import { serverUrl } from '../../environment'
 
 export default function SpecificEventPage({ event }) {
     return (
-        <div>
-            {/* Specific event page layout here
-
-     title,
-    date,
-    speaker,
-    banner,
-    description,
-    location */}
-            {event.title}
-        </div>
+        <React.Fragment>
+            <NavBar />
+            <div>
+                <Typography gutterBottom variant="h3" component="h3">
+                    {event.title}
+                </Typography>
+                <img src={event.banner} alt={event.banner} />
+            </div>
+            <section>
+                {event.description} {event.speaker}
+                {event.location}
+            </section>
+            <div>
+                {event.date}
+                {event.time}
+            </div>
+            <Footer />
+        </React.Fragment>
     )
 }
 
