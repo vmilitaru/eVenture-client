@@ -8,6 +8,8 @@ import PropTypes from 'prop-types'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
+import NavBar from '../components/NavBar/NavBar'
+import Footer from '../components/Footer/Footer'
 
 // env imports
 import {
@@ -46,7 +48,9 @@ export default function MyApp(props) {
                 <ThemeProvider theme={theme}>
                     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
+                    <NavBar />
                     <Component {...pageProps} />
+                    <Footer />
                 </ThemeProvider>
             </React.Fragment>
         </Auth0Provider>

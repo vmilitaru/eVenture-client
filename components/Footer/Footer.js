@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link'
 import Icon from '@material-ui/core/Icon'
 import { loadCSS } from 'fg-loadcss'
+import { useStyles } from './FooterMaterialCss'
 
 const Footer = () => {
     const classes = useStyles()
@@ -18,34 +19,67 @@ const Footer = () => {
 
     return (
         <React.Fragment>
-            <AppBar
-                position="static"
-                color="default"
-                elevation={0}
-                className={classes.appBar}
-            >
+            <AppBar position="static" elevation={0} className={classes.appBar}>
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.div}>
-                        {' '}
-                        <h2>Follow Us</h2>
-                        <Link href="https://www.facebook.com/schoolofcode">
-                            <Icon className="fab fa-facebook-square" />
+                        <Typography variant="h6">Follow Us</Typography>
+
+                        <Link
+                            href="https://www.facebook.com/schoolofcode"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <Icon
+                                className="fab fa-facebook-square"
+                                color="primary"
+                            />
                         </Link>
-                        <Link href="https://twitter.com/theSchoolOfCode">
-                            <Icon className="fab fa-twitter-square" />
+
+                        <Link
+                            href="https://twitter.com/theSchoolOfCode"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <Icon
+                                className="fab fa-twitter-square"
+                                color="primary"
+                            />
                         </Link>
-                        <Link href="https://www.linkedin.com/school/school-of-code/">
-                            <Icon className="fab fa-linkedin" />
+
+                        <Link
+                            href="https://www.linkedin.com/school/school-of-code/"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <Icon className="fab fa-linkedin" color="primary" />
                         </Link>
-                        <Link href="https://www.youtube.com/channel/UCKBzheEKcrqsaJhMV0f_Dmg">
-                            <Icon className="fab fa-youtube" />
+
+                        <Link
+                            href="https://www.youtube.com/channel/UCKBzheEKcrqsaJhMV0f_Dmg"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <Icon
+                                className="fab fa-youtube"
+                                color="primary"
+                                style={{ display: 'inline' }}
+                            />
                         </Link>
                     </div>
-                    <div>
-                        <h2>Contact Us</h2>
-                        <Link href="mailto:info@schoolofcode.co.uk">
-                            <Icon className="fas fa-envelope" />
-                        </Link>
+                    <div className={classes.div}>
+                        <Typography variant="h6">Contact Us</Typography>
+                        <div className={classes.icons}>
+                            <Link
+                                href="mailto:info@schoolofcode.co.uk"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <Icon
+                                    className="fas fa-envelope"
+                                    color="primary"
+                                />
+                            </Link>
+                        </div>
                     </div>
                 </Toolbar>
             </AppBar>
@@ -53,24 +87,4 @@ const Footer = () => {
     )
 }
 
-const useStyles = makeStyles((theme) => ({
-    appBar: {
-        position: 'fixed',
-        // borderBottom: `3px solid ${theme.palette.divider}`,
-        // left: 0,
-        bottom: 0
-        // width: '100%'
-    },
-
-    toolbar: {
-        display: 'flex',
-        justifyContent: 'space-evenly'
-    }
-    // div: {
-    //     display: 'flex',
-    //     justifyContent: 'space-evenly',
-    //     alignItems: 'center'
-    // }
-}))
 export default Footer
-///

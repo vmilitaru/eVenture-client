@@ -14,6 +14,8 @@ import Profile from '../Profile/index'
 import Link from '@material-ui/core/Link'
 
 import styles from './NavBar.module.css'
+import { useStyles } from './NavBarMaterialCss.js'
+import ButtonGeneral from '../Button/Button'
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null)
@@ -30,72 +32,66 @@ const NavBar = () => {
     const { isAuthenticated } = useAuth0()
 
     return (
-        <React.Fragment>
-            <AppBar
-                position="static"
-                color="default"
-                elevation={0}
-                className={classes.appBar}
-            >
-                <Toolbar className={classes.toolbar}>
-                    <Typography
-                        variant="h6"
-                        color="inherit"
-                        noWrap
-                        className={classes.toolbarTitle}
-                    >
+        <div>
+            <React.Fragment>
+                <AppBar className={classes.appBar}>
+                    <Toolbar className={classes.toolbar}>
+                        <Typography
+                            variant="h6"
+                            color="inherit"
+                            noWrap
+                            className={classes.toolbarTitle}
+                        ></Typography>
                         <img
                             className={styles.logo}
                             id="logo"
                             src="/soc.png"
                             alt="logo"
                         />
-                    </Typography>
+                        <Link
+                            variant="h6"
+                            color="textPrimary"
+                            href="/"
+                            className={classes.link}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            href="/events-page"
+                            variant="h6"
+                            color="textPrimary"
+                            className={classes.link}
+                        >
+                            Events
+                        </Link>
+                        <Link href="/login">
+                            <ButtonGeneral
+                                className={classes.button}
+                                onClick={handleClick}
+                                text={'Log in'}
+                            />
+                        </Link>
 
-                    <Link
-                        variant="h6"
-                        color="textPrimary"
-                        href="/"
-                        className={classes.link}
-                    >
-                        Home
-                    </Link>
-                    <Link
-                        href="/events-page"
-                        variant="h6"
-                        color="textPrimary"
-                        className={classes.link}
-                    >
-                        Events
-                    </Link>
-
-                    <Profile />
-                    <LoginButton />
-                </Toolbar>
-            </AppBar>
-        </React.Fragment>
+                        {/* functionality is needed for when logged in */}
+                        {/* <Menu
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onHover={handleClose}>
+                                My account
+                            </MenuItem>
+                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                        </Menu> */}
+                        <Profile />
+                        <LoginButton />
+                    </Toolbar>
+                </AppBar>
+            </React.Fragment>
+        </div>
     )
 }
 
-const useStyles = makeStyles((theme) => ({
-    '@global': {
-        ul: {
-            margin: 0,
-            padding: 0,
-            listStyle: 'none'
-        }
-    },
-    appBar: {
-        borderBottom: `1px solid ${theme.palette.divider}`
-    },
-    toolbar: {
-        flexWrap: 'wrap'
-    },
-    toolbarTitle: {
-        flexGrow: 1
-    },
-    link: {
-        margin: theme.spacing(1, 10)
-    }
-}))
 export default NavBar
