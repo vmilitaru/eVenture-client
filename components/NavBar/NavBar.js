@@ -33,50 +33,48 @@ const NavBar = () => {
     const { isAuthenticated } = useAuth0()
 
     return (
-        <div>
-            <React.Fragment>
-                <Container elevation="0" className={classes.box}>
-                    Helloooooooooo
-                    <AppBar className={classes.appBar}>
-                        <Toolbar className={classes.toolbar}>
-                            <Typography
-                                variant="h6"
-                                color="inherit"
-                                noWrap
-                                className={classes.toolbarTitle}
-                            ></Typography>
-                            <img
-                                className={styles.logo}
-                                id="logo"
-                                src="/soc.png"
-                                alt="logo"
+        <nav>
+            <div elevation="0" className={classes.box}>
+                <AppBar className={classes.appBar}>
+                    <Toolbar className={classes.toolbar}>
+                        <Typography
+                            variant="h6"
+                            color="inherit"
+                            noWrap
+                            className={classes.toolbarTitle}
+                        ></Typography>
+                        <img
+                            className={styles.logo}
+                            id="logo"
+                            src="/soc.png"
+                            alt="logo"
+                        />
+                        <Link
+                            variant="h6"
+                            color="textPrimary"
+                            href="/"
+                            className={classes.link}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            href="/events-page"
+                            variant="h6"
+                            color="textPrimary"
+                            className={classes.link}
+                        >
+                            Events
+                        </Link>
+                        <Link href="/login">
+                            <ButtonGeneral
+                                className={classes.button}
+                                onClick={handleClick}
+                                text={'Log in'}
                             />
-                            <Link
-                                variant="h6"
-                                color="textPrimary"
-                                href="/"
-                                className={classes.link}
-                            >
-                                Home
-                            </Link>
-                            <Link
-                                href="/events-page"
-                                variant="h6"
-                                color="textPrimary"
-                                className={classes.link}
-                            >
-                                Events
-                            </Link>
-                            <Link href="/login">
-                                <ButtonGeneral
-                                    className={classes.button}
-                                    onClick={handleClick}
-                                    text={'Log in'}
-                                />
-                            </Link>
+                        </Link>
 
-                            {/* functionality is needed for when logged in */}
-                            {/* <Menu
+                        {/* functionality is needed for when logged in */}
+                        {/* <Menu
                             id="simple-menu"
                             anchorEl={anchorEl}
                             keepMounted
@@ -88,13 +86,12 @@ const NavBar = () => {
                             </MenuItem>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
                         </Menu> */}
-                            <Profile />
-                            <LoginButton />
-                        </Toolbar>
-                    </AppBar>
-                </Container>
-            </React.Fragment>
-        </div>
+                        <Profile />
+                        <LoginButton />
+                    </Toolbar>
+                </AppBar>
+            </div>
+        </nav>
     )
 }
 

@@ -49,8 +49,15 @@ export default function MyApp(props) {
                     <CssBaseline />
 
                     <NavBar />
-
-                    <Component {...pageProps} />
+                    <main
+                        style={{
+                            marginTop: '6rem',
+                            textAlign: 'center',
+                            backgroundColor: '#fffde7'
+                        }}
+                    >
+                        <Component {...pageProps} />
+                    </main>
                     <Footer />
                 </ThemeProvider>
             </React.Fragment>

@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     box: {
         position: 'fixed',
-        backgroundColor: `${theme.palette.primary.main}`,
+        backgroundColor: `${theme.palette.fourth.light}`,
         top: '0',
         left: '0',
         zIndex: '50',
@@ -19,7 +19,6 @@ export const useStyles = makeStyles((theme) => ({
         width: '100%'
     },
     appBar: {
-        elevation: 0,
         position: 'fixed',
         borderBottom: `1px solid ${theme.palette.divider}`,
         marginTop: '1.75rem',

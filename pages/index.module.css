@@ -1,0 +1,43 @@
+.background {
+    background-color: #fffde7;
+    height: 100vh;
+    padding-top: 50 px;
+}
+.div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.75 rem;
+    text-align: justify;
+}
+.intro {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    padding-top: 7%;
+}
+.event {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: blue;
+    padding: 0rem;
+    word-wrap: break-word;
+    width: 90%;
+    border: 1px solid #000000;
+    border-width: 0.2rem;
+    margin: auto;
+}
+.eventDetails {
+    margin: 3.5%;
+    /* padding: 3.32%; */
+    /* border: 1px solid #000000;
+    border-width: 2px; */
+}
+.img {
+    display: flex;
+    flex-direction: column;
+    width: 46%;
+    height: auto;
+}

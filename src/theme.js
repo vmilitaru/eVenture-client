@@ -23,7 +23,8 @@ const theme = createMuiTheme({
         },
         fourth: {
             dark: '#0063b0',
-            main: '#fafafa'
+            main: '#fafafa',
+            light: '#fffde7'
         },
         action: {
             active: 'rgba(0, 0, 0, 0.54)',
