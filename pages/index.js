@@ -35,7 +35,7 @@ function Home() {
             </Head>
 
             <div className={styling.div}>
-                <div item className={styling.intro}>
+                <div className={styling.intro}>
                     <Typography variant="h2">
                         Develop with our community
                     </Typography>

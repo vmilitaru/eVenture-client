@@ -14,14 +14,16 @@ export default function SpecificEventPage({ event }) {
                 </Typography>
                 <img src={event.banner} alt={event.banner} />
             </div>
-            <section>
-                {event.description} {event.speaker}
-                {event.location}
-            </section>
             <div>
-                {event.date}
-                {event.time}
+                <p>
+                    {event.date} - {event.time}
+                </p>
             </div>
+            <section>
+                <p>{event.speaker}</p>
+                <p>{event.location}</p>
+                <p>{event.description}</p>
+            </section>
         </>
     )
 }
