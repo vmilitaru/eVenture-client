@@ -3,6 +3,7 @@ import Head from 'next/head'
 
 // COMPONENTS
 import ButtonGeneral from '../components/Button/Button'
+import Countdown from '../components/Countdown/Countdown'
 // import { getStaticProps } from '../pages/api/events'
 import styling from '../pages/index.module.css'
 import Typography from '@material-ui/core/Typography'
@@ -54,6 +55,7 @@ function Home() {
                             <ButtonGeneral text={'find out more'} />
                         </Link>
                     </div>
+                    <Countdown />
                     <img
                         className={styling.img}
                         src="https://media.newyorker.com/photos/5f414de2840e569c23e39066/2:1/w_2559,h_1279,c_limit/Wright-Panda01.jpg"

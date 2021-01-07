@@ -16,6 +16,7 @@ import Link from '@material-ui/core/Link'
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
 import ButtonGeneral from '../Button/Button'
+import { Container } from '@material-ui/core'
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null)
@@ -32,8 +33,8 @@ const NavBar = () => {
     const { isAuthenticated } = useAuth0()
 
     return (
-        <div>
-            <React.Fragment>
+        <nav>
+            <div elevation="0" className={classes.box}>
                 <AppBar className={classes.appBar}>
                     <Toolbar className={classes.toolbar}>
                         <Typography
@@ -82,8 +83,8 @@ const NavBar = () => {
                         <LoginButton />
                     </Toolbar>
                 </AppBar>
-            </React.Fragment>
-        </div>
+            </div>
+        </nav>
     )
 }
 
