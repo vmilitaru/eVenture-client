@@ -18,7 +18,7 @@ const Footer = () => {
     })
 
     return (
-        <React.Fragment>
+        <footer>
             <AppBar position="static" elevation={0} className={classes.appBar}>
                 <Toolbar className={classes.toolbar}>
                     <div className={classes.div}>
@@ -83,7 +83,7 @@ const Footer = () => {
                     </div>
                 </Toolbar>
             </AppBar>
-        </React.Fragment>
+        </footer>
     )
 }
 

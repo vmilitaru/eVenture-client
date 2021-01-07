@@ -1,6 +1,7 @@
 .background {
     background-color: #fffde7;
     height: 100vh;
+    padding-top: 50 px;
 }
 .div {
     display: flex;

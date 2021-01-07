@@ -47,9 +47,18 @@ export default function MyApp(props) {
                 <ThemeProvider theme={theme}>
                     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
-                    {/* <NavBar /> */}
-                    <Component {...pageProps} />
-                    {/* <Footer /> */}
+
+                    <NavBar />
+                    <main
+                        style={{
+                            marginTop: '6rem',
+                            textAlign: 'center',
+                            backgroundColor: '#fffde7'
+                        }}
+                    >
+                        <Component {...pageProps} />
+                    </main>
+                    <Footer />
                 </ThemeProvider>
             </React.Fragment>
         </Auth0Provider>
