@@ -55,6 +55,10 @@ function AdminEventPage() {
     const [numtickets, setNumTickets] = useState(0)
     const [banner, setBanner] = useState('')
 
+    /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
+
+    const [previewSource, setPreviewSource] = useState('')
+    /* ------------------------------------------------------------------------------------------------------------------------------------- */
     const handleDateChange = (d) => {
         console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
         setDate(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
@@ -88,18 +92,44 @@ function AdminEventPage() {
 
     const classes = useStyles()
 
-    async function handleSubmit(event) {
+    /* -----------------------------------------------------------IMAGE UPLOADER FUNCTIONS---------------------------------------------------- */
+
+    const handleFileInputChange = (e) => {
+        const file = e.target.files[0]
+        previewImage(file)
+        setBanner(file)
+    }
+
+    const previewImage = (file) => {
+        console.log(file)
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+            setPreviewSource(reader.result)
+        }
+    }
+    /* ----------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (!banner) return
+        gatherEventDetails(previewSource)
+        setPreviewSource(null)
+        e.target.reset()
+    }
+
+    async function gatherEventDetails(base64EncodedImage) {
+        console.log(base64EncodedImage)
         if (user && isAuthenticated) {
             console.log('in handle submit Fn')
-            //after populating the empty object from all inputs the event does the post request to the database
-            event.preventDefault()
 
             const accessToken = await getAccessTokenSilently()
 
-            console.log(accessToken)
+            /* console.log(accessToken) */
+
             console.log('clicked')
 
-            console.log({
+            /* console.log({
                 title,
                 date,
                 time,
@@ -108,7 +138,7 @@ function AdminEventPage() {
                 speaker,
                 banner,
                 numtickets
-            })
+            }) */
 
             const time = timeObj.toISOTime({
                 suppressSeconds: true,
@@ -133,18 +163,15 @@ function AdminEventPage() {
                     speaker,
                     numtickets,
                     location,
-                    banner
+                    banner: base64EncodedImage
                 })
             }
 
-            const response = await fetch(
-                ` ${serverUrl}/org/listing`,
-                requestOptions
-            ) //post request is sent to events listing
+            const response = await fetch(` ${serverUrl}/org`, requestOptions) //post request is sent to events listing
             const data = await response.json()
             console.log(data)
 
-            event.target.reset() //reset input boxes
+            //event.target.reset() //reset input boxes
         }
     }
 
@@ -238,6 +265,10 @@ function AdminEventPage() {
                         }}
                         onChange={(e) => setNumTickets(e.target.value)}
                     />
+                    <UploadImage
+                        handleFileInputChange={handleFileInputChange}
+                        previewSource={previewSource}
+                    />
                 </div>
 
                 <Button
@@ -247,12 +278,12 @@ function AdminEventPage() {
                     color="primary"
                     size="large"
                     className={classes.button}
+                    disabled={!banner}
                     startIcon={<SaveIcon />}
                 >
                     Save
                 </Button>
             </form>
-            <UploadImage setBanner={setBanner} />
         </React.Fragment>
     )
 }
