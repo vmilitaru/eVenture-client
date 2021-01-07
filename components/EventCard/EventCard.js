@@ -7,28 +7,40 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-
-const useStyles = makeStyles({
-    root: {
-        maxWidth: 345
-    }
-})
+import { useStyles } from './EventCardMaterialCss'
 
 export default function EventCard({ event }) {
     const classes = useStyles()
-    console.log(event)
+
+    function shortenDescription() {
+        if (!event.description) {
+            return '...'
+        }
+        const descArray = event?.description.split('')
+        let shortDesc = descArray?.splice(0, 40)
+        shortDesc = shortDesc?.join('').trim()
+        shortDesc += '...'
+        return shortDesc
+    }
+
     return (
         <React.Fragment>
             <Card className={classes.root}>
-                <CardActionArea>
+                <CardActionArea className={classes.card}>
                     <CardMedia
+                        className={classes.media}
                         component="img"
-                        height="140"
                         image={event.banner ? event.banner : null}
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h3" component="h3">
+                        <Typography className={classes.title} variant="h4">
                             {event.title}
+                        </Typography>
+                        <Typography className={classes.date} variant="h6">
+                            {event.date} - {event.time}
+                        </Typography>
+                        <Typography variant="h5">
+                            {shortenDescription()}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
+import { sizeWidth } from '@material-ui/system'
 
 export const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -8,8 +9,16 @@ export const useStyles = makeStyles((theme) => ({
             listStyle: 'none'
         }
     },
+    box: {
+        position: 'fixed',
+        backgroundColor: `${theme.palette.fourth.light}`,
+        top: '0',
+        left: '0',
+        zIndex: '50',
+        padding: '3rem',
+        width: '100%'
+    },
     appBar: {
-        elevation: 0,
         position: 'fixed',
         borderBottom: `1px solid ${theme.palette.divider}`,
         marginTop: '1.75rem',

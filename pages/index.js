@@ -3,6 +3,7 @@ import Head from 'next/head'
 
 // COMPONENTS
 import ButtonGeneral from '../components/Button/Button'
+import Countdown from '../components/Countdown/Countdown'
 // import { getStaticProps } from '../pages/api/events'
 import styling from '../pages/index.module.css'
 import Typography from '@material-ui/core/Typography'
@@ -18,12 +19,15 @@ function Home() {
         async function getData() {
             const res = await fetch(`${serverUrl}/events/8`)
             const { payload } = await res.json()
-            // console.log({ payload })
-            console.log(payload)
-            setEvent(payload)
+            const chronologicalEvents = payload.sort(sortEventsByDate)
+            setEvent(chronologicalEvents[0])
         }
         getData()
     }, [])
+
+    function sortEventsByDate(eventA, eventB) {
+        return eventA.date > eventB.date
+    }
 
     return (
         <div className={styling.background}>
@@ -33,7 +37,7 @@ function Home() {
             </Head>
 
             <div className={styling.div}>
-                <div item className={styling.intro}>
+                <div className={styling.intro}>
                     <Typography variant="h2">
                         Develop with our community
                     </Typography>

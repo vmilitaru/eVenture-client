@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
-
+import { useStyles } from './events-page-materialCss'
 // COMPONENTS
-import NavBar from '../components/NavBar/NavBar'
+
 import EventCard from '../components/EventCard/EventCard'
 
 // ENVIRONMENT VARIABLES
@@ -22,13 +22,14 @@ function EventsPage() {
 
         getEvents()
     }, [])
-
+    const classes = useStyles()
     return (
-        <div>
+        <div className={classes.EventsPage}>
             <Head>
                 <title>FrontEnd</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
             <h1>A list of all events</h1>
 
             {events ? (
