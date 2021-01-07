@@ -17,10 +17,15 @@ function Home() {
         async function getData() {
             const res = await fetch(`${serverUrl}/events/date`)
             const { payload } = await res.json()
-            setEvent(payload[0])
+            const chronologicalEvents = payload.sort(sortEventsByDate)
+            setEvent(chronologicalEvents[0])
         }
         getData()
     }, [])
+
+    function sortEventsByDate(eventA, eventB) {
+        return eventA.date > eventB.date
+    }
 
     return (
         <div className={styling.background}>
