@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles'
 export const useStyles = makeStyles((theme) => ({
     appBar: {
-        position: 'fixed',
+        position: 'static',
         backgroundColor: `${theme.palette.third.light}`,
         bottom: 0,
         borderTop: `2px solid ${theme.palette.hint} `,
