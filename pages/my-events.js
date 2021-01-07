@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import { useStyles } from './events-page-materialCss'
+import { useAuth0 } from '@auth0/auth0-react'
 
 import EventCard from '../components/EventCard/EventCard'
 
@@ -10,17 +11,32 @@ import EventCard from '../components/EventCard/EventCard'
 import { serverUrl } from '../environment'
 
 function MyEventsPage() {
+    const { user, getAccessTokenSilently } = useAuth0()
+    console.log(user)
     const [events, setEvents] = useState([])
 
     useEffect(() => {
-        async function getEvents() {
-            const response = await fetch(`${serverUrl}/events`)
-            const data = await response.json()
-            setEvents(data.payload)
-        }
+        if (user) {
+            async function getTicketsByUser() {
+                const accessToken = await getAccessTokenSilently()
 
-        getEvents()
-    }, [])
+                const response = await fetch(
+                    `${serverUrl}/prot/tickets/${user.email}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`
+                        }
+                    }
+                )
+
+                const data = await response.json()
+                setEvents(data.payload)
+            }
+
+            getTicketsByUser()
+            console.log(events)
+        }
+    }, [user])
     const classes = useStyles()
     return (
         <div>
