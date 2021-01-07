@@ -16,6 +16,7 @@ import Link from '@material-ui/core/Link'
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
 import ButtonGeneral from '../Button/Button'
+import { Container } from '@material-ui/core'
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = React.useState(null)
@@ -34,46 +35,48 @@ const NavBar = () => {
     return (
         <div>
             <React.Fragment>
-                <AppBar className={classes.appBar}>
-                    <Toolbar className={classes.toolbar}>
-                        <Typography
-                            variant="h6"
-                            color="inherit"
-                            noWrap
-                            className={classes.toolbarTitle}
-                        ></Typography>
-                        <img
-                            className={styles.logo}
-                            id="logo"
-                            src="/soc.png"
-                            alt="logo"
-                        />
-                        <Link
-                            variant="h6"
-                            color="textPrimary"
-                            href="/"
-                            className={classes.link}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/events-page"
-                            variant="h6"
-                            color="textPrimary"
-                            className={classes.link}
-                        >
-                            Events
-                        </Link>
-                        <Link href="/login">
-                            <ButtonGeneral
-                                className={classes.button}
-                                onClick={handleClick}
-                                text={'Log in'}
+                <Container elevation="0" className={classes.box}>
+                    Helloooooooooo
+                    <AppBar className={classes.appBar}>
+                        <Toolbar className={classes.toolbar}>
+                            <Typography
+                                variant="h6"
+                                color="inherit"
+                                noWrap
+                                className={classes.toolbarTitle}
+                            ></Typography>
+                            <img
+                                className={styles.logo}
+                                id="logo"
+                                src="/soc.png"
+                                alt="logo"
                             />
-                        </Link>
+                            <Link
+                                variant="h6"
+                                color="textPrimary"
+                                href="/"
+                                className={classes.link}
+                            >
+                                Home
+                            </Link>
+                            <Link
+                                href="/events-page"
+                                variant="h6"
+                                color="textPrimary"
+                                className={classes.link}
+                            >
+                                Events
+                            </Link>
+                            <Link href="/login">
+                                <ButtonGeneral
+                                    className={classes.button}
+                                    onClick={handleClick}
+                                    text={'Log in'}
+                                />
+                            </Link>
 
-                        {/* functionality is needed for when logged in */}
-                        {/* <Menu
+                            {/* functionality is needed for when logged in */}
+                            {/* <Menu
                             id="simple-menu"
                             anchorEl={anchorEl}
                             keepMounted
@@ -85,10 +88,11 @@ const NavBar = () => {
                             </MenuItem>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
                         </Menu> */}
-                        <Profile />
-                        <LoginButton />
-                    </Toolbar>
-                </AppBar>
+                            <Profile />
+                            <LoginButton />
+                        </Toolbar>
+                    </AppBar>
+                </Container>
             </React.Fragment>
         </div>
     )

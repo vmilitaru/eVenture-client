@@ -4,7 +4,7 @@ import Head from 'next/head'
 // COMPONENTS
 import ButtonGeneral from '../components/Button/Button'
 // import { getStaticProps } from '../pages/api/events'
-import styling from '../pages/index.module.css'
+import { useStyles } from './indexmaterialCss.js'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
 
@@ -21,16 +21,17 @@ function Home() {
         }
         getData()
     }, [])
+    const classes = useStyles()
 
     return (
-        <div className={styling.background}>
+        <div className={classes.background}>
             <Head>
                 <title>Communiteam</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <div className={styling.div}>
-                <div item className={styling.intro}>
+            <div className={classes.div}>
+                <div item className={classes.intro}>
                     <Typography variant="h2">
                         Develop with our community
                     </Typography>
@@ -38,8 +39,8 @@ function Home() {
                         Checkout our latest event
                     </Typography>
                 </div>
-                <div className={styling.event}>
-                    <div className={styling.eventDetails}>
+                <div className={classes.event}>
+                    <div className={classes.eventDetails}>
                         <Typography variant="h3">{event.title}</Typography>
                         <Typography variant="h5">
                             {event.date}, {event.time}
@@ -50,7 +51,7 @@ function Home() {
                         </Link>
                     </div>
                     <img
-                        className={styling.img}
+                        className={classes.img}
                         src="https://media.newyorker.com/photos/5f414de2840e569c23e39066/2:1/w_2559,h_1279,c_limit/Wright-Panda01.jpg"
                         alt="panda"
                     />

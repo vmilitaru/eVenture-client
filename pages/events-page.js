@@ -4,7 +4,7 @@ import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 
 // COMPONENTS
-import NavBar from '../components/NavBar/NavBar'
+
 import EventCard from '../components/EventCard/EventCard'
 
 // ENVIRONMENT VARIABLES
@@ -29,7 +29,7 @@ function EventsPage() {
                 <title>FrontEnd</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <NavBar />
+
             <h1>A list of all events</h1>
 
             {events ? (
