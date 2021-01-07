@@ -9,8 +9,6 @@ import { auth0Domain } from '../../environment'
 const Profile = () => {
     const { user, isAuthenticated, getIdTokenClaims } = useAuth0()
 
-    console.log(getIdTokenClaims())
-
     return (
         isAuthenticated && (
             <div>

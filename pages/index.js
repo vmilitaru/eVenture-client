@@ -12,13 +12,15 @@ import Countdown from '../components/Countdown/Countdown'
 import { serverUrl } from '../environment'
 
 function Home() {
-    const [event, setEvent] = useState({})
+    const [event, setEvent] = useState({ time: '00:00:00', date: '2021-20-20' })
 
     useEffect(() => {
         async function getData() {
-            const res = await fetch(`${serverUrl}/events/date`)
+            const res = await fetch(`${serverUrl}/events/8`)
             const { payload } = await res.json()
-            setEvent(payload[0])
+            // console.log({ payload })
+            console.log(payload)
+            setEvent(payload)
         }
         getData()
     }, [])
@@ -50,7 +52,7 @@ function Home() {
                             <ButtonGeneral text={'find out more'} />
                         </Link>
                     </div>
-                    <Countdown eventDate={event.date} />
+                    <Countdown eventDate={event.date} eventTime={event.time} />
                     <img
                         className={styling.img}
                         src="https://media.newyorker.com/photos/5f414de2840e569c23e39066/2:1/w_2559,h_1279,c_limit/Wright-Panda01.jpg"
