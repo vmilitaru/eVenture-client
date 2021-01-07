@@ -1,7 +1,13 @@
 import { makeStyles } from '@material-ui/core/styles'
 export const useStyles = makeStyles({
-    eventsPage: {
+    eventpage: {
         display: 'flex',
-        alignItems: 'center'
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+        // alignItems: 'space-around',
+        // justifyContent: 'space-between'
     }
+    // event: {
+    //     margin: '2vw'
+    // }
 })

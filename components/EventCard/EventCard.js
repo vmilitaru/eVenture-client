@@ -32,7 +32,7 @@ export default function EventCard({ event }) {
                         component="img"
                         image={event.banner ? event.banner : null}
                     />
-                    <CardContent>
+                    <CardContent className={classes.cardcontent}>
                         <Typography className={classes.title} variant="h4">
                             {event.title}
                         </Typography>

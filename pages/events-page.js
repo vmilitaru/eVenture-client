@@ -24,7 +24,7 @@ function EventsPage() {
     }, [])
     const classes = useStyles()
     return (
-        <div className={classes.EventsPage}>
+        <div>
             <Head>
                 <title>FrontEnd</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -33,17 +33,17 @@ function EventsPage() {
             <h1>A list of all events</h1>
 
             {events ? (
-                <ul>
+                <div className={classes.eventpage}>
                     {events.map((event) => (
-                        <li key={event.id}>
+                        <div key={event.id} className={classes.event}>
                             <Link href="/event/[id]" as={`/event/${event.id}`}>
                                 <a>
                                     <EventCard event={event} />
                                 </a>
                             </Link>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             ) : (
                 <div>Loading events...</div>
             )}
