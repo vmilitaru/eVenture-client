@@ -8,15 +8,16 @@ import Countdown from '../components/Countdown/Countdown'
 import styling from '../pages/index.module.css'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
+import Countdown from '../components/Countdown/Countdown'
 
 import { serverUrl } from '../environment'
 
 function Home() {
-    const [event, setEvent] = useState({})
+    const [event, setEvent] = useState({ time: '00:00:00', date: '2021-12-20' })
 
     useEffect(() => {
         async function getData() {
-            const res = await fetch(`${serverUrl}/events/date`)
+            const res = await fetch(`${serverUrl}/events/8`)
             const { payload } = await res.json()
             const chronologicalEvents = payload.sort(sortEventsByDate)
             setEvent(chronologicalEvents[0])
@@ -55,7 +56,7 @@ function Home() {
                             <ButtonGeneral text={'find out more'} />
                         </Link>
                     </div>
-                    <Countdown />
+                    <Countdown eventDate={event.date} eventTime={event.time} />
                     <img
                         className={styling.img}
                         src="https://media.newyorker.com/photos/5f414de2840e569c23e39066/2:1/w_2559,h_1279,c_limit/Wright-Panda01.jpg"
