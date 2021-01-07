@@ -26,20 +26,22 @@ export default function EventCard({ event }) {
     return (
         <React.Fragment>
             <Card className={classes.root}>
-                <CardActionArea>
+                <CardActionArea className={classes.card}>
                     <CardMedia
+                        className={classes.media}
                         component="img"
-                        height="140"
                         image={event.banner ? event.banner : null}
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h3" component="h3">
+                        <Typography className={classes.title} variant="h4">
                             {event.title}
                         </Typography>
-                        <Typography>
+                        <Typography className={classes.date} variant="h6">
                             {event.date} - {event.time}
                         </Typography>
-                        <Typography>{shortenDescription()}</Typography>
+                        <Typography variant="h5">
+                            {shortenDescription()}
+                        </Typography>
                     </CardContent>
                 </CardActionArea>
             </Card>

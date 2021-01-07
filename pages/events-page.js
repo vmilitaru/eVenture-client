@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
-
+import { useStyles } from './events-page-materialCss'
 // COMPONENTS
 
 import EventCard from '../components/EventCard/EventCard'
@@ -22,9 +22,9 @@ function EventsPage() {
 
         getEvents()
     }, [])
-
+    const classes = useStyles()
     return (
-        <div>
+        <div className={classes.EventsPage}>
             <Head>
                 <title>FrontEnd</title>
                 <link rel="icon" href="/favicon.ico" />

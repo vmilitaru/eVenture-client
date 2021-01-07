@@ -83,6 +83,13 @@ const theme = createMuiTheme({
             lineHeight: 1.167,
             letterSpacing: '0em'
         },
+        h4: {
+            fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
+            fontWeight: 400,
+            fontSize: '2.5rem',
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em'
+        },
         h5: {
             fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
             fontSize: '1.2rem',
@@ -99,6 +106,15 @@ const theme = createMuiTheme({
             letterSpacing: '0.06em',
             color: 'white',
             textShadow: '1px 1px 1px black'
+        },
+        p1: {
+            fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
+            fontSize: '4rem',
+            lineHeight: 1.2,
+            fontWeight: 'bold',
+            letterSpacing: '0.06em',
+            color: '#006'
+            // textShadow: '1px 1px 1px black'
         }
     },
     overrides: {
