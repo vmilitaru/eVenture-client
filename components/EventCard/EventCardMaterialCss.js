@@ -1,17 +1,27 @@
 import { makeStyles } from '@material-ui/core/styles'
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 400,
-        maxHeight: 600
+        width: '25vw',
+        height: '25vw',
+        maxHeight: '25vw',
+        margin: '2vw',
+        backgroundColor: `${theme.palette.primary.contrastText}`,
+        boxShadow: '0.1vw 0.1vw 0.5vw -0.05vw grey'
+        // boxShadow: '0px 1.75px 1px -1px grey',
     },
     card: {
-        backgroundColor: 'theme.palette.primary.dark'
+        backgroundColor: `${theme.palette.primary.main}`
+    },
+    cardcontent: {
+        display: 'flex',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        backgroundColor: `${theme.palette.primary.contrastText}`
     },
     media: {
-        height: '10',
+        height: '20rem',
         padding: '1.5rem',
-        width: '20rem',
-        height: '20 rem',
+        width: '30rem',
         objectfit: 'cover'
     },
     title: {
@@ -22,4 +32,4 @@ export const useStyles = makeStyles({
         textShadow: 'none',
         fontSize: '1rem'
     }
-})
+}))
