@@ -65,13 +65,6 @@ const NavBar = () => {
                         >
                             Events
                         </Link>
-                        <Link href="/login">
-                            <ButtonGeneral
-                                className={classes.button}
-                                onClick={handleClick}
-                                text={'Log in'}
-                            />
-                        </Link>
 
                         {/* functionality is needed for when logged in */}
                         {/* <Menu
