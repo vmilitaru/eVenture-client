@@ -8,7 +8,6 @@ import Countdown from '../components/Countdown/Countdown'
 import styling from '../pages/index.module.css'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
-import Countdown from '../components/Countdown/Countdown'
 
 import { serverUrl } from '../environment'
 
@@ -17,7 +16,7 @@ function Home() {
 
     useEffect(() => {
         async function getData() {
-            const res = await fetch(`${serverUrl}/events/8`)
+            const res = await fetch(`${serverUrl}/events/date`)
             const { payload } = await res.json()
             const chronologicalEvents = payload.sort(sortEventsByDate)
             setEvent(chronologicalEvents[0])
