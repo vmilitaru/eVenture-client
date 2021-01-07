@@ -12,7 +12,7 @@ import Countdown from '../components/Countdown/Countdown'
 import { serverUrl } from '../environment'
 
 function Home() {
-    const [event, setEvent] = useState({ time: '00:00:00', date: '2021-20-20' })
+    const [event, setEvent] = useState({ time: '00:00:00', date: '2021-12-20' })
 
     useEffect(() => {
         async function getData() {
