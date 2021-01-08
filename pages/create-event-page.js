@@ -39,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         margin: theme.spacing(1)
-    }
+    },
+    
 }))
 
 function AdminEventPage() {
@@ -47,31 +48,45 @@ function AdminEventPage() {
     console.log(user)
     console.log(isAuthenticated)
 
-    const [title, setTitle] = useState('empty title')
+    const [title, setTitle] = useState('')
     const [date, setDate] = useState(DateTime.utc())
     const [timeObj, setTime] = useState(DateTime.utc())
-    const [description, setDescription] = useState('empty description')
-    const [speaker, setSpeaker] = useState('empty speaker')
-    const [location, setLocation] = useState('empty location')
-    const [numtickets, setNumTickets] = useState(0)
-    const [banner, setBanner] = useState(
-        'https://res.cloudinary.com/duhcbwxmg/image/upload/v1610106192/event_setups/soc-background.jpg'
-    )
 
-    /* ------------------------------state for disabling the save button if no user and no banner ----------------------------------------------- */
-    const [buttonState, setButtonState] = useState(true)
-
+    const [description, setDescription] = useState('')
+    const [speaker, setSpeaker] = useState('')
+    const [location, setLocation] = useState('')
+    const [numtickets, setNumTickets] = useState(null)
+    
     /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
 
     const [previewSource, setPreviewSource] = useState('')
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-    const handleDateChange = (d) => {
-        console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
+    useEffect(() => {
+        user && title &&
+        date &&
+        timeObj &&
+        description &&
+        location &&
+        speaker &&
+        previewSource &&
+        numtickets ? setButtonState(false) : setButtonState(true)
+        
+    }, [user,title,
+        date,
+        timeObj,
+        description,
+        location,
+        speaker,
+        previewSource,
+        numtickets ])
+
+    const handleDateChange = (d) => { //This function handles correct time conversion from object to ISO
+          console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
         setDate(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
     }
 
-    const handleTimeChange = (t) => {
+    const handleTimeChange = (t) => { //This function handles correct time conversion from object to ISO
         console.log(
             DateTime.utc()
                 .set({
@@ -126,28 +141,12 @@ function AdminEventPage() {
     }
 
     async function gatherEventDetails(base64EncodedImage) {
-        console.log(base64EncodedImage)
+       
         if (user && isAuthenticated) {
-            console.log('in handle submit Fn')
-
+          
             const accessToken = await getAccessTokenSilently()
 
-            console.log(accessToken)
-
-            console.log('clicked')
-
-            /* console.log({
-                title,
-                date,
-                time,
-                description,
-                location,
-                speaker,
-                banner,
-                numtickets
-            }) */
-
-            const time = timeObj.toISOTime({
+                        const time = timeObj.toISOTime({
                 suppressSeconds: true,
                 includeOffset: false,
                 suppressMilliseconds: true
@@ -176,8 +175,7 @@ function AdminEventPage() {
 
             const response = await fetch(` ${serverUrl}/org`, requestOptions) //post request is sent to events listing
             const data = await response.json()
-            console.log(data)
-
+           
             //event.target.reset() //reset input boxes
         }
     }
@@ -188,6 +186,7 @@ function AdminEventPage() {
                 noValidate
                 autoComplete="off"
                 onSubmit={(event) => handleSubmit(event)} //on button click post request is fired
+
             >
                 <div>
                     <TextField
@@ -199,6 +198,7 @@ function AdminEventPage() {
                         variant="outlined"
                         InputProps={{ classes: { input: classes.title } }}
                         onChange={(e) => setTitle(e.target.value)}
+                        helperText={title.length < 1 ? "Please enter text" : " "}
                     />
 
                     <MuiPickersUtilsProvider utils={LuxonUtils}>
@@ -239,6 +239,8 @@ function AdminEventPage() {
                         variant="outlined"
                         onChange={(e) => setDescription(e.target.value)}
                         InputProps={{ classes: { input: classes.description } }}
+                        helperText={description.length < 1 ? "Please enter text" : " "}
+                       
                     />
                     <TextField
                         id="speaker"
@@ -249,6 +251,7 @@ function AdminEventPage() {
                         variant="outlined"
                         InputProps={{ classes: { input: classes.speaker } }}
                         onChange={(e) => setSpeaker(e.target.value)}
+                        helperText={speaker.length < 1 ? "Please enter text" : " "}
                     />
                     <TextField
                         id="location"
@@ -259,6 +262,7 @@ function AdminEventPage() {
                         variant="outlined"
                         InputProps={{ classes: { input: classes.location } }}
                         onChange={(e) => setLocation(e.target.value)}
+                        helperText={location.length < 1 ? "Please enter text" : " "}
                     />
                     <TextField
                         id="tickets"
@@ -268,9 +272,11 @@ function AdminEventPage() {
                         placeholder="Enter number of tickets available"
                         variant="outlined"
                         InputProps={{
-                            classes: { input: classes.title }
+                            classes: { input: classes.numtickets }
                         }}
                         onChange={(e) => setNumTickets(e.target.value)}
+                        helperText={/^\d+$/.test(numtickets) === false ? "Please enter a number" : " "}
+                              
                     />
                     <UploadImage
                         handleFileInputChange={handleFileInputChange}
