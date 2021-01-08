@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 function Countdown({ eventDate, eventTime }) {
-    const [countdown, setCountdown] = useState('')
     const [distance, setDistance] = useState(parseInt(new Date().getTime()))
 
     let splitDate = eventDate.split('-')
@@ -18,7 +17,7 @@ function Countdown({ eventDate, eventTime }) {
         splitTime[2]
     )
 
-    console.log({ eventDateTime })
+    // console.log({ eventDateTime })
 
     // Time calculations for days, hours, minutes and seconds
     var days = Math.floor(distance / (1000 * 60 * 60 * 24))
@@ -35,13 +34,13 @@ function Countdown({ eventDate, eventTime }) {
 
             // Update the count down every 1 second
             var x = setTimeout(() => {
-                console.log('running')
+                // console.log('running')
                 // Get today's date and time
                 var now = new Date().getTime()
 
                 // Find the distance between now and the count down date
                 setDistance(parseInt(countDownDate - now))
-                console.log({ distance })
+                // console.log({ distance })
 
                 // Set coundown state
             }, 1000)
