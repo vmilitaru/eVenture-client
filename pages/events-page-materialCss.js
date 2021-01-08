@@ -3,11 +3,16 @@ export const useStyles = makeStyles({
     eventpage: {
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'wrap'
-        // alignItems: 'space-around',
-        // justifyContent: 'space-between'
+        flexWrap: 'wrap',
+        textDecoration: 'none',
+        alignContent: 'center'
     }
     // event: {
-    //     margin: '2vw'
+    //     display: 'flex',
+    //     alignContent: 'center'
+    // },
+    // link: {
+    //     color: 'green',
+    //     textDecoration: 'none'
     // }
 })

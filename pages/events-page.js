@@ -36,7 +36,11 @@ function EventsPage() {
                 <div className={classes.eventpage}>
                     {events.map((event) => (
                         <div key={event.id} className={classes.event}>
-                            <Link href="/event/[id]" as={`/event/${event.id}`}>
+                            <Link
+                                className={classes.link}
+                                href="/event/[id]"
+                                as={`/event/${event.id}`}
+                            >
                                 <a>
                                     <EventCard event={event} />
                                 </a>
