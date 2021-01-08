@@ -16,8 +16,9 @@ import Grid from '@material-ui/core/Grid'
 import UploadImage from '../components/ImageUploader/index'
 
 // ENVIRONMENT VARIABLES
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0,withAuthenticationRequired } from '@auth0/auth0-react'
 import { serverUrl } from '../environment'
+import Loading from '../components/Loading/index'
 import { TrafficOutlined } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
@@ -314,4 +315,4 @@ function AdminEventPage() {
         </React.Fragment>
     )
 }
-export default AdminEventPage
+export default withAuthenticationRequired(AdminEventPage, {onRedirecting: ()=>{return(<Loading />)}}) 
