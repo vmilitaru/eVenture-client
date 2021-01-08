@@ -54,6 +54,12 @@ function AdminEventPage() {
     const [speaker, setSpeaker] = useState('empty speaker')
     const [location, setLocation] = useState('empty location')
     const [numtickets, setNumTickets] = useState(0)
+    const [banner, setBanner] = useState(
+        'https://res.cloudinary.com/duhcbwxmg/image/upload/v1610106192/event_setups/soc-background.jpg'
+    )
+
+    /* ------------------------------state for disabling the save button if no user and no banner ----------------------------------------------- */
+    const [buttonState, setButtonState] = useState(true)
 
     /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
 
@@ -126,7 +132,7 @@ function AdminEventPage() {
 
             const accessToken = await getAccessTokenSilently()
 
-            /* console.log(accessToken) */
+            console.log(accessToken)
 
             console.log('clicked')
 

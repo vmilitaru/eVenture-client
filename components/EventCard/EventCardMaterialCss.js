@@ -19,12 +19,10 @@ export const useStyles = makeStyles((theme) => ({
         textDecoration: 'none'
     },
     media: {
-        // display: 'flex',
-        // flexDirection: 'column',
-        // flexWrap: 'wrap',
-        height: '20vw',
-        padding: '1.5rem',
+        height: 'auto',
+        // padding: '1.5rem',
         width: '25vw',
+        maxHeight: '20vw',
         objectfit: 'cover'
     },
     title: {

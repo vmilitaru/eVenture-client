@@ -4,11 +4,12 @@ import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import { useStyles } from './events-page-materialCss'
 // COMPONENTS
-
+import Typography from '@material-ui/core/Typography'
 import EventCard from '../components/EventCard/EventCard'
 
 // ENVIRONMENT VARIABLES
 import { serverUrl } from '../environment'
+import { typography } from '@material-ui/system'
 
 function EventsPage({ events }) {
     // const [events, setEvents] = useState([])
@@ -31,28 +32,29 @@ function EventsPage({ events }) {
                 <title>FrontEnd</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            <main>
+                <Typography variant="h2">Upcoming Events</Typography>
 
-            <h1>A list of all events</h1>
-
-            {events ? (
-                <div className={classes.eventpage}>
-                    {events.map((event) => (
-                        <div key={event.id} className={classes.event}>
-                            <Link
-                                className={classes.link}
-                                href="/event/[id]"
-                                as={`/event/${event.id}`}
-                            >
-                                <a>
-                                    <EventCard event={event} />
-                                </a>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <div>Loading events...</div>
-            )}
+                {events ? (
+                    <div className={classes.eventpage}>
+                        {events.map((event) => (
+                            <div key={event.id} className={classes.event}>
+                                <Link
+                                    className={classes.link}
+                                    href="/event/[id]"
+                                    as={`/event/${event.id}`}
+                                >
+                                    <a className={classes.linkspecific}>
+                                        <EventCard event={event} />
+                                    </a>
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div>Loading events...</div>
+                )}
+            </main>
         </div>
     )
 }

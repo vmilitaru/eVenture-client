@@ -4,15 +4,10 @@ export const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        textDecoration: 'none',
-        alignContent: 'center'
+        justifyContent: 'center'
+    },
+
+    linkspecific: {
+        textDecoration: 'none'
     }
-    // event: {
-    //     display: 'flex',
-    //     alignContent: 'center'
-    // },
-    // link: {
-    //     color: 'green',
-    //     textDecoration: 'none'
-    // }
 })

@@ -53,7 +53,7 @@ export default function MyApp(props) {
                         style={{
                             marginTop: '6rem',
                             textAlign: 'center',
-                            backgroundColor: '#fffde7'
+                            backgroundColor: '#fafafa'
                         }}
                     >
                         <Component {...pageProps} />
