@@ -55,7 +55,12 @@ function Home({ event }) {
                             <ButtonGeneral text={'find out more'} />
                         </Link>
                     </div>
-                    <Countdown eventDate={event.date} eventTime={event.time} />
+                    {event.date && (
+                        <Countdown
+                            eventDate={event.date}
+                            eventTime={event.time}
+                        />
+                    )}
                     <img
                         className={styling.img}
                         src="https://media.newyorker.com/photos/5f414de2840e569c23e39066/2:1/w_2559,h_1279,c_limit/Wright-Panda01.jpg"

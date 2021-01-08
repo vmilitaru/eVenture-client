@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 function Countdown({ eventDate, eventTime }) {
-    const [distance, setDistance] = useState(parseInt(new Date().getTime()))
+    const [distance, setDistance] = useState(getDistance())
 
     let splitDate = eventDate.split('-')
     let splitTime = eventTime.split(':')
@@ -17,32 +17,31 @@ function Countdown({ eventDate, eventTime }) {
         splitTime[2]
     )
 
-    // console.log({ eventDateTime })
+    function getDistance() {
+        const eventA = new Date(`${eventDate}T${eventTime}.000Z`).getTime()
+        return Number(eventA) - Date.now()
+    }
 
     // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24))
-    var hours = Math.floor(
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24))
+    let hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     )
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000)
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
     useEffect(() => {
-        if (distance > 0) {
+        if (!distance || distance > 0) {
             // Set the date we're counting down to
-            var countDownDate = eventDateTime.getTime()
+            let countDownDate = eventDateTime.getTime()
 
             // Update the count down every 1 second
-            var x = setTimeout(() => {
-                // console.log('running')
+            let x = setTimeout(() => {
                 // Get today's date and time
-                var now = new Date().getTime()
+                let now = new Date().getTime()
 
                 // Find the distance between now and the count down date
                 setDistance(parseInt(countDownDate - now))
-                // console.log({ distance })
-
-                // Set coundown state
             }, 1000)
 
             return () => {
@@ -53,7 +52,9 @@ function Countdown({ eventDate, eventTime }) {
 
     return (
         <div>
-            <p>{`${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`}</p>
+            {distance && (
+                <p>{`${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`}</p>
+            )}
         </div>
     )
 }
