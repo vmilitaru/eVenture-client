@@ -1,30 +1,36 @@
 //import NavBar from '../../../components/NavBar/NavBar'
 //import Footer from '../../../components/Footer/Footer'
+import { useStyles } from './specificeventMaterialcss'
 import Typography from '@material-ui/core/Typography'
 
 // ENVIRONMENT VARIABLES
 import { serverUrl } from '../../environment'
 
 export default function SpecificEventPage({ event }) {
+    const classes = useStyles()
     return (
-        <>
-            <div>
-                <Typography gutterBottom variant="h3" component="h3">
-                    {event.title}
-                </Typography>
-                <img src={event.banner} alt={event.banner} />
+        <div className={classes.event}>
+            <div className={classes.part}>
+                <Typography variant="h2">{event.title}</Typography>
+                <img
+                    className={classes.img}
+                    src={event.banner}
+                    alt={event.banner}
+                />
             </div>
-            <div>
-                <p>
+
+            <section className={classes.details}>
+                <Typography variant="h5">
                     {event.date} - {event.time}
-                </p>
-            </div>
-            <section>
-                <p>{event.speaker}</p>
-                <p>{event.location}</p>
-                <p>{event.description}</p>
+                </Typography>
+                <Typography variant="h6"> Speakers: {event.speaker}</Typography>
+                <Typography variant="h6">
+                    {' '}
+                    Location: {event.location}
+                </Typography>
+                <Typography variant="h5">{event.description}</Typography>
             </section>
-        </>
+        </div>
     )
 }
 
