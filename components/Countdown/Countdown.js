@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
 function Countdown({ eventDate, eventTime }) {
-    const [countdown, setCountdown] = useState('')
-    const [distance, setDistance] = useState(parseInt(new Date().getTime()))
+    console.log(eventDate, eventTime)
+    const [distance, setDistance] = useState(null)
 
     let splitDate = eventDate.split('-')
     let splitTime = eventTime.split(':')
@@ -54,7 +54,9 @@ function Countdown({ eventDate, eventTime }) {
 
     return (
         <div>
-            <p>{`${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`}</p>
+            {distance && (
+                <p>{`${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`}</p>
+            )}
         </div>
     )
 }
