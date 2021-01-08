@@ -39,8 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         margin: theme.spacing(1)
-    },
-    
+    }
 }))
 
 function AdminEventPage() {
@@ -56,37 +55,44 @@ function AdminEventPage() {
     const [speaker, setSpeaker] = useState('')
     const [location, setLocation] = useState('')
     const [numtickets, setNumTickets] = useState(null)
-    
+    const [buttonState, setButtonState] = useState(true)
     /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
 
     const [previewSource, setPreviewSource] = useState('')
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
     useEffect(() => {
-        user && title &&
+        user &&
+        title &&
         date &&
         timeObj &&
         description &&
         location &&
         speaker &&
         previewSource &&
-        numtickets ? setButtonState(false) : setButtonState(true)
-        
-    }, [user,title,
+        numtickets
+            ? setButtonState(false)
+            : setButtonState(true)
+    }, [
+        user,
+        title,
         date,
         timeObj,
         description,
         location,
         speaker,
         previewSource,
-        numtickets ])
+        numtickets
+    ])
 
-    const handleDateChange = (d) => { //This function handles correct time conversion from object to ISO
-          console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
+    const handleDateChange = (d) => {
+        //This function handles correct time conversion from object to ISO
+        console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
         setDate(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
     }
 
-    const handleTimeChange = (t) => { //This function handles correct time conversion from object to ISO
+    const handleTimeChange = (t) => {
+        //This function handles correct time conversion from object to ISO
         console.log(
             DateTime.utc()
                 .set({
@@ -141,12 +147,10 @@ function AdminEventPage() {
     }
 
     async function gatherEventDetails(base64EncodedImage) {
-       
         if (user && isAuthenticated) {
-          
             const accessToken = await getAccessTokenSilently()
 
-                        const time = timeObj.toISOTime({
+            const time = timeObj.toISOTime({
                 suppressSeconds: true,
                 includeOffset: false,
                 suppressMilliseconds: true
@@ -175,7 +179,7 @@ function AdminEventPage() {
 
             const response = await fetch(` ${serverUrl}/org`, requestOptions) //post request is sent to events listing
             const data = await response.json()
-           
+
             //event.target.reset() //reset input boxes
         }
     }
@@ -186,7 +190,6 @@ function AdminEventPage() {
                 noValidate
                 autoComplete="off"
                 onSubmit={(event) => handleSubmit(event)} //on button click post request is fired
-
             >
                 <div>
                     <TextField
@@ -198,7 +201,9 @@ function AdminEventPage() {
                         variant="outlined"
                         InputProps={{ classes: { input: classes.title } }}
                         onChange={(e) => setTitle(e.target.value)}
-                        helperText={title.length < 1 ? "Please enter text" : " "}
+                        helperText={
+                            title.length < 1 ? 'Please enter text' : ' '
+                        }
                     />
 
                     <MuiPickersUtilsProvider utils={LuxonUtils}>
@@ -239,8 +244,9 @@ function AdminEventPage() {
                         variant="outlined"
                         onChange={(e) => setDescription(e.target.value)}
                         InputProps={{ classes: { input: classes.description } }}
-                        helperText={description.length < 1 ? "Please enter text" : " "}
-                       
+                        helperText={
+                            description.length < 1 ? 'Please enter text' : ' '
+                        }
                     />
                     <TextField
                         id="speaker"
@@ -251,7 +257,9 @@ function AdminEventPage() {
                         variant="outlined"
                         InputProps={{ classes: { input: classes.speaker } }}
                         onChange={(e) => setSpeaker(e.target.value)}
-                        helperText={speaker.length < 1 ? "Please enter text" : " "}
+                        helperText={
+                            speaker.length < 1 ? 'Please enter text' : ' '
+                        }
                     />
                     <TextField
                         id="location"
@@ -262,7 +270,9 @@ function AdminEventPage() {
                         variant="outlined"
                         InputProps={{ classes: { input: classes.location } }}
                         onChange={(e) => setLocation(e.target.value)}
-                        helperText={location.length < 1 ? "Please enter text" : " "}
+                        helperText={
+                            location.length < 1 ? 'Please enter text' : ' '
+                        }
                     />
                     <TextField
                         id="tickets"
@@ -275,8 +285,11 @@ function AdminEventPage() {
                             classes: { input: classes.numtickets }
                         }}
                         onChange={(e) => setNumTickets(e.target.value)}
-                        helperText={/^\d+$/.test(numtickets) === false ? "Please enter a number" : " "}
-                              
+                        helperText={
+                            /^\d+$/.test(numtickets) === false
+                                ? 'Please enter a number'
+                                : ' '
+                        }
                     />
                     <UploadImage
                         handleFileInputChange={handleFileInputChange}
@@ -292,7 +305,7 @@ function AdminEventPage() {
                     color="primary"
                     size="large"
                     className={classes.button}
-                    disabled={!previewSource}
+                    disabled={buttonState}
                     startIcon={<SaveIcon />}
                 >
                     Save

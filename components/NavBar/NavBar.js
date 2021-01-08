@@ -81,8 +81,10 @@ const NavBar = () => {
                             </MenuItem>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
                         </Menu> */}
+
                         <div className={styles.profileLogin}>
                             <Profile />
+                            <CreateEventButton />
                             <LoginButton />
                         </div>
                     </Toolbar>
