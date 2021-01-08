@@ -11,19 +11,21 @@ import EventCard from '../components/EventCard/EventCard'
 import { serverUrl } from '../environment'
 import { typography } from '@material-ui/system'
 
-function EventsPage() {
-    const [events, setEvents] = useState([])
+function EventsPage({ events }) {
+    // const [events, setEvents] = useState([])
 
-    useEffect(() => {
-        async function getEvents() {
-            const response = await fetch(`${serverUrl}/events`)
-            const data = await response.json()
-            setEvents(data.payload)
-        }
+    // useEffect(() => {
+    //     async function getEvents() {
+    //         const response = await fetch(`${serverUrl}/events`)
+    //         const data = await response.json()
+    //         setEvents(data.payload)
+    //     }
 
-        getEvents()
-    }, [])
+    //     getEvents()
+    // }, [])
+
     const classes = useStyles()
+
     return (
         <div>
             <Head>
@@ -55,6 +57,13 @@ function EventsPage() {
             </main>
         </div>
     )
+}
+
+export async function getServerSideProps(context) {
+    const res = await fetch(`${serverUrl}/events/date`)
+    const { payload } = await res.json()
+    const chronologicalEvents = payload.sort((a, b) => a.date > b.date)
+    return { props: { events: chronologicalEvents } }
 }
 
 export default EventsPage

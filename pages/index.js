@@ -11,22 +11,22 @@ import Link from '@material-ui/core/Link'
 
 import { serverUrl } from '../environment'
 
-function Home() {
-    const [event, setEvent] = useState({ time: '00:00:00', date: '2021-12-20' })
+function Home({ event }) {
+    // const [event, setEvent] = useState({ time: '00:00:00', date: '2021-12-20' })
 
-    useEffect(() => {
-        async function getData() {
-            const res = await fetch(`${serverUrl}/events/date`)
-            const { payload } = await res.json()
-            const chronologicalEvents = payload.sort(sortEventsByDate)
-            setEvent(chronologicalEvents[0])
-        }
-        getData()
-    }, [])
+    // useEffect(() => {
+    //     async function getData() {
+    //         const res = await fetch(`${serverUrl}/events/date`)
+    //         const { payload } = await res.json()
+    //         const chronologicalEvents = payload.sort(sortEventsByDate)
+    //         setEvent(chronologicalEvents[0])
+    //     }
+    //     getData()
+    // }, [])
 
-    function sortEventsByDate(eventA, eventB) {
-        return eventA.date > eventB.date
-    }
+    // function sortEventsByDate(eventA, eventB) {
+    //     return eventA.date > eventB.date
+    // }
 
     return (
         <div className={styling.background}>
@@ -65,6 +65,14 @@ function Home() {
             </div>
         </div>
     )
+}
+
+export async function getServerSideProps(context) {
+    const res = await fetch(`${serverUrl}/events/date`)
+    const { payload } = await res.json()
+    const chronologicalEvents = payload.sort((a, b) => a.date > b.date)
+    console.log(chronologicalEvents)
+    return { props: { event: chronologicalEvents[0] } }
 }
 
 export default Home

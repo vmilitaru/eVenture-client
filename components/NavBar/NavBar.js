@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import LoginButton from '../LoginButton/index'
 import Profile from '../Profile/index'
 import Link from '@material-ui/core/Link'
+import CreateEventButton from '../CreateButton/index'
 
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
