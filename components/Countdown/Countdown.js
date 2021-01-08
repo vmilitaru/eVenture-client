@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 function Countdown({ eventDate, eventTime }) {
-<<<<<<< HEAD
     const [distance, setDistance] = useState(getDistance())
-=======
-    console.log(eventDate, eventTime)
-    const [distance, setDistance] = useState(null)
->>>>>>> c1f00cc7b7ce9d641488b7f7e75dbe0e603f0536
 
     let splitDate = eventDate.split('-')
     let splitTime = eventTime.split(':')
