@@ -4,11 +4,12 @@ import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import { useStyles } from './events-page-materialCss'
 // COMPONENTS
-
+import Typography from '@material-ui/core/Typography'
 import EventCard from '../components/EventCard/EventCard'
 
 // ENVIRONMENT VARIABLES
 import { serverUrl } from '../environment'
+import { typography } from '@material-ui/system'
 
 function EventsPage() {
     const [events, setEvents] = useState([])
@@ -30,7 +31,7 @@ function EventsPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <h1 className={classes.text}>A list of all events</h1>
+                <Typography variant="h2">Upcoming Events</Typography>
 
                 {events ? (
                     <div className={classes.eventpage}>
