@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -18,6 +18,7 @@ import UploadImage from '../components/ImageUploader/index'
 // ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../environment'
+import { TrafficOutlined } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     //this styling would be good to replace with css modules
@@ -55,10 +56,19 @@ function AdminEventPage() {
     const [numtickets, setNumTickets] = useState(0)
     const [banner, setBanner] = useState('')
 
+    /* ------------------------------state for disabling the save button if no user and no banner ----------------------------------------------- */
+    const [buttonState, setButtonState] = useState(true)
+
     /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
 
     const [previewSource, setPreviewSource] = useState('')
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+    useEffect(() => {
+        user && banner ? setButtonState(false) : setButtonState(true)
+        console.log(buttonState)
+    }, [user, banner])
+
     const handleDateChange = (d) => {
         console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
         setDate(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
@@ -268,6 +278,7 @@ function AdminEventPage() {
                     <UploadImage
                         handleFileInputChange={handleFileInputChange}
                         previewSource={previewSource}
+                        setPreviewSource={setPreviewSource}
                     />
                 </div>
 
@@ -278,7 +289,7 @@ function AdminEventPage() {
                     color="primary"
                     size="large"
                     className={classes.button}
-                    disabled={!banner}
+                    disabled={buttonState}
                     startIcon={<SaveIcon />}
                 >
                     Save
