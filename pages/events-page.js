@@ -29,28 +29,29 @@ function EventsPage() {
                 <title>FrontEnd</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            <main>
+                <h1 className={classes.text}>A list of all events</h1>
 
-            <h1>A list of all events</h1>
-
-            {events ? (
-                <div className={classes.eventpage}>
-                    {events.map((event) => (
-                        <div key={event.id} className={classes.event}>
-                            <Link
-                                className={classes.link}
-                                href="/event/[id]"
-                                as={`/event/${event.id}`}
-                            >
-                                <a>
-                                    <EventCard event={event} />
-                                </a>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <div>Loading events...</div>
-            )}
+                {events ? (
+                    <div className={classes.eventpage}>
+                        {events.map((event) => (
+                            <div key={event.id} className={classes.event}>
+                                <Link
+                                    className={classes.link}
+                                    href="/event/[id]"
+                                    as={`/event/${event.id}`}
+                                >
+                                    <a className={classes.linkspecific}>
+                                        <EventCard event={event} />
+                                    </a>
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div>Loading events...</div>
+                )}
+            </main>
         </div>
     )
 }

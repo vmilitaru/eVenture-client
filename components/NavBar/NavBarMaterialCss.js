@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     box: {
         position: 'fixed',
-        backgroundColor: `${theme.palette.fourth.light}`,
+        backgroundColor: `${theme.palette.fourth.main}`,
         top: '0',
         left: '0',
         zIndex: '50',

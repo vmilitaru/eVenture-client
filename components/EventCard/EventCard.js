@@ -39,9 +39,9 @@ export default function EventCard({ event }) {
                         <Typography className={classes.date} variant="h6">
                             {event.date} - {event.time}
                         </Typography>
-                        <Typography variant="h5">
+                        {/* <Typography variant="h5">
                             {shortenDescription()}
-                        </Typography>
+                        </Typography> */}
                     </CardContent>
                 </CardActionArea>
             </Card>
