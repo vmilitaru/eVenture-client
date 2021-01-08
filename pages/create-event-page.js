@@ -54,7 +54,9 @@ function AdminEventPage() {
     const [speaker, setSpeaker] = useState('empty speaker')
     const [location, setLocation] = useState('empty location')
     const [numtickets, setNumTickets] = useState(0)
-    const [banner, setBanner] = useState('')
+    const [banner, setBanner] = useState(
+        'https://res.cloudinary.com/duhcbwxmg/image/upload/v1610106192/event_setups/soc-background.jpg'
+    )
 
     /* ------------------------------state for disabling the save button if no user and no banner ----------------------------------------------- */
     const [buttonState, setButtonState] = useState(true)
@@ -63,11 +65,6 @@ function AdminEventPage() {
 
     const [previewSource, setPreviewSource] = useState('')
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
-
-    useEffect(() => {
-        user && banner ? setButtonState(false) : setButtonState(true)
-        console.log(buttonState)
-    }, [user, banner])
 
     const handleDateChange = (d) => {
         console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
@@ -107,7 +104,7 @@ function AdminEventPage() {
     const handleFileInputChange = (e) => {
         const file = e.target.files[0]
         previewImage(file)
-        setBanner(file)
+        //setBanner(file)
     }
 
     const previewImage = (file) => {
@@ -122,7 +119,7 @@ function AdminEventPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!banner) return
+        if (!previewSource) return
         gatherEventDetails(previewSource)
         setPreviewSource(null)
         e.target.reset()
@@ -135,7 +132,7 @@ function AdminEventPage() {
 
             const accessToken = await getAccessTokenSilently()
 
-            /* console.log(accessToken) */
+            console.log(accessToken)
 
             console.log('clicked')
 
@@ -289,7 +286,7 @@ function AdminEventPage() {
                     color="primary"
                     size="large"
                     className={classes.button}
-                    disabled={buttonState}
+                    disabled={!previewSource}
                     startIcon={<SaveIcon />}
                 >
                     Save

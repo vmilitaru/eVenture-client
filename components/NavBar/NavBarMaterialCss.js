@@ -11,7 +11,7 @@ export const useStyles = makeStyles((theme) => ({
     },
     box: {
         position: 'fixed',
-        backgroundColor: `${theme.palette.fourth.light}`,
+        backgroundColor: `${theme.palette.fourth.main}`,
         top: '0',
         left: '0',
         zIndex: '50',
@@ -26,15 +26,23 @@ export const useStyles = makeStyles((theme) => ({
         backgroundColor: `${theme.palette.third.light}`
     },
     toolbar: {
-        flexWrap: 'wrap'
-    },
-    toolbarTitle: {
-        flexGrow: 1
+        display: 'flex',
+        justifyContent: 'space-between',
+        height: '3rem'
     },
     link: {
         margin: theme.spacing(1, 10),
         color: theme.palette.primary.contrastText
     },
+    // image: {
+    //     // height: '6.5rem',
+    //     // position: 'absolute',
+    //     right: '90%'
+    // },
+    // logo: {
+    //     height: '6.5rem',
+    //     position: 'absolute'
+    // },
     button: {
         color: theme.palette.third.dark,
         '&:hover': { backgroundColor: `${theme.palette.third.light}` },

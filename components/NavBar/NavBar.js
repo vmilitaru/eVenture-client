@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import LoginButton from '../LoginButton/index'
 import Profile from '../Profile/index'
 import Link from '@material-ui/core/Link'
+import CreateEventButton from '../CreateButton/index'
 
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
@@ -37,35 +38,36 @@ const NavBar = () => {
             <div elevation="0" className={classes.box}>
                 <AppBar className={classes.appBar}>
                     <Toolbar className={classes.toolbar}>
-                        <Typography
+                        {/* <Typography
                             variant="h6"
                             color="inherit"
                             noWrap
                             className={classes.toolbarTitle}
-                        ></Typography>
-                        <img
-                            className={styles.logo}
-                            id="logo"
-                            src="/soc.png"
-                            alt="logo"
-                        />
-                        <Link
-                            variant="h6"
-                            color="textPrimary"
-                            href="/"
-                            className={classes.link}
-                        >
-                            Home
-                        </Link>
-                        <Link
-                            href="/events-page"
-                            variant="h6"
-                            color="textPrimary"
-                            className={classes.link}
-                        >
-                            Events
-                        </Link>
-
+                        ></Typography> */}
+                        <div className={styles.links}>
+                            <img
+                                className={styles.logo}
+                                id="logo"
+                                src="/soc.png"
+                                alt="logo"
+                            />
+                            <Link
+                                variant="h6"
+                                color="textPrimary"
+                                href="/"
+                                className={classes.link}
+                            >
+                                Home
+                            </Link>
+                            <Link
+                                href="/events-page"
+                                variant="h6"
+                                color="textPrimary"
+                                className={classes.link}
+                            >
+                                Events
+                            </Link>
+                        </div>
                         {/* functionality is needed for when logged in */}
                         {/* <Menu
                             id="simple-menu"
@@ -79,8 +81,10 @@ const NavBar = () => {
                             </MenuItem>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
                         </Menu> */}
-                        <Profile />
-                        <LoginButton />
+                        <div className={styles.profileLogin}>
+                            <Profile />
+                            <LoginButton />
+                        </div>
                     </Toolbar>
                 </AppBar>
             </div>
