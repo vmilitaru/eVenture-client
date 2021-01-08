@@ -51,15 +51,12 @@ function AdminEventPage() {
     const [title, setTitle] = useState('')
     const [date, setDate] = useState(DateTime.utc())
     const [timeObj, setTime] = useState(DateTime.utc())
+
     const [description, setDescription] = useState('')
     const [speaker, setSpeaker] = useState('')
     const [location, setLocation] = useState('')
     const [numtickets, setNumTickets] = useState(null)
-    const [banner, setBanner] = useState('')
-
-    /* ------------------------------state for disabling the save button if no user and no banner ----------------------------------------------- */
-    const [buttonState, setButtonState] = useState(true)
-
+    
     /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
 
     const [previewSource, setPreviewSource] = useState('')
@@ -72,20 +69,20 @@ function AdminEventPage() {
         description &&
         location &&
         speaker &&
-        banner &&
+        previewSource &&
         numtickets ? setButtonState(false) : setButtonState(true)
-        console.log(buttonState)
+        
     }, [user,title,
         date,
         timeObj,
         description,
         location,
         speaker,
-        banner,
+        previewSource,
         numtickets ])
 
     const handleDateChange = (d) => { //This function handles correct time conversion from object to ISO
-        console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
+          console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
         setDate(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
     }
 
@@ -122,7 +119,7 @@ function AdminEventPage() {
     const handleFileInputChange = (e) => {
         const file = e.target.files[0]
         previewImage(file)
-        setBanner(file)
+        //setBanner(file)
     }
 
     const previewImage = (file) => {
@@ -137,35 +134,19 @@ function AdminEventPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!banner) return
+        if (!previewSource) return
         gatherEventDetails(previewSource)
         setPreviewSource(null)
         e.target.reset()
     }
 
     async function gatherEventDetails(base64EncodedImage) {
-        console.log(base64EncodedImage)
+       
         if (user && isAuthenticated) {
-            console.log('in handle submit Fn')
-
+          
             const accessToken = await getAccessTokenSilently()
 
-            /* console.log(accessToken) */
-
-            console.log('clicked')
-
-            /* console.log({
-                title,
-                date,
-                time,
-                description,
-                location,
-                speaker,
-                banner,
-                numtickets
-            }) */
-
-            const time = timeObj.toISOTime({
+                        const time = timeObj.toISOTime({
                 suppressSeconds: true,
                 includeOffset: false,
                 suppressMilliseconds: true
@@ -194,8 +175,7 @@ function AdminEventPage() {
 
             const response = await fetch(` ${serverUrl}/org`, requestOptions) //post request is sent to events listing
             const data = await response.json()
-            console.log(data)
-
+           
             //event.target.reset() //reset input boxes
         }
     }
@@ -312,7 +292,7 @@ function AdminEventPage() {
                     color="primary"
                     size="large"
                     className={classes.button}
-                    disabled={buttonState}
+                    disabled={!previewSource}
                     startIcon={<SaveIcon />}
                 >
                     Save

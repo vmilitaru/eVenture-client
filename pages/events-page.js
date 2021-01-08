@@ -4,51 +4,66 @@ import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import { useStyles } from './events-page-materialCss'
 // COMPONENTS
-
+import Typography from '@material-ui/core/Typography'
 import EventCard from '../components/EventCard/EventCard'
 
 // ENVIRONMENT VARIABLES
 import { serverUrl } from '../environment'
+import { typography } from '@material-ui/system'
 
-function EventsPage() {
-    const [events, setEvents] = useState([])
+function EventsPage({ events }) {
+    // const [events, setEvents] = useState([])
 
-    useEffect(() => {
-        async function getEvents() {
-            const response = await fetch(`${serverUrl}/events`)
-            const data = await response.json()
-            setEvents(data.payload)
-        }
+    // useEffect(() => {
+    //     async function getEvents() {
+    //         const response = await fetch(`${serverUrl}/events`)
+    //         const data = await response.json()
+    //         setEvents(data.payload)
+    //     }
 
-        getEvents()
-    }, [])
+    //     getEvents()
+    // }, [])
+
     const classes = useStyles()
+
     return (
         <div>
             <Head>
                 <title>FrontEnd</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+            <main>
+                <Typography variant="h2">Upcoming Events</Typography>
 
-            <h1>A list of all events</h1>
-
-            {events ? (
-                <div className={classes.eventpage}>
-                    {events.map((event) => (
-                        <div key={event.id} className={classes.event}>
-                            <Link href="/event/[id]" as={`/event/${event.id}`}>
-                                <a>
-                                    <EventCard event={event} />
-                                </a>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <div>Loading events...</div>
-            )}
+                {events ? (
+                    <div className={classes.eventpage}>
+                        {events.map((event) => (
+                            <div key={event.id} className={classes.event}>
+                                <Link
+                                    className={classes.link}
+                                    href="/event/[id]"
+                                    as={`/event/${event.id}`}
+                                >
+                                    <a className={classes.linkspecific}>
+                                        <EventCard event={event} />
+                                    </a>
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div>Loading events...</div>
+                )}
+            </main>
         </div>
     )
+}
+
+export async function getServerSideProps(context) {
+    const res = await fetch(`${serverUrl}/events/date`)
+    const { payload } = await res.json()
+    const chronologicalEvents = payload.sort((a, b) => a.date > b.date)
+    return { props: { events: chronologicalEvents } }
 }
 
 export default EventsPage

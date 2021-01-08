@@ -1,12 +1,25 @@
 .logo {
     height: 6.5rem;
-    position: absolute;
 }
 
 #navButton {
     background-color: yellow;
 }
 
-/* .button2 {
-    background-color: yellow;
-} */
+.profileLogin {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.image {
+    width: 5rem;
+    height: 2rem;
+    position: relative;
+}
