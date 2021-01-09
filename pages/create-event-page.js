@@ -16,11 +16,13 @@ import Grid from '@material-ui/core/Grid'
 import UploadImage from '../components/ImageUploader/index'
 
 // ENVIRONMENT VARIABLES
-import { useAuth0,withAuthenticationRequired } from '@auth0/auth0-react'
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import { serverUrl } from '../environment'
 import Loading from '../components/Loading/index'
 import { TrafficOutlined } from '@material-ui/icons'
 
+console.log (withAuthenticationRequired)
+console.log(withAuthenticationRequired())
 const useStyles = makeStyles((theme) => ({
     //this styling would be good to replace with css modules
     title: {
@@ -315,4 +317,6 @@ function AdminEventPage() {
         </React.Fragment>
     )
 }
-export default withAuthenticationRequired(AdminEventPage, {onRedirecting: ()=>{return(<Loading />)}}) 
+
+
+export default  withAuthenticationRequired(AdminEventPage,{onRedirecting: () => <Loading />}) 

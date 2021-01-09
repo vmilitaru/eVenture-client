@@ -1,5 +1,6 @@
 import React from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
+import {AuthProvider} from '../components/AuthContext/index'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
 
@@ -36,6 +37,7 @@ export default function MyApp(props) {
             redirectUri={`${redirectUrl}${props.router.pathname}`}
             audience={auth0Audience}
         >
+        <AuthProvider>
             <React.Fragment>
                 <Head>
                     <title>My page</title>
@@ -61,6 +63,7 @@ export default function MyApp(props) {
                     <Footer />
                 </ThemeProvider>
             </React.Fragment>
+            </AuthProvider>
         </Auth0Provider>
     )
 }
