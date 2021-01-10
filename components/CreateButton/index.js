@@ -8,10 +8,7 @@ import {useAuth} from '../AuthContext/index'
 
 export default function CreateEventButton() {
     const {userRole,isAuthenticated} = useAuth()
-    console.log(userRole)
-    console.log(isAuthenticated)
     const classes = useStyles()
-
     return (
         <div>
             {isAuthenticated && userRole && (

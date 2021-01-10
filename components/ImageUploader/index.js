@@ -7,7 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
 import { makeStyles } from '@material-ui/core/styles'
 import Image from 'next/image'
-import { flexbox } from '@material-ui/system'
+
 
 const useStyles = makeStyles(() => ({
     input: {

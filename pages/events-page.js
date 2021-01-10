@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import { useStyles } from './events-page-materialCss'
+import { useAuth0} from '@auth0/auth0-react'
 // COMPONENTS
 import Typography from '@material-ui/core/Typography'
 import EventCard from '../components/EventCard/EventCard'
@@ -12,6 +13,7 @@ import { serverUrl } from '../environment'
 import { typography } from '@material-ui/system'
 
 function EventsPage({ events }) {
+    //const {user,isAuthenticated}=useAuth()
     // const [events, setEvents] = useState([])
 
     // useEffect(() => {
