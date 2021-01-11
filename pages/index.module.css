@@ -13,9 +13,8 @@
 .intro {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 4rem;
     align-items: center;
-    padding-top: 7%;
 }
 .event {
     display: flex;

@@ -62,8 +62,8 @@ function EventsPage({ events }) {
 export async function getServerSideProps(context) {
     const res = await fetch(`${serverUrl}/events/date`)
     const { payload } = await res.json()
-    const chronologicalEvents = payload.sort((a, b) => a.date > b.date)
-    return { props: { events: chronologicalEvents } }
+    const upcomingEvents = payload
+    return { props: { events: upcomingEvents } }
 }
 
 export default EventsPage
