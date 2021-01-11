@@ -1,3 +1,4 @@
+import { ClearTwoTone } from '@material-ui/icons'
 import React, { useState, useEffect } from 'react'
 
 function Countdown({ eventDate, eventTime }) {
