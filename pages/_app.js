@@ -48,7 +48,7 @@ export default function MyApp(props) {
                     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
 
-                    {/* <NavBar /> */}
+                    <NavBar />
                     <main
                         style={{
                             marginTop: '6rem',
