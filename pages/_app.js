@@ -33,7 +33,11 @@ export default function MyApp(props) {
         <Auth0Provider
             domain={auth0Domain}
             clientId={auth0ClientId}
-            redirectUri={`${redirectUrl}${props.router.pathname}`}
+            redirectUri={
+                props.router.pathname !== '/event/[id]'
+                    ? `${redirectUrl}${props.router.pathname}`
+                    : `${redirectUrl}/events-page`
+            }
             audience={auth0Audience}
         >
             <React.Fragment>
