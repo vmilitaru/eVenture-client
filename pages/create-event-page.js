@@ -14,7 +14,7 @@ import {
 import Grid from '@material-ui/core/Grid'
 
 import UploadImage from '../components/ImageUploader/index'
-import {useAuth} from '../components/AuthContext/index'
+
 
 // ENVIRONMENT VARIABLES
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 function AdminEventPage() {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
-    //const {userRole} = useAuth()
+    
     
 
     const [title, setTitle] = useState('')

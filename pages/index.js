@@ -7,7 +7,7 @@ import Countdown from '../components/Countdown/Countdown'
 // import { getStaticProps } from '../pages/api/events'
 import styling from '../pages/index.module.css'
 import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
+import Link from 'next/link'
 
 import { serverUrl } from '../environment'
 

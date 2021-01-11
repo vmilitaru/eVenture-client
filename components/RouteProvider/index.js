@@ -2,30 +2,24 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useRouter } from 'next/router'
 
-const AuthContext = createContext()
+const RouteContext = createContext()
 
-function AuthProvider({ children }) {
-    const { isAuthenticated, getAccessTokenSilently, user } = useAuth0()
+function RouteProvider({ children }) {
+    const { isAuthenticated, user } = useAuth0()
     const [userRole, setUserRole] = useState(null)
-    const [accessToken, setAccessToken] = useState(null)
     const { pathname } = useRouter()
 
     async function getUser() {
         if (isAuthenticated) {
-            const token = await getAccessTokenSilently()
             const roleAssigned = Object.values(user)[0][0]
-            console.log(roleAssigned)
-            console.log(userRole)
             setUserRole(roleAssigned)
-            setAccessToken(token)
+           
         }
     }
 
-    /* useEffect(() => {
-        getUser()
-    }, [pathname]) */
 
     useEffect(() => {
+        console.log({user})
         getUser()
         if (user && pathname === '/create-event-page' && !Object.values(user)[0][0]) {
             window.location.href = '/'
@@ -33,14 +27,14 @@ function AuthProvider({ children }) {
     }, [user])
 
     return (
-        <AuthContext.Provider
-            value={{ user, userRole, isAuthenticated, accessToken }}
+        <RouteContext.Provider
+            value={{ user, userRole, isAuthenticated }}
         >
             {children}
-        </AuthContext.Provider>
+        </RouteContext.Provider>
     )
 }
 
-const useAuth = () => useContext(AuthContext)
+const useRoute = () => useContext(RouteContext)
 
-export { AuthProvider, useAuth }
+export { RouteProvider, useRoute }

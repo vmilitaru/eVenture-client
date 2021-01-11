@@ -1,6 +1,6 @@
 import React from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
-import {AuthProvider} from '../components/AuthContext/index'
+import {RouteProvider} from '../components/RouteProvider'
 import Wrapper from '../components/Wrapper/index'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
@@ -40,7 +40,7 @@ export default function MyApp(props) {
         >
         <Wrapper>
 
-        <AuthProvider>
+        <RouteProvider>
             <React.Fragment>
                 <Head>
                     <title>My page</title>
@@ -66,7 +66,7 @@ export default function MyApp(props) {
                     <Footer />
                 </ThemeProvider>
             </React.Fragment>
-            </AuthProvider>
+            </RouteProvider>
 
         </Wrapper>
         
