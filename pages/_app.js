@@ -1,6 +1,6 @@
 import React from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
-import {RouteProvider} from '../components/RouteProvider'
+import {ProtectedRouteAndRoleProvider} from '../components/ProtectedRouteAndRoleProvider'
 import Wrapper from '../components/Wrapper/index'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
@@ -9,8 +9,8 @@ import PropTypes from 'prop-types'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
-import NavBar from '../components/NavBar/NavBar'
-import Footer from '../components/Footer/Footer'
+import ConditionedRenderedNavBar from '../components/ConditionedRenderedNavBar'
+import ConditionedRenderedFooter from '../components/ConditionedRenderedFooter'
 
 // ENVIRONMENT VARIABLES
 import {
@@ -40,7 +40,7 @@ export default function MyApp(props) {
         >
         <Wrapper>
 
-        <RouteProvider>
+        <ProtectedRouteAndRoleProvider>
             <React.Fragment>
                 <Head>
                     <title>My page</title>
@@ -53,7 +53,7 @@ export default function MyApp(props) {
                     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                     <CssBaseline />
 
-                    <NavBar />
+                    <ConditionedRenderedNavBar/>
                     <main
                         style={{
                             marginTop: '6rem',
@@ -63,10 +63,10 @@ export default function MyApp(props) {
                     >
                         <Component {...pageProps} />
                     </main>
-                    <Footer />
+                    <ConditionedRenderedFooter />
                 </ThemeProvider>
             </React.Fragment>
-            </RouteProvider>
+            </ProtectedRouteAndRoleProvider>
 
         </Wrapper>
         

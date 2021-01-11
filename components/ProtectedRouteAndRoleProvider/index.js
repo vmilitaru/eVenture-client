@@ -2,9 +2,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useRouter } from 'next/router'
 
-const RouteContext = createContext()
+const ProtectedRouteAndRoleContext = createContext()
 
-function RouteProvider({ children }) {
+function ProtectedRouteAndRoleProvider({ children }) {
     const { isAuthenticated, user } = useAuth0()
     const [userRole, setUserRole] = useState(null)
     const { pathname } = useRouter()
@@ -27,14 +27,14 @@ function RouteProvider({ children }) {
     }, [user])
 
     return (
-        <RouteContext.Provider
+        <ProtectedRouteAndRoleContext.Provider
             value={{ user, userRole, isAuthenticated }}
         >
             {children}
-        </RouteContext.Provider>
+        </ProtectedRouteAndRoleContext.Provider>
     )
 }
 
-const useRoute = () => useContext(RouteContext)
+const useRole = () => useContext(ProtectedRouteAndRoleContext)
 
-export { RouteProvider, useRoute }
+export { ProtectedRouteAndRoleProvider, useRole }
