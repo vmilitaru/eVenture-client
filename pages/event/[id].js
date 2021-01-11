@@ -86,6 +86,7 @@ export default function SpecificEventPage({ event }) {
                         label="Title"
                         placeholder="Enter title of event"
                         variant="outlined"
+                        value={title}
                         //InputProps={{ classes: { input: classes.title } }}
                         onChange={(e) => setTitle(e.target.value)}
                         //helperText={title.length < 1 ? "Please enter new title" : " "}
