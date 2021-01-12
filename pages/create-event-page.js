@@ -15,16 +15,18 @@ import Grid from '@material-ui/core/Grid'
 
 import UploadImage from '../components/ImageUploader/index'
 import { useStyles } from './Create-event-page-materialui'
+
 // ENVIRONMENT VARIABLES
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import { serverUrl } from '../environment'
+import Loading from '../components/Loading/index'
 import { TrafficOutlined } from '@material-ui/icons'
 import { Typography } from '@material-ui/core'
 
 function AdminEventPage() {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
-    console.log(user)
-    console.log(isAuthenticated)
+    
+    
 
     const [title, setTitle] = useState('')
     const [date, setDate] = useState(DateTime.utc())
@@ -162,7 +164,9 @@ function AdminEventPage() {
             //event.target.reset() //reset input boxes
         }
     }
-
+if (!Object.values(user)[0][0]){
+return <Loading/>
+} 
     return (
         <React.Fragment>
             <form
@@ -324,4 +328,5 @@ function AdminEventPage() {
         </React.Fragment>
     )
 }
-export default AdminEventPage
+
+export default  withAuthenticationRequired(AdminEventPage,{onRedirecting: () => <Loading />})

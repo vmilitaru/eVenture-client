@@ -7,7 +7,7 @@ import Countdown from '../components/Countdown/Countdown'
 // import { getStaticProps } from '../pages/api/events'
 import styling from '../pages/index.module.css'
 import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
+import Link from 'next/link'
 
 import { serverUrl } from '../environment'
 
@@ -48,19 +48,20 @@ function Home({ event }) {
                     <div className={styling.eventDetails}>
                         <Typography variant="h3">{event.title}</Typography>
                         <Typography variant="h5">
-                            {event.date}, {event.time}
+                            {event.date} - {event.time}
                         </Typography>
                         <p>{event.description}</p>
                         <Link href={`/event/${event.id}`}>
                             <ButtonGeneral text={'find out more'} />
                         </Link>
+                        {event.date && (
+                            <Countdown
+                                eventDate={event.date}
+                                eventTime={event.time}
+                            />
+                        )}
                     </div>
-                    {event.date && (
-                        <Countdown
-                            eventDate={event.date}
-                            eventTime={event.time}
-                        />
-                    )}
+
                     <img
                         className={styling.img}
                         src="https://media.newyorker.com/photos/5f414de2840e569c23e39066/2:1/w_2559,h_1279,c_limit/Wright-Panda01.jpg"
@@ -75,9 +76,8 @@ function Home({ event }) {
 export async function getServerSideProps(context) {
     const res = await fetch(`${serverUrl}/events/date`)
     const { payload } = await res.json()
-    const chronologicalEvents = payload.sort((a, b) => a.date > b.date)
-    console.log(chronologicalEvents)
-    return { props: { event: chronologicalEvents[0] } }
+    const upcomingEvents = payload
+    return { props: { event: upcomingEvents[0] } }
 }
 
 export default Home
