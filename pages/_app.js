@@ -58,7 +58,7 @@ export default function MyApp(props) {
                         style={{
                             marginTop: '6rem',
                             textAlign: 'center',
-                            backgroundColor: '#fafafa'
+                            backgroundColor: `${theme.palette.fourth.main}`
                         }}
                     >
                         <Component {...pageProps} />

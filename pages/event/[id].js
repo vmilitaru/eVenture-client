@@ -14,6 +14,7 @@ import {
 import Grid from '@material-ui/core/Grid'
 //import NavBar from '../../../components/NavBar/NavBar'
 //import Footer from '../../../components/Footer/Footer'
+import { useStyles } from './specificeventMaterialcss'
 import Typography from '@material-ui/core/Typography'
 import UploadImage from '../../components/ImageUploader/index'
 
@@ -164,6 +165,34 @@ export default function SpecificEventPage({ event }) {
             refreshData()
         }
     }
+  
+  /* CSS STUFF
+  
+    const classes = useStyles()
+        <div className={classes.event}>
+            <div className={classes.part}>
+                <Typography variant="h2">{event.title}</Typography>
+                <img
+                    className={classes.img}
+                    src={event.banner}
+                    alt={event.banner}
+                />
+            </div>
+
+            <section className={classes.details}>
+                <Typography variant="h5">
+                    {event.date} - {event.time}
+                </Typography>
+                <Typography variant="h6"> Speakers: {event.speaker}</Typography>
+                <Typography variant="h6">
+                    {' '}
+                    Location: {event.location}
+                </Typography>
+                <Typography variant="h5">{event.description}</Typography>
+            </section>
+        </div>
+  */
+  
     return (
         <React.Fragment>
             {!editing ? (
