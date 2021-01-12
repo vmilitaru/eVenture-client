@@ -21,7 +21,7 @@ function MyEventsPage() {
                 const accessToken = await getAccessTokenSilently()
 
                 const response = await fetch(
-                    `${serverUrl}/prot/tickets/${user.email}`,
+                    `${serverUrl}/prot/tickets?email=${user.email}`,
                     {
                         headers: {
                             Authorization: `Bearer ${accessToken}`
@@ -51,7 +51,10 @@ function MyEventsPage() {
                 <div className={classes.eventpage}>
                     {events.map((event) => (
                         <div key={event.id} className={classes.event}>
-                            <Link href="/event/[id]" as={`/event/${event.id}`}>
+                            <Link
+                                href="/event/[id]"
+                                as={`/event/${event.event_id}`}
+                            >
                                 <a>
                                     <EventCard event={event} />
                                 </a>
