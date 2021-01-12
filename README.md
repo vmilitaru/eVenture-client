@@ -1,32 +1,90 @@
-# front-end-final-project-communiteam
+# Event APP name
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Communiteam presents App name here is full stack web-based event management application created by School of Code Bootcampers 4.0. This repo consist of the front end of the application. For the backend of this application head to this [reposiory](https://github.com/SchoolOfCode/back-end-final-project-communiteam).
+
+<img width="1433" alt="app" src="img here">
+or GIF?
+
+## Project Idea - Why?
+
+We took on the challenge of improving the organisation and delivery of community classes at the School Of Code. We identified the pain points of participants and organisers for this problem and designed an MVP app that aims to solve this with the following functionality.
+
+-   Participants can login and sign up for an event and have a page with a list of their events.
+-   Participants can recieve email for event?
+-   Organisers can create and edit events.
+-   check trello
+
+## Live Project
+
+Link here
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+What you need to install the app and how to install them.
+
+1. Make sure that you have the latest Node.js installed and clone the repo.
+
+```bash
+git clone {repo link here}
+cd into file
+```
+
+2. Next, install all the package dependencies to run the app
+
+```bash
+npm install
+# or
+npm i
+```
+
+### Setting up Environment variables
+
+3. In the .env.local.example file, change the file extention to .env.local and add your Auth0 environment variables.
+
+4. For more help on setting up Auth0 with Next.js, https://auth0.com/blog/ultimate-guide-nextjs-authentication-auth0/
+
+## Running Locally
+
+sgfsfgs
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Routes
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Built Using
 
-## Learn More
+-   [Next.js](https://nextjs.org/)
+-   [PostgreSQL](https://www.postgresql.org/)
+-   [Material UI](https://material-ui.com/)
+-   [Prettier](https://prettier.io/)
+-   [Node](https://nodejs.org/en/)
+-   [Express](https://expressjs.com/)
+-   [Auth0](https://auth0.com/)
+-   [Luxon](https://moment.github.io/luxon/)
+-   [Nodemailer](https://nodemailer.com/about/)
 
-To learn more about Next.js, take a look at the following resources:
+## Contributors ✨
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Thanks goes to these wonderful people:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="github link1"><img src="https://avatars0.githubusercontent.com/u/71390607?s=60&v=4" width="100px;" alt=""/><br /><sub><b>fadumoaideed</b></sub></a><br /><a </td>
+    <td align="center"><a href="https://github.com/vmilitaru"><img src="https://avatars0.githubusercontent.com/u/70764326?s=120&v=4" width="100px;" alt=""/><br /><sub><b>vmilitari</b></sub></a><br /></td>
+   <td align="center"><a href="https://github.com/Cpanda3"><img src="https://ca.slack-edge.com/T6L933W4X-U019WPN4M51-380f3738d180-512" width="100px;" alt=""/><br /><sub><b>Cpanda3</b></sub></a><br /></td>
+   <td align="center"><a href="https://github.com/Teeenbe"><img src="https://ca.slack-edge.com/T6L933W4X-U019WQM1Q4V-183cc3dedaa7-512" width="100px;" alt=""/><br /><sub><b>Cpanda3</b></sub></a><br /></td>
+  <td align="center"><a href="https://github.com/michaelfswann"><img src="https://avatars3.githubusercontent.com/u/20445671?s=64&v=4" width="100px;" alt=""/><br /><sub><b>michaelfswann</b></sub></a><br /></td>
+  </tr>
+</table>
 
-## Deploy on Vercel
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<!-- ALL-CONTRIBUTORS-LIST:END -->
