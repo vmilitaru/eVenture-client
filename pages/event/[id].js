@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
 import { makeStyles } from '@material-ui/core/styles'
@@ -22,11 +22,11 @@ import UploadImage from '../../components/ImageUploader/index'
 import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../../environment'
 
-export default function SpecificEventPage({ event }) {
+export default function SpecificEventPage({ event, ticketCount }) {
     const [editing, setEditing] = useState(false)
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
-    console.log(user)
-    console.log(isAuthenticated)
+
+    const [clicked, setClicked] = useState(false)
 
     const [title, setTitle] = useState(event.title)
     const [date, setDate] = useState(DateTime.utc())
@@ -172,6 +172,46 @@ export default function SpecificEventPage({ event }) {
         </div>
   */
 
+    async function getYoSelfATicket() {
+        if (event.numtickets - ticketCount > 0) {
+            console.log('in Fn')
+            const accessToken = await getAccessTokenSilently()
+            console.log(accessToken)
+
+            const requestOptions = {
+                mode: 'cors',
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify({ attendeeEmail: user.email })
+            }
+
+            const response = await fetch(
+                `${serverUrl}/prot/${event.id}/tickets`,
+                requestOptions
+            )
+            const result = await response.json()
+            console.log(result)
+        }
+        setClicked(false)
+    }
+
+    function handleClickForTicket() {
+        console.log('clicked')
+        setClicked(true)
+    }
+
+    useEffect(() => {
+        if (clicked && user) {
+            console.log('in use effect')
+            getYoSelfATicket()
+        }
+    }, [clicked])
+
     return (
         <React.Fragment>
             {!editing ? (
@@ -210,6 +250,10 @@ export default function SpecificEventPage({ event }) {
                     >
                         Edit
                     </Button>
+
+                    <button onClick={() => handleClickForTicket()}>
+                        Get a ticket
+                    </button>
                 </section>
             ) : (
                 <form
@@ -329,6 +373,7 @@ export async function getServerSideProps(context) {
     const res = await fetch(`${serverUrl}/events/${id}`)
     const data = await res.json()
     console.log(data)
-    const event = data.payload
-    return { props: { event } }
+    const event = data.payload.event
+    const ticketCount = data.payload.numTickets.count
+    return { props: { event, ticketCount } }
 }
