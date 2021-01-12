@@ -97,7 +97,7 @@ const NavBar = () => {
                                             open={open}
                                             onClose={handleClose}
                                         >
-                                            <MenuItem onHover={handleClose}>
+                                            <MenuItem onClick={handleClose}>
                                                 <CreateEventButton />
                                             </MenuItem>
                                             <MenuItem onClick={handleClose}>
@@ -119,24 +119,3 @@ const NavBar = () => {
 }
 
 export default NavBar
-{
-    /* <ButtonGeneral
-                                    onClick={handleClick}
-                                    text={'Open Menu'}
-                                />
-
-                                <Menu
-                                    id="simple-menu"
-                                    anchorEl={anchorEl}
-                                    keepMounted
-                                    open={Boolean(anchorEl)}
-                                    onClose={handleClose}
-                                >
-                                    <MenuItem onHover={handleClose}>
-                                        <CreateEventButton />
-                                    </MenuItem>
-                                    <MenuItem onClick={handleClose}>
-                                        <LoginButton />
-                                    </MenuItem>
-                                </Menu> */
-}

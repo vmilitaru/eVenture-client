@@ -1,21 +1,22 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import { useStyles } from './ButtonMaterialCss'
-import Button from '@material-ui/core/Button'
 
-function ButtonGeneral({ text, onClick, disabled, type, ...props }) {
+
+const  ButtonGeneral=forwardRef(({ text, onClick, disabled,href, type, ...props },ref)=>{
     const classes = useStyles()
     return (
-        <div className="Button">
-            <Button
+        
+            <button
                 onClick={onClick}
                 className={!props.secondary ? classes.Button : classes.Button2}
                 {...props}
                 disabled={disabled}
                 type={type}
+                href = {href}
+                ref={ref}
             >
                 {text}
-            </Button>
-        </div>
+            </button>
     )
-}
+})
 export default ButtonGeneral
