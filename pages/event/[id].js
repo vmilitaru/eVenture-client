@@ -155,6 +155,7 @@ export default function SpecificEventPage({ event }) {
                     banner: base64EncodedImage
                 })
             }
+            
             const response = await fetch(
                 `${serverUrl}/org/${event.id}`,
                 requestOptions
