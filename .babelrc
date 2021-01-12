@@ -1,0 +1,11 @@
+{
+    "env": {
+        //configure test runner to know we are using nextjs.
+        "test": {
+            "presets": ["@babel/react", "next/babel"]
+        },
+        "development": {
+            "presets": ["next/babel"]
+        }
+    }
+}
