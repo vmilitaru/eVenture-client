@@ -22,28 +22,6 @@ import UploadImage from '../../components/ImageUploader/index'
 import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../../environment'
 
-const useStyles = makeStyles((theme) => ({
-    //this styling would be good to replace with css modules
-    title: {
-        margin: theme.spacing(2),
-        height: 20,
-        width: 500
-    },
-    description: {
-        margin: theme.spacing(2),
-        height: 200,
-        width: 500
-    },
-    datetime: {
-        margin: theme.spacing(2),
-        width: '30',
-        textAlign: 'center'
-    },
-    button: {
-        margin: theme.spacing(1)
-    }
-}))
-
 export default function SpecificEventPage({ event }) {
     const [editing, setEditing] = useState(false)
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
@@ -155,7 +133,7 @@ export default function SpecificEventPage({ event }) {
                     banner: base64EncodedImage
                 })
             }
-            
+
             const response = await fetch(
                 `${serverUrl}/org/${event.id}`,
                 requestOptions
@@ -166,8 +144,8 @@ export default function SpecificEventPage({ event }) {
             refreshData()
         }
     }
-  
-  /* CSS STUFF
+
+    /* CSS STUFF
   
     const classes = useStyles()
         <div className={classes.event}>
@@ -193,7 +171,7 @@ export default function SpecificEventPage({ event }) {
             </section>
         </div>
   */
-  
+
     return (
         <React.Fragment>
             {!editing ? (

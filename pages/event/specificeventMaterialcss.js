@@ -24,3 +24,25 @@ export const useStyles = makeStyles({
         margin: '2vw'
     }
 })
+
+// const useStyles = makeStyles((theme) => ({
+//     //this styling would be good to replace with css modules
+//     title: {
+//         margin: theme.spacing(2),
+//         height: 20,
+//         width: 500
+//     },
+//     description: {
+//         margin: theme.spacing(2),
+//         height: 200,
+//         width: 500
+//     },
+//     datetime: {
+//         margin: theme.spacing(2),
+//         width: '30',
+//         textAlign: 'center'
+//     },
+//     button: {
+//         margin: theme.spacing(1)
+//     }
+// }))
