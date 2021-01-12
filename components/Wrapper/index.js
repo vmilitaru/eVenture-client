@@ -10,6 +10,12 @@ function Wrapper({ children }) {
     if (error) {
         return <div>Oops... {error.message}</div>
     }
-    return <>{children}</>
+    return (
+        typeof window === 'undefined'?<Loading />: <>{children}</>
+    )
+    
+        
+        
+    
 }
 export default Wrapper
