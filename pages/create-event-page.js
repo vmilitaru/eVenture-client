@@ -14,38 +14,19 @@ import {
 import Grid from '@material-ui/core/Grid'
 
 import UploadImage from '../components/ImageUploader/index'
+import { useStyles } from './Create-event-page-materialui'
 
 // ENVIRONMENT VARIABLES
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import { serverUrl } from '../environment'
+import Loading from '../components/Loading/index'
 import { TrafficOutlined } from '@material-ui/icons'
-
-const useStyles = makeStyles((theme) => ({
-    //this styling would be good to replace with css modules
-    title: {
-        margin: theme.spacing(2),
-        height: 20,
-        width: 500
-    },
-    description: {
-        margin: theme.spacing(2),
-        height: 200,
-        width: 500
-    },
-    datetime: {
-        margin: theme.spacing(2),
-        width: '30',
-        textAlign: 'center'
-    },
-    button: {
-        margin: theme.spacing(1)
-    }
-}))
+import { Typography } from '@material-ui/core'
 
 function AdminEventPage() {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
-    console.log(user)
-    console.log(isAuthenticated)
+    
+    
 
     const [title, setTitle] = useState('')
     const [date, setDate] = useState(DateTime.utc())
@@ -183,32 +164,71 @@ function AdminEventPage() {
             //event.target.reset() //reset input boxes
         }
     }
-
+if (!Object.values(user)[0][0]){
+return <Loading/>
+} 
     return (
         <React.Fragment>
             <form
+                className={classes.form}
                 noValidate
                 autoComplete="off"
                 onSubmit={(event) => handleSubmit(event)} //on button click post request is fired
             >
-                <div>
+                <div className={classes.left}>
+                    <div className={classes.imagebox}>
+                        <UploadImage
+                            className={classes.image}
+                            handleFileInputChange={handleFileInputChange}
+                            previewSource={previewSource}
+                            setPreviewSource={setPreviewSource}
+                        />
+                    </div>
                     <TextField
-                        id="title"
-                        label="Title"
+                        id="description"
+                        label="Description"
                         multiline
-                        rows={4}
-                        placeholder="Enter title of event"
+                        rows={2}
+                        plceholder="Enter Event Title"
                         variant="outlined"
-                        InputProps={{ classes: { input: classes.title } }}
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(e) => setDescription(e.target.value)}
+                        InputProps={{
+                            classes: { input: classes.description }
+                        }}
                         helperText={
-                            title.length < 1 ? 'Please enter text' : ' '
+                            description.length < 1 ? 'Please enter text' : ' '
                         }
                     />
+                </div>
 
-                    <MuiPickersUtilsProvider utils={LuxonUtils}>
-                        <Grid container justify="space-around" direction="row">
+                <div className={classes.right}>
+                    <div className={classes.one}>
+                        <TextField
+                            className={classes.title}
+                            id="title"
+                            label="Title"
+                            multiline
+                            rows={4}
+                            placeholder="Enter title of event"
+                            variant="outlined"
+                            InputProps={{ classes: { input: classes.title } }}
+                            onChange={(e) => setTitle(e.target.value)}
+                            helperText={
+                                title.length < 1 ? 'Please enter text' : ' '
+                            }
+                        />
+
+                        <MuiPickersUtilsProvider
+                            utils={LuxonUtils}
+                            className={classes.datetime}
+                        >
+                            {/* <Grid
+                                container
+                                // justify="space-around"
+                                direction="row"
+                            > */}
                             <KeyboardDatePicker
+                                className={classes.date}
                                 margin="normal"
                                 id="date"
                                 label="Date"
@@ -218,10 +238,11 @@ function AdminEventPage() {
                                 KeyboardButtonProps={{
                                     'aria-label': 'change date'
                                 }}
-                                className={classes.datetime}
+                                // className={classes.datetime}
                             />
 
                             <KeyboardTimePicker
+                                className={classes.time}
                                 margin="normal"
                                 id="time"
                                 label="Time"
@@ -232,86 +253,80 @@ function AdminEventPage() {
                                 }}
                                 className={classes.datetime}
                             />
-                        </Grid>
-                    </MuiPickersUtilsProvider>
+                            {/* </Grid> */}
+                        </MuiPickersUtilsProvider>
 
-                    <TextField
-                        id="description"
-                        label="Description"
-                        multiline
-                        rows={2}
-                        plceholder="Enter Event Title"
-                        variant="outlined"
-                        onChange={(e) => setDescription(e.target.value)}
-                        InputProps={{ classes: { input: classes.description } }}
-                        helperText={
-                            description.length < 1 ? 'Please enter text' : ' '
-                        }
-                    />
-                    <TextField
-                        id="speaker"
-                        label="Speaker"
-                        multiline
-                        rows={4}
-                        placeholder="Enter the speakers"
-                        variant="outlined"
-                        InputProps={{ classes: { input: classes.speaker } }}
-                        onChange={(e) => setSpeaker(e.target.value)}
-                        helperText={
-                            speaker.length < 1 ? 'Please enter text' : ' '
-                        }
-                    />
-                    <TextField
-                        id="location"
-                        label="Location"
-                        multiline
-                        rows={4}
-                        placeholder="Enter location of event"
-                        variant="outlined"
-                        InputProps={{ classes: { input: classes.location } }}
-                        onChange={(e) => setLocation(e.target.value)}
-                        helperText={
-                            location.length < 1 ? 'Please enter text' : ' '
-                        }
-                    />
-                    <TextField
-                        id="tickets"
-                        label="Tickets"
-                        multiline
-                        rows={4}
-                        placeholder="Enter number of tickets available"
-                        variant="outlined"
-                        InputProps={{
-                            classes: { input: classes.numtickets }
-                        }}
-                        onChange={(e) => setNumTickets(e.target.value)}
-                        helperText={
-                            /^\d+$/.test(numtickets) === false
-                                ? 'Please enter a number'
-                                : ' '
-                        }
-                    />
-                    <UploadImage
-                        handleFileInputChange={handleFileInputChange}
-                        previewSource={previewSource}
-                        setPreviewSource={setPreviewSource}
-                    />
+                        <TextField
+                            className={classes.speaker}
+                            id="speaker"
+                            label="Speaker"
+                            multiline
+                            rows={4}
+                            placeholder="Enter the speakers"
+                            variant="outlined"
+                            InputProps={{ classes: { input: classes.speaker } }}
+                            onChange={(e) => setSpeaker(e.target.value)}
+                            helperText={
+                                speaker.length < 1 ? 'Please enter text' : ' '
+                            }
+                        />
+                        <TextField
+                            className={classes.location}
+                            id="location"
+                            label="Location"
+                            multiline
+                            rows={4}
+                            placeholder="Enter location of event"
+                            variant="outlined"
+                            InputProps={{
+                                classes: { input: classes.location }
+                            }}
+                            onChange={(e) => setLocation(e.target.value)}
+                            helperText={
+                                location.length < 1 ? 'Please enter text' : ' '
+                            }
+                        />
+                        <div className={classes.empty}>
+                            <Typography variant="h6">
+                                Fill in the details for the event you want to
+                                create. Ensure to add an image and save the
+                                event.{' '}
+                            </Typography>
+                        </div>
+                        <TextField
+                            className={classes.tickets}
+                            id="tickets"
+                            label="Tickets"
+                            multiline
+                            rows={4}
+                            placeholder="Enter number of tickets available"
+                            variant="outlined"
+                            InputProps={{
+                                classes: { input: classes.numtickets }
+                            }}
+                            onChange={(e) => setNumTickets(e.target.value)}
+                            helperText={
+                                /^\d+$/.test(numtickets) === false
+                                    ? 'Please enter a number'
+                                    : ' '
+                            }
+                        />
+                    </div>
+
+                    <Button
+                        id="button"
+                        type="submit"
+                        variant="contained"
+                        className={classes.button}
+                        disabled={buttonState}
+                        startIcon={<SaveIcon />}
+                    >
+                        Save
+                    </Button>
                 </div>
-
-                <Button
-                    id="button"
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    className={classes.button}
-                    disabled={buttonState}
-                    startIcon={<SaveIcon />}
-                >
-                    Save
-                </Button>
             </form>
         </React.Fragment>
     )
 }
-export default AdminEventPage
+
+export default  withAuthenticationRequired(AdminEventPage,{onRedirecting: () => <Loading />})

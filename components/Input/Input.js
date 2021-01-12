@@ -1,9 +1,6 @@
-
-
-
 //<---------------DO NOT USE OR ADD TO THIS FILE-------------------->
 //*******************************************************************
-
+import { useStyles } from './InputMaterialcss'
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
@@ -17,29 +14,6 @@ import {
     KeyboardDatePicker
 } from '@material-ui/pickers'
 import Grid from '@material-ui/core/Grid'
-
-const useStyles = makeStyles((theme) => ({
-    title: {
-        margin: theme.spacing(2),
-        top: 40, //doesnt work
-        right: 40, //doesnt work
-        height: 20,
-        width: 500
-    },
-    description: {
-        margin: theme.spacing(2),
-        height: 200,
-        width: 500
-    },
-    datetime: {
-        margin: theme.spacing(2),
-        width: '30',
-        textAlign: 'center'
-    },
-    button: {
-        margin: theme.spacing(1)
-    }
-}))
 
 function EditEventsInputs() {
     const [selectedDate, setSelectedDate] = useState(
@@ -62,6 +36,7 @@ function EditEventsInputs() {
         <form noValidate autoComplete="off">
             <div>
                 <TextField
+                    className={classes.title}
                     id="title"
                     label="Title"
                     multiline
@@ -102,6 +77,7 @@ function EditEventsInputs() {
                     </Grid>
                 </MuiPickersUtilsProvider>
                 <TextField
+                    className={classes.description}
                     id="description"
                     label="Description"
                     multiline

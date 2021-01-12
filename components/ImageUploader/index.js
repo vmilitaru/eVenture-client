@@ -1,34 +1,35 @@
 import React from 'react'
-import Card from '@material-ui/core/Card'
-import Grid from '@material-ui/core/Grid'
 import Fab from '@material-ui/core/Fab'
 import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
-import { makeStyles } from '@material-ui/core/styles'
 import Image from 'next/image'
-import { flexbox } from '@material-ui/system'
 
-const useStyles = makeStyles(() => ({
-    input: {
-        display: 'none'
-    }
-}))
 
-const UploadImage = ({ handleFileInputChange, previewSource,setPreviewSource }) => {
+import { useStyles } from './imageuploadermaterialCss'
+const UploadImage = ({
+    handleFileInputChange,
+    previewSource,
+    setPreviewSource
+}) => {
     const classes = useStyles()
 
-    function deletePreviewBanner(){
-        setPreviewSource (null)
+    function deletePreviewBanner() {
+        setPreviewSource(null)
     }
 
-
     return (
-        <div>
+        <div
+            className={classes.UploadImage}
+            // style={{ backgroundImage: `url(${previewSource})` }}
+        >
             {previewSource && (
                 <div>
-                    <IconButton aria-label="Delete" onClick={deletePreviewBanner}>
-                        <DeleteIcon />
+                    <IconButton
+                        aria-label="Delete"
+                        onClick={deletePreviewBanner}
+                    >
+                        <DeleteIcon className={classes.icons} />
                     </IconButton>
                 </div>
             )}
@@ -43,7 +44,7 @@ const UploadImage = ({ handleFileInputChange, previewSource,setPreviewSource }) 
                         className={classes.input}
                     />
                     <label htmlFor="contained-button-file">
-                        <Fab component="span">
+                        <Fab component="span" className={classes.icons}>
                             <AddPhotoAlternateIcon />
                         </Fab>
                     </label>
@@ -53,8 +54,12 @@ const UploadImage = ({ handleFileInputChange, previewSource,setPreviewSource }) 
                 <Image
                     src={previewSource}
                     alt="Event Image"
-                    width={400}
-                    height={400}
+                    width="fill"
+                    height="auto"
+                    // maxWidth="400vw"
+                    // maxHeight="400vw"
+                    // width={400}
+                    // height={400}
                 />
             )}
         </div>
