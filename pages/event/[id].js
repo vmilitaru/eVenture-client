@@ -12,8 +12,6 @@ import {
     KeyboardDatePicker
 } from '@material-ui/pickers'
 import Grid from '@material-ui/core/Grid'
-//import NavBar from '../../../components/NavBar/NavBar'
-//import Footer from '../../../components/Footer/Footer'
 import { useStyles } from './specificeventMaterialcss'
 import Typography from '@material-ui/core/Typography'
 import UploadImage from '../../components/ImageUploader/index'
@@ -29,18 +27,20 @@ export default function SpecificEventPage({ event }) {
     console.log(isAuthenticated)
 
     const [title, setTitle] = useState(event.title)
-    const [date, setDate] = useState(DateTime.utc())
-    const [timeObj, setTime] = useState(DateTime.utc())
+    const [date, setDate] = useState(event.date)
+
+    const [timeObj, setTime] = useState(DateTime.fromSQL(event.time))
 
     const [description, setDescription] = useState(event.description)
     const [speaker, setSpeaker] = useState(event.speaker)
     const [location, setLocation] = useState(event.location)
     const [numtickets, setNumTickets] = useState(event.numtickets)
+
     const router = useRouter()
     const refreshData = () => router.replace(router.asPath)
     /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
 
-    const [previewSource, setPreviewSource] = useState('')
+    const [previewSource, setPreviewSource] = useState(event.banner)
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
     const handleDateChange = (d) => {
         //This function handles correct time conversion from object to ISO
@@ -298,6 +298,25 @@ export default function SpecificEventPage({ event }) {
                         onChange={(e) => setLocation(e.target.value)}
                         helperText={
                             location.length < 1 ? 'Please enter text' : ' '
+                        }
+                    />
+                    <TextField
+                        className={classes.tickets}
+                        id="tickets"
+                        label="Tickets"
+                        value={numtickets}
+                        multiline
+                        rows={4}
+                        placeholder="Enter number of tickets available"
+                        variant="outlined"
+                        InputProps={{
+                            classes: { input: classes.numtickets }
+                        }}
+                        onChange={(e) => setNumTickets(e.target.value)}
+                        helperText={
+                            /^\d+$/.test(numtickets) === false
+                                ? 'Please enter a number'
+                                : ' '
                         }
                     />
 
