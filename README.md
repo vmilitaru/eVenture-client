@@ -79,7 +79,7 @@ Thanks goes to these wonderful people:
     <td align="center"><a href="github link1"><img src="https://avatars0.githubusercontent.com/u/71390607?s=60&v=4" width="100px;" alt=""/><br /><sub><b>fadumoaideed</b></sub></a><br /><a </td>
     <td align="center"><a href="https://github.com/vmilitaru"><img src="https://avatars0.githubusercontent.com/u/70764326?s=120&v=4" width="100px;" alt=""/><br /><sub><b>vmilitari</b></sub></a><br /></td>
    <td align="center"><a href="https://github.com/Cpanda3"><img src="https://ca.slack-edge.com/T6L933W4X-U019WPN4M51-380f3738d180-512" width="100px;" alt=""/><br /><sub><b>Cpanda3</b></sub></a><br /></td>
-   <td align="center"><a href="https://github.com/Teeenbe"><img src="https://ca.slack-edge.com/T6L933W4X-U019WQM1Q4V-183cc3dedaa7-512" width="100px;" alt=""/><br /><sub><b>Cpanda3</b></sub></a><br /></td>
+   <td align="center"><a href="https://github.com/Teeenbe"><img src="https://ca.slack-edge.com/T6L933W4X-U019WQM1Q4V-183cc3dedaa7-512" width="100px;" alt=""/><br /><sub><b>Teeebe</b></sub></a><br /></td>
   <td align="center"><a href="https://github.com/michaelfswann"><img src="https://avatars3.githubusercontent.com/u/20445671?s=64&v=4" width="100px;" alt=""/><br /><sub><b>michaelfswann</b></sub></a><br /></td>
   </tr>
 </table>
