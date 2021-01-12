@@ -1,4 +1,6 @@
 import React from 'react'
+import Image from 'next/image'
+
 import Fab from '@material-ui/core/Fab'
 import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -49,7 +51,7 @@ const UploadImage = ({
                 </div>
             )}
             {previewSource && (
-                <img
+                <Image
                     src={previewSource}
                     alt="Event Image"
                     width="fill"

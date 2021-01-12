@@ -44,9 +44,8 @@ export default function SpecificEventPage({ event, ticketCount }) {
     const refreshData = () => router.replace(router.asPath)
     /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
 
-    const [previewSource, setPreviewSource] = useState(event.banner)
+    const [previewSource, setPreviewSource] = useState("https://res.cloudinary.com/duhcbwxmg/image/upload/v1610477695/event_setups/tw4rc8hfvugzrvjzj4jd.png")
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
-
     const handleDateChange = (d) => {
         //This function handles correct time conversion from object to ISO
         console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
