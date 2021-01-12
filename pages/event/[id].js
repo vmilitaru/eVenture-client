@@ -27,6 +27,9 @@ export default function SpecificEventPage({ event, ticketCount }) {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
 
     const [clicked, setClicked] = useState(false)
+    const [availableTickets, setAvailableTickets] = useState(
+        event.numtickets - ticketCount
+    )
 
     const [title, setTitle] = useState(event.title)
     const [date, setDate] = useState(DateTime.utc())
@@ -173,7 +176,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
   */
 
     async function getYoSelfATicket() {
-        if (event.numtickets - ticketCount > 0) {
+        if (availableTickets > 0) {
             console.log('in Fn')
             const accessToken = await getAccessTokenSilently()
             console.log(accessToken)
@@ -198,6 +201,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
             console.log(result)
         }
         setClicked(false)
+        setAvailableTickets(availableTickets - 1)
     }
 
     function handleClickForTicket() {
@@ -254,6 +258,10 @@ export default function SpecificEventPage({ event, ticketCount }) {
                     <button onClick={() => handleClickForTicket()}>
                         Get a ticket
                     </button>
+
+                    <div>
+                        <p>available tickets: {availableTickets}</p>
+                    </div>
                 </section>
             ) : (
                 <form
@@ -374,6 +382,6 @@ export async function getServerSideProps(context) {
     const data = await res.json()
     console.log(data)
     const event = data.payload.event
-    const ticketCount = data.payload.numTickets.count
+    const ticketCount = data.payload.ticketCount.count
     return { props: { event, ticketCount } }
 }
