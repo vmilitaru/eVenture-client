@@ -19,6 +19,7 @@ import UploadImage from '../../components/ImageUploader/index'
 // ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../../environment'
+import ButtonGeneral from '../../components/Button/Button'
 
 export default function SpecificEventPage({ event, ticketCount }) {
     const [editing, setEditing] = useState(false)
@@ -45,6 +46,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
 
     const [previewSource, setPreviewSource] = useState(event.banner)
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
+
     const handleDateChange = (d) => {
         //This function handles correct time conversion from object to ISO
         console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
@@ -175,11 +177,31 @@ export default function SpecificEventPage({ event, ticketCount }) {
         </div>
   */
 
+    async function deleteEvent() {
+        const accessToken = await getAccessTokenSilently()
+
+        const requestOptions = {
+            mode: 'cors',
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }
+
+        const response = await fetch(
+            `${serverUrl}/org/${event.id}`,
+            requestOptions
+        )
+        console.log(response)
+        window.location.href = '/events-page'
+    }
+
     async function getYoSelfATicket() {
         if (availableTickets > 0) {
-            console.log('in Fn')
             const accessToken = await getAccessTokenSilently()
-            console.log(accessToken)
 
             const requestOptions = {
                 mode: 'cors',
@@ -220,6 +242,27 @@ export default function SpecificEventPage({ event, ticketCount }) {
         <React.Fragment>
             {!editing ? (
                 <section>
+                    {user && Object.values(user)[0][0] && (
+                        <>
+                            <ButtonGeneral
+                                // id="button"
+                                // variant="contained"
+                                // color="primary"
+                                // size="large"
+                                //className={classes.button}
+                                // disabled={!previewSource}
+                                // startIcon={<SaveIcon />}
+                                text={'EDIT'}
+                                onClick={() => {
+                                    setEditing(true)
+                                }}
+                            />
+                            <ButtonGeneral
+                                text={'DELETE'}
+                                onClick={deleteEvent}
+                            />
+                        </>
+                    )}
                     <Typography gutterBottom variant="h3" component="h3">
                         {event.title}
                     </Typography>
@@ -240,27 +283,13 @@ export default function SpecificEventPage({ event, ticketCount }) {
                         {event.speaker}
                     </Typography>
 
-                    <Button
-                        id="button"
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        //className={classes.button}
-                        // disabled={!previewSource}
-                        // startIcon={<SaveIcon />}
-                        onClick={() => {
-                            setEditing(true)
-                        }}
-                    >
-                        Edit
-                    </Button>
-
-                    <button onClick={() => handleClickForTicket()}>
-                        Get a ticket
-                    </button>
+                    <ButtonGeneral
+                        onClick={() => handleClickForTicket()}
+                        text={'Get a ticket'}
+                    />
 
                     <div>
-                        <p>available tickets: {availableTickets}</p>
+                        <p>INSERT TICKET AVAILABILITY HERE</p>
                     </div>
                 </section>
             ) : (
@@ -378,17 +407,20 @@ export default function SpecificEventPage({ event, ticketCount }) {
                         setPreviewSource={setPreviewSource}
                     />
 
-                    <Button
-                        id="button"
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        className={classes.button}
-                        disabled={!previewSource}
-                    >
-                        Save
-                    </Button>
+                    <ButtonGeneral
+                        // id="button"
+                        // type="submit"
+                        // variant="contained"
+                        // color="primary"
+                        // size="large"
+                        // className={classes.button}
+                        // disabled={!previewSource}
+                        text={'SAVE'}
+                    />
+                    <ButtonGeneral
+                        text={'CANCEL'}
+                        onClick={() => setEditing(false)}
+                    />
                 </form>
             )}
         </React.Fragment>
