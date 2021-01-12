@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 
+import IconButton from '@material-ui/core/IconButton'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -13,6 +15,7 @@ import LoginButton from '../LoginButton/index'
 import Profile from '../Profile/index'
 import Link from 'next/link'
 import CreateEventButton from '../CreateButton/index'
+import MyEventsButton from '../MyEvents'
 
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
@@ -20,7 +23,8 @@ import ButtonGeneral from '../Button/Button'
 import { Container } from '@material-ui/core'
 
 const NavBar = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null)
+    const [anchorEl, setAnchorEl] = useState(null)
+    const open = Boolean(anchorEl)
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
@@ -31,7 +35,8 @@ const NavBar = () => {
     }
     const classes = useStyles()
 
-    const { isAuthenticated } = useAuth0()
+    const { isAuthenticat, user } = useAuth0()
+    const ITEM_HEIGHT = 48
 
     return (
         <nav>
@@ -68,25 +73,44 @@ const NavBar = () => {
                                 Events
                             </Link>
                         </div>
-                        {/* functionality is needed for when logged in */}
-                        {/* <Menu
-                            id="simple-menu"
-                            anchorEl={anchorEl}
-                            keepMounted
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                        >
-                            <MenuItem onHover={handleClose}>
-                                My account
-                            </MenuItem>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
-                        </Menu> */}
-
-                        <div className={styles.profileLogin}>
-                            <Profile />
-                            <CreateEventButton />
+                        {!user ? (
                             <LoginButton />
-                        </div>
+                        ) : (
+                            <>
+                                <div>
+                                    <div className={styles.profileLogin}>
+                                        <Profile />
+
+                                        <IconButton
+                                            aria-label="more"
+                                            aria-controls="long-menu"
+                                            aria-haspopup="true"
+                                            onClick={handleClick}
+                                        >
+                                            <MoreVertIcon />
+                                        </IconButton>
+
+                                        <Menu
+                                            id="long-menu"
+                                            anchorEl={anchorEl}
+                                            keepMounted
+                                            open={open}
+                                            onClose={handleClose}
+                                        >
+                                            <MenuItem onHover={handleClose}>
+                                                <CreateEventButton />
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <MyEventsButton />
+                                            </MenuItem>
+                                            <MenuItem onClick={handleClose}>
+                                                <LoginButton />
+                                            </MenuItem>
+                                        </Menu>
+                                    </div>
+                                </div>
+                            </>
+                        )}
                     </Toolbar>
                 </AppBar>
             </div>
@@ -95,3 +119,24 @@ const NavBar = () => {
 }
 
 export default NavBar
+{
+    /* <ButtonGeneral
+                                    onClick={handleClick}
+                                    text={'Open Menu'}
+                                />
+
+                                <Menu
+                                    id="simple-menu"
+                                    anchorEl={anchorEl}
+                                    keepMounted
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                >
+                                    <MenuItem onHover={handleClose}>
+                                        <CreateEventButton />
+                                    </MenuItem>
+                                    <MenuItem onClick={handleClose}>
+                                        <LoginButton />
+                                    </MenuItem>
+                                </Menu> */
+}
