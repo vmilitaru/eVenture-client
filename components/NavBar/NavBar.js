@@ -3,13 +3,10 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
-import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
 
 import LoginButton from '../LoginButton/index'
 import Profile from '../Profile/index'
@@ -19,12 +16,12 @@ import MyEventsButton from '../MyEvents'
 
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
-import ButtonGeneral from '../Button/Button'
-import { Container } from '@material-ui/core'
 
 const NavBar = () => {
+    const { user, isAuthenticated } = useAuth0()
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
+    const classes = useStyles()
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget)
@@ -33,22 +30,12 @@ const NavBar = () => {
     const handleClose = () => {
         setAnchorEl(null)
     }
-    const classes = useStyles()
-
-    const { isAuthenticat, user } = useAuth0()
-    const ITEM_HEIGHT = 48
 
     return (
         <nav>
             <div elevation="0" className={classes.box}>
                 <AppBar className={classes.appBar}>
                     <Toolbar className={classes.toolbar}>
-                        {/* <Typography
-                            variant="h6"
-                            color="inherit"
-                            noWrap
-                            className={classes.toolbarTitle}
-                        ></Typography> */}
                         <div className={styles.links}>
                             <img
                                 className={styles.logo}
@@ -58,7 +45,7 @@ const NavBar = () => {
                             />
                             <Link
                                 variant="h6"
-                                color="textPrimary"
+                                //color="textPrimary"
                                 href="/"
                                 className={classes.link}
                             >
@@ -67,7 +54,7 @@ const NavBar = () => {
                             <Link
                                 href="/events-page"
                                 variant="h6"
-                                color="textPrimary"
+                                //color="textPrimary"
                                 className={classes.link}
                             >
                                 Events
@@ -97,9 +84,14 @@ const NavBar = () => {
                                             open={open}
                                             onClose={handleClose}
                                         >
-                                            <MenuItem onClick={handleClose}>
-                                                <CreateEventButton />
-                                            </MenuItem>
+                                            {isAuthenticated &&
+                                                Object.values(user)[0][0] && (
+                                                    <MenuItem
+                                                        onClick={handleClose}
+                                                    >
+                                                        <CreateEventButton />
+                                                    </MenuItem>
+                                                )}
                                             <MenuItem onClick={handleClose}>
                                                 <MyEventsButton />
                                             </MenuItem>

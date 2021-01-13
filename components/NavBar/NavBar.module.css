@@ -23,3 +23,13 @@
     height: 2rem;
     position: relative;
 }
+
+.box {
+    position: fixed;
+    background-color: #fafafa;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    padding: 3rem;
+    width: 100%;
+}

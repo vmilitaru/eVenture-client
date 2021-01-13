@@ -9,15 +9,7 @@ export const useStyles = makeStyles((theme) => ({
             listStyle: 'none'
         }
     },
-    box: {
-        position: 'fixed',
-        backgroundColor: `${theme.palette.fourth.main}`,
-        top: '0',
-        left: '0',
-        zIndex: '50',
-        padding: '3rem',
-        width: '100%'
-    },
+    
     appBar: {
         position: 'fixed',
         borderBottom: `1px solid ${theme.palette.divider}`,
