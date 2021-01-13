@@ -14,7 +14,7 @@ import {
 import Grid from '@material-ui/core/Grid'
 
 import UploadImage from '../components/ImageUploader/index'
-import { useStyles } from './Create-event-page-materialui'
+import { useStyles } from '../styles/Create-event-page-materialui'
 import styles from './create-event.module.css'
 
 // ENVIRONMENT VARIABLES
