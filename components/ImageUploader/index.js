@@ -4,7 +4,9 @@ import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
 
+
 import { useStyles } from './imageuploadermaterialCss'
+import styles from './imageuploader.module.css'
 const UploadImage = ({
     handleFileInputChange,
     previewSource,
@@ -18,11 +20,11 @@ const UploadImage = ({
 
     return (
         <div
-            className={classes.UploadImage}
+            className={styles.uploadImage}
             // style={{ backgroundImage: `url(${previewSource})` }}
         >
             {previewSource && (
-                <div>
+                <div className={styles.buttons}>
                     <IconButton
                         aria-label="Delete"
                         onClick={deletePreviewBanner}
@@ -39,7 +41,7 @@ const UploadImage = ({
                         id="contained-button-file"
                         multiple
                         type="file"
-                        className={classes.input}
+                        className={styles.input}
                     />
                     <label htmlFor="contained-button-file">
                         <Fab component="span" className={classes.icons}>
@@ -51,13 +53,8 @@ const UploadImage = ({
             {previewSource && (
                 <img
                     src={previewSource}
+                    className={styles.image}
                     alt="Event Image"
-                    width="fill"
-                    height="auto"
-                    // maxWidth="400vw"
-                    // maxHeight="400vw"
-                    // width={400}
-                    // height={400}
                 />
             )}
         </div>
