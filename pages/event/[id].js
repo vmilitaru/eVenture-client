@@ -12,7 +12,7 @@ import {
     KeyboardDatePicker
 } from '@material-ui/pickers'
 import Grid from '@material-ui/core/Grid'
-import { useStyles } from './specificeventMaterialcss'
+import { useStyles } from '../../styles/specificeventMaterialcss'
 import Typography from '@material-ui/core/Typography'
 import UploadImage from '../../components/ImageUploader/index'
 
