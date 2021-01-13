@@ -1,6 +1,6 @@
 import React from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
-import {ProtectedRouteAndRoleProvider} from '../components/ProtectedRouteAndRoleProvider'
+import { ProtectedRouteAndRoleProvider } from '../components/ProtectedRouteAndRoleProvider'
 import Wrapper from '../components/Wrapper/index'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
@@ -42,38 +42,35 @@ export default function MyApp(props) {
             }
             audience={auth0Audience}
         >
-        <Wrapper>
+            <Wrapper>
+                <ProtectedRouteAndRoleProvider>
+                    <React.Fragment>
+                        <Head>
+                            <title>My page</title>
+                            <meta
+                                name="viewport"
+                                content="minimum-scale=1, initial-scale=1, width=device-width"
+                            />
+                        </Head>
+                        <ThemeProvider theme={theme}>
+                            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                            <CssBaseline />
 
-        <ProtectedRouteAndRoleProvider>
-            <React.Fragment>
-                <Head>
-                    <title>My page</title>
-                    <meta
-                        name="viewport"
-                        content="minimum-scale=1, initial-scale=1, width=device-width"
-                    />
-                </Head>
-                <ThemeProvider theme={theme}>
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                    <CssBaseline />
-
-                    <ConditionedRenderedNavBar/>
-                    <main
-                        style={{
-                            marginTop: '6rem',
-                            textAlign: 'center',
-                            backgroundColor: `${theme.palette.fourth.main}`
-                        }}
-                    >
-                        <Component {...pageProps} />
-                    </main>
-                    <ConditionedRenderedFooter />
-                </ThemeProvider>
-            </React.Fragment>
-            </ProtectedRouteAndRoleProvider>
-
-        </Wrapper>
-        
+                            <ConditionedRenderedNavBar />
+                            <main
+                                style={{
+                                    marginTop: '6rem',
+                                    textAlign: 'center',
+                                    backgroundColor: `${theme.palette.fourth.main}`
+                                }}
+                            >
+                                <Component {...pageProps} />
+                            </main>
+                            <ConditionedRenderedFooter />
+                        </ThemeProvider>
+                    </React.Fragment>
+                </ProtectedRouteAndRoleProvider>
+            </Wrapper>
         </Auth0Provider>
     )
 }
