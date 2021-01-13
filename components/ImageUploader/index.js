@@ -3,7 +3,7 @@ import Fab from '@material-ui/core/Fab'
 import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
-import Image from 'next/image'
+
 
 import { useStyles } from './imageuploadermaterialCss'
 import styles from './imageuploader.module.css'

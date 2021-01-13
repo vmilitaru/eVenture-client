@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import fetch from 'isomorphic-unfetch'
 import { makeStyles } from '@material-ui/core/styles'
@@ -12,8 +12,6 @@ import {
     KeyboardDatePicker
 } from '@material-ui/pickers'
 import Grid from '@material-ui/core/Grid'
-//import NavBar from '../../../components/NavBar/NavBar'
-//import Footer from '../../../components/Footer/Footer'
 import { useStyles } from './specificeventMaterialcss'
 import Typography from '@material-ui/core/Typography'
 import UploadImage from '../../components/ImageUploader/index'
@@ -21,27 +19,70 @@ import UploadImage from '../../components/ImageUploader/index'
 // ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../../environment'
+import ButtonGeneral from '../../components/Button/Button'
 
-export default function SpecificEventPage({ event }) {
+export default function SpecificEventPage({ event, ticketCount }) {
     const [editing, setEditing] = useState(false)
-    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
-    console.log(user)
-    console.log(isAuthenticated)
+    const {
+        user,
+        isAuthenticated,
+        getAccessTokenSilently,
+        loginWithRedirect
+    } = useAuth0()
+
+    const [availableTickets, setAvailableTickets] = useState(
+        event.numtickets - ticketCount
+    )
 
     const [title, setTitle] = useState(event.title)
-    const [date, setDate] = useState(DateTime.utc())
-    const [timeObj, setTime] = useState(DateTime.utc())
+    const [date, setDate] = useState(event.date)
+
+    const [timeObj, setTime] = useState(DateTime.fromSQL(event.time))
 
     const [description, setDescription] = useState(event.description)
     const [speaker, setSpeaker] = useState(event.speaker)
     const [location, setLocation] = useState(event.location)
     const [numtickets, setNumTickets] = useState(event.numtickets)
+
     const router = useRouter()
     const refreshData = () => router.replace(router.asPath)
     /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
 
-    const [previewSource, setPreviewSource] = useState('')
+    const [previewSource, setPreviewSource] = useState(event.banner)
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+    const [isRegistered, setIsRegistered] = useState(false)
+
+    useEffect(() => {
+        async function getIsRegistered() {
+            if (!user) {
+                return
+            }
+            const accessToken = await getAccessTokenSilently()
+            const requestOptions = {
+                mode: 'cors',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            }
+
+            const res = await fetch(
+                `${serverUrl}/prot/tickets?email=${user.email}`,
+                requestOptions
+            )
+            const { payload } = await res.json()
+            const ticketExists = payload.find(
+                (e) =>
+                    e.event_id === event.id && user.email === e.attendee_email
+            )
+            setIsRegistered(ticketExists)
+        }
+        getIsRegistered()
+    }, [])
+
     const handleDateChange = (d) => {
         //This function handles correct time conversion from object to ISO
         console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
@@ -172,10 +213,113 @@ export default function SpecificEventPage({ event }) {
         </div>
   */
 
+    async function deleteEvent() {
+        const accessToken = await getAccessTokenSilently()
+
+        const requestOptions = {
+            mode: 'cors',
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }
+
+        const response = await fetch(
+            `${serverUrl}/org/${event.id}`,
+            requestOptions
+        )
+        console.log(response)
+        window.location.href = '/events-page'
+    }
+
+    async function getYoSelfATicket() {
+        if (availableTickets > 0) {
+            const accessToken = await getAccessTokenSilently()
+
+            const requestOptions = {
+                mode: 'cors',
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify({ attendeeEmail: user.email })
+            }
+
+            const response = await fetch(
+                `${serverUrl}/prot/${event.id}/tickets`,
+                requestOptions
+            )
+            const result = await response.json()
+            console.log(result)
+        }
+        setAvailableTickets(availableTickets - 1)
+    }
+
+    async function deleteTicket() {
+        const accessToken = await getAccessTokenSilently()
+        const requestOptions = {
+            mode: 'cors',
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }
+
+        await fetch(
+            `${serverUrl}/prot/${event.id}/tickets?email=${user.email}`,
+            requestOptions
+        )
+    }
+
+    function handleClickForTicket() {
+        if (!isRegistered) {
+            if (user) {
+                getYoSelfATicket()
+                setIsRegistered(true)
+            }
+            if (!user) {
+                loginWithRedirect()
+            }
+            return
+        }
+        deleteTicket()
+        setIsRegistered(false)
+    }
+
     return (
         <React.Fragment>
             {!editing ? (
                 <section>
+                    {user && Object.values(user)[0][0] && (
+                        <>
+                            <ButtonGeneral
+                                // id="button"
+                                // variant="contained"
+                                // color="primary"
+                                // size="large"
+                                //className={classes.button}
+                                // disabled={!previewSource}
+                                // startIcon={<SaveIcon />}
+                                text={'EDIT'}
+                                onClick={() => {
+                                    setEditing(true)
+                                }}
+                            />
+                            <ButtonGeneral
+                                text={'DELETE'}
+                                onClick={deleteEvent}
+                            />
+                        </>
+                    )}
                     <Typography gutterBottom variant="h3" component="h3">
                         {event.title}
                     </Typography>
@@ -196,20 +340,29 @@ export default function SpecificEventPage({ event }) {
                         {event.speaker}
                     </Typography>
 
-                    <Button
-                        id="button"
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        //className={classes.button}
-                        // disabled={!previewSource}
-                        // startIcon={<SaveIcon />}
-                        onClick={() => {
-                            setEditing(true)
-                        }}
-                    >
-                        Edit
-                    </Button>
+                    {!isRegistered ? (
+                        <ButtonGeneral
+                            onClick={() => {
+                                handleClickForTicket()
+                            }}
+                            text={user ? 'REGISTER' : 'Log In'}
+                        />
+                    ) : (
+                        <>
+                            <p>You are registered - see you there!</p>
+                            <ButtonGeneral
+                                onClick={() => {
+                                    console.log('TEST')
+                                    handleClickForTicket()
+                                }}
+                                text={'CANCEL TICKET'}
+                            />
+                        </>
+                    )}
+
+                    <div>
+                        <p>INSERT TICKET AVAILABILITY HERE</p>
+                    </div>
                 </section>
             ) : (
                 <form
@@ -300,6 +453,25 @@ export default function SpecificEventPage({ event }) {
                             location.length < 1 ? 'Please enter text' : ' '
                         }
                     />
+                    <TextField
+                        className={classes.tickets}
+                        id="tickets"
+                        label="Tickets"
+                        value={numtickets}
+                        multiline
+                        rows={4}
+                        placeholder="Enter number of tickets available"
+                        variant="outlined"
+                        InputProps={{
+                            classes: { input: classes.numtickets }
+                        }}
+                        onChange={(e) => setNumTickets(e.target.value)}
+                        helperText={
+                            /^\d+$/.test(numtickets) === false
+                                ? 'Please enter a number'
+                                : ' '
+                        }
+                    />
 
                     <UploadImage
                         handleFileInputChange={handleFileInputChange}
@@ -307,17 +479,20 @@ export default function SpecificEventPage({ event }) {
                         setPreviewSource={setPreviewSource}
                     />
 
-                    <Button
-                        id="button"
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        size="large"
-                        className={classes.button}
-                        disabled={!previewSource}
-                    >
-                        Save
-                    </Button>
+                    <ButtonGeneral
+                        // id="button"
+                        // type="submit"
+                        // variant="contained"
+                        // color="primary"
+                        // size="large"
+                        // className={classes.button}
+                        // disabled={!previewSource}
+                        text={'SAVE'}
+                    />
+                    <ButtonGeneral
+                        text={'CANCEL'}
+                        onClick={() => setEditing(false)}
+                    />
                 </form>
             )}
         </React.Fragment>
@@ -329,6 +504,7 @@ export async function getServerSideProps(context) {
     const res = await fetch(`${serverUrl}/events/${id}`)
     const data = await res.json()
     console.log(data)
-    const event = data.payload
-    return { props: { event } }
+    const event = data.payload.event
+    const ticketCount = data.payload.ticketCount.count
+    return { props: { event, ticketCount } }
 }
