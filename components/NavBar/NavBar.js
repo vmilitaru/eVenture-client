@@ -74,8 +74,8 @@ const NavBar = () => {
                                 // color="textPrimary"
                                 className={styles.link}
                             >
-                                <StyledLink text={'Events'} />
-                                {/*   Events */}
+                                {/* <StyledLink text={'Events'} /> */}
+                                Events
                             </Link>
                         </div>
                         {!user ? (
