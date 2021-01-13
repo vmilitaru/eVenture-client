@@ -23,9 +23,13 @@ import ButtonGeneral from '../../components/Button/Button'
 
 export default function SpecificEventPage({ event, ticketCount }) {
     const [editing, setEditing] = useState(false)
-    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
+    const {
+        user,
+        isAuthenticated,
+        getAccessTokenSilently,
+        loginWithRedirect
+    } = useAuth0()
 
-    const [clicked, setClicked] = useState(false)
     const [availableTickets, setAvailableTickets] = useState(
         event.numtickets - ticketCount
     )
@@ -46,6 +50,38 @@ export default function SpecificEventPage({ event, ticketCount }) {
 
     const [previewSource, setPreviewSource] = useState(event.banner)
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+    const [isRegistered, setIsRegistered] = useState(false)
+
+    useEffect(() => {
+        async function getIsRegistered() {
+            if (!user) {
+                return
+            }
+            const accessToken = await getAccessTokenSilently()
+            const requestOptions = {
+                mode: 'cors',
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                }
+            }
+
+            const res = await fetch(
+                `${serverUrl}/prot/tickets?email=${user.email}`,
+                requestOptions
+            )
+            const { payload } = await res.json()
+            const ticketExists = payload.find(
+                (e) =>
+                    e.event_id === event.id && user.email === e.attendee_email
+            )
+            setIsRegistered(ticketExists)
+        }
+        getIsRegistered()
+    }, [])
 
     const handleDateChange = (d) => {
         //This function handles correct time conversion from object to ISO
@@ -222,21 +258,42 @@ export default function SpecificEventPage({ event, ticketCount }) {
             const result = await response.json()
             console.log(result)
         }
-        setClicked(false)
         setAvailableTickets(availableTickets - 1)
     }
 
-    function handleClickForTicket() {
-        console.log('clicked')
-        setClicked(true)
+    async function deleteTicket() {
+        const accessToken = await getAccessTokenSilently()
+        const requestOptions = {
+            mode: 'cors',
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }
+
+        await fetch(
+            `${serverUrl}/prot/${event.id}/tickets?email=${user.email}`,
+            requestOptions
+        )
     }
 
-    useEffect(() => {
-        if (clicked && user) {
-            console.log('in use effect')
-            getYoSelfATicket()
+    function handleClickForTicket() {
+        if (!isRegistered) {
+            if (user) {
+                getYoSelfATicket()
+                setIsRegistered(true)
+            }
+            if (!user) {
+                loginWithRedirect()
+            }
+            return
         }
-    }, [clicked])
+        deleteTicket()
+        setIsRegistered(false)
+    }
 
     return (
         <React.Fragment>
@@ -283,10 +340,25 @@ export default function SpecificEventPage({ event, ticketCount }) {
                         {event.speaker}
                     </Typography>
 
-                    <ButtonGeneral
-                        onClick={() => handleClickForTicket()}
-                        text={'Get a ticket'}
-                    />
+                    {!isRegistered ? (
+                        <ButtonGeneral
+                            onClick={() => {
+                                handleClickForTicket()
+                            }}
+                            text={user ? 'REGISTER' : 'Log In'}
+                        />
+                    ) : (
+                        <>
+                            <p>You are registered - see you there!</p>
+                            <ButtonGeneral
+                                onClick={() => {
+                                    console.log('TEST')
+                                    handleClickForTicket()
+                                }}
+                                text={'CANCEL TICKET'}
+                            />
+                        </>
+                    )}
 
                     <div>
                         <p>INSERT TICKET AVAILABILITY HERE</p>
