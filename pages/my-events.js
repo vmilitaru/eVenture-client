@@ -3,7 +3,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import { useStyles } from '../styles/events-page-materialCss'
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
+import Loading from '../components/Loading'
 
 import EventCard from '../components/EventCard/EventCard'
 
@@ -69,4 +70,6 @@ function MyEventsPage() {
     )
 }
 
-export default MyEventsPage
+export default withAuthenticationRequired(MyEventsPage, {
+    onRedirecting: () => <Loading />
+})
