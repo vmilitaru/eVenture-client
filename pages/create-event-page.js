@@ -15,6 +15,7 @@ import Grid from '@material-ui/core/Grid'
 
 import UploadImage from '../components/ImageUploader/index'
 import { useStyles } from './Create-event-page-materialui'
+import styles from './create-event.module.css'
 
 // ENVIRONMENT VARIABLES
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
@@ -25,8 +26,6 @@ import { Typography } from '@material-ui/core'
 
 function AdminEventPage() {
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0()
-    
-    
 
     const [title, setTitle] = useState('')
     const [date, setDate] = useState(DateTime.utc())
@@ -164,26 +163,29 @@ function AdminEventPage() {
             //event.target.reset() //reset input boxes
         }
     }
-if (!Object.values(user)[0][0]){
-return <Loading/>
-} 
+    if (!Object.values(user)[0][0]) {
+        return <Loading />
+    }
     return (
         <React.Fragment>
+            <Typography variant="h2" className={classes.title}>
+                {' '}
+                Create an Event
+            </Typography>
             <form
-                className={classes.form}
+                className={styles.form}
                 noValidate
                 autoComplete="off"
                 onSubmit={(event) => handleSubmit(event)} //on button click post request is fired
             >
-                <div className={classes.left}>
-                    <div className={classes.imagebox}>
-                        <UploadImage
-                            className={classes.image}
-                            handleFileInputChange={handleFileInputChange}
-                            previewSource={previewSource}
-                            setPreviewSource={setPreviewSource}
-                        />
-                    </div>
+                <div className={styles.left}>
+                    <UploadImage
+                        className={classes.image}
+                        handleFileInputChange={handleFileInputChange}
+                        previewSource={previewSource}
+                        setPreviewSource={setPreviewSource}
+                    />
+
                     <TextField
                         id="description"
                         label="Description"
@@ -191,6 +193,7 @@ return <Loading/>
                         rows={2}
                         plceholder="Enter Event Title"
                         variant="outlined"
+                        classes={classes.description}
                         onChange={(e) => setDescription(e.target.value)}
                         InputProps={{
                             classes: { input: classes.description }
@@ -201,8 +204,8 @@ return <Loading/>
                     />
                 </div>
 
-                <div className={classes.right}>
-                    <div className={classes.one}>
+                <div className={styles.right}>
+                    <div className={styles.one}>
                         <TextField
                             className={classes.title}
                             id="title"
@@ -286,7 +289,7 @@ return <Loading/>
                                 location.length < 1 ? 'Please enter text' : ' '
                             }
                         />
-                        <div className={classes.empty}>
+                        <div className={styles.empty}>
                             <Typography variant="h6">
                                 Fill in the details for the event you want to
                                 create. Ensure to add an image and save the
@@ -329,4 +332,6 @@ return <Loading/>
     )
 }
 
-export default  withAuthenticationRequired(AdminEventPage,{onRedirecting: () => <Loading />})
+export default withAuthenticationRequired(AdminEventPage, {
+    onRedirecting: () => <Loading />
+})

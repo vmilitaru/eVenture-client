@@ -1,0 +1,21 @@
+.uploadImage {
+    height: 15rem;
+    width: 30em;
+    /* max-height: 12rem; */
+    /* max-width: auto; */
+    /* object-fit: contain; */
+}
+.image {
+    object-fit: cover;
+    height: 15rem;
+    width: 30em;
+}
+/* .input {
+    object-fit: contain;
+    height: 20rem;
+    width: 10rem;
+} */
+.buttons {
+    position: absolute;
+    z-index: 10;
+}
