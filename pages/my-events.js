@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
-import { useStyles } from './events-page-materialCss'
+import { useStyles } from '../styles/events-page-materialCss'
 import { useAuth0 } from '@auth0/auth0-react'
 
 import EventCard from '../components/EventCard/EventCard'
