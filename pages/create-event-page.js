@@ -14,12 +14,8 @@ import {
 import Grid from '@material-ui/core/Grid'
 
 import UploadImage from '../components/ImageUploader/index'
-<<<<<<< HEAD
-import { useStyles } from '../styles/Create-event-page-materialui'
-=======
 import { useStyles } from './Create-event-page-materialui'
 import styles from './create-event.module.css'
->>>>>>> 94e4c57ba1659ed1aeb02278a5bfa0e90517d325
 
 // ENVIRONMENT VARIABLES
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
