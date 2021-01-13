@@ -42,6 +42,7 @@ export default function MyApp(props) {
             }
             audience={auth0Audience}
         >
+            {console.log(redirectUrl)}
             <Wrapper>
                 <ProtectedRouteAndRoleProvider>
                     <React.Fragment>
