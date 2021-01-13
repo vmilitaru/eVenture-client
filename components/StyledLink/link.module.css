@@ -1,0 +1,12 @@
+.links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: cornflowerblue;
+    color: #fff;
+    text-decoration: solid;
+}
+
+.link {
+    color: white;
+}

@@ -1,3 +1,12 @@
+.box {
+    position: fixed;
+    background-color: #fafafa;
+    top: 0;
+    left: 0;
+    z-index: 50em;
+    padding: 3em;
+    width: 100%;
+}
 .logo {
     height: 6.5rem;
 }
@@ -11,15 +20,24 @@
     flex-direction: row;
     align-items: center;
 }
-
-.links {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
 .image {
     width: 5rem;
     height: 2rem;
     position: relative;
+}
+.links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: cornflowerblue;
+    color: #fff;
+    text-decoration: solid;
+}
+.home {
+    background-color: red;
+    color: white;
+}
+
+.link {
+    color: white;
 }

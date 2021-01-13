@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, StylesProvider } from '@material-ui/core/styles'
 
 import LoginButton from '../LoginButton/index'
 import Profile from '../Profile/index'
@@ -19,8 +19,7 @@ import MyEventsButton from '../MyEvents'
 
 import styles from './NavBar.module.css'
 import { useStyles } from './NavBarMaterialCss.js'
-import ButtonGeneral from '../Button/Button'
-import { Container } from '@material-ui/core'
+import StyledLink from '../StyledLink'
 
 const NavBar = () => {
     const [anchorEl, setAnchorEl] = useState(null)
@@ -40,7 +39,7 @@ const NavBar = () => {
 
     return (
         <nav>
-            <div elevation="0" className={classes.box}>
+            <div elevation="0" className={styles.box}>
                 <AppBar className={classes.appBar}>
                     <Toolbar className={classes.toolbar}>
                         {/* <Typography
@@ -49,28 +48,34 @@ const NavBar = () => {
                             noWrap
                             className={classes.toolbarTitle}
                         ></Typography> */}
+                        <img
+                            className={styles.logo}
+                            id="logo"
+                            src="/soc.png"
+                            alt="logo"
+                        />
                         <div className={styles.links}>
-                            <img
-                                className={styles.logo}
-                                id="logo"
-                                src="/soc.png"
-                                alt="logo"
-                            />
                             <Link
-                                variant="h6"
-                                color="textPrimary"
+                                // variant="h6"
+                                // color="textPrimary"
                                 href="/"
-                                className={classes.link}
+                                passHref
+                                className={classes.home}
+                                // style={{ backgroundColour: 'red' }}
                             >
-                                Home
+                                {/* <StyledLink text={'Home'} href={'/'} /> */}
+                                <a className={styles.home}>Home</a>
                             </Link>
+
                             <Link
                                 href="/events-page"
-                                variant="h6"
-                                color="textPrimary"
-                                className={classes.link}
+                                passHref
+                                // variant="h6"
+                                // color="textPrimary"
+                                className={styles.link}
                             >
-                                Events
+                                <StyledLink text={'Events'} />
+                                {/*   Events */}
                             </Link>
                         </div>
                         {!user ? (
@@ -86,6 +91,7 @@ const NavBar = () => {
                                             aria-controls="long-menu"
                                             aria-haspopup="true"
                                             onClick={handleClick}
+                                            className={classes.profile}
                                         >
                                             <MoreVertIcon />
                                         </IconButton>
