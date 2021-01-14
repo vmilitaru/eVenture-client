@@ -28,12 +28,14 @@
 .event {
     display: flex;
     flex-direction: row;
-    color: blue;
+    background-color: blue;
     padding: 0rem;
     width: 90%;
     border-width: 0.2rem;
     margin: auto;
-    justify-content: inherit;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 .eventDetails {
     margin: 3.5%;
@@ -46,4 +48,12 @@
     width: auto;
     max-height: 30rem;
     max-width: inherit;
+}
+.absolutes {
+    position: absolute;
+    bottom: 4vw;
+}
+
+.absolutes .countdown {
+    position: relative;
 }
