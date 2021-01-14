@@ -15,8 +15,10 @@
 
 .name {
     margin: 5px;
+
     font-size: 0.8rem;
     font-weight: bold;
     text-shadow: 0.5px 0.5px 0.5px rgb(83, 83, 83);
     letter-spacing: 0.7px;
+
 }
