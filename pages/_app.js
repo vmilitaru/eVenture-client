@@ -60,9 +60,10 @@ export default function MyApp(props) {
                             <ConditionedRenderedNavBar />
                             <main
                                 style={{
-                                    marginTop: '6rem',
+                                    paddingTop: '7rem',
                                     textAlign: 'center',
-                                    backgroundColor: `${theme.palette.fourth.main}`
+                                    backgroundColor: `${theme.palette.fourth.main}`,
+                                    minHeight: '100vh'
                                 }}
                             >
                                 <Component {...pageProps} />

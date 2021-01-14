@@ -8,11 +8,15 @@
 
 .picture {
     height: 5rem;
-    width: 5rem;
+    width: auto;
+    border: thin solid white;
     border-radius: 50%;
 }
 
 .name {
     margin: 5px;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-weight: lighter;
+    text-shadow: 0px 0px 5px rgb(83, 83, 83);
+    letter-spacing: 0.5px;
 }

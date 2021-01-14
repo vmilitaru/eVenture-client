@@ -11,21 +11,5 @@ export const useStyles = makeStyles((theme) => ({
     toolbar: {
         display: 'flex',
         justifyContent: 'space-evenly'
-    },
-    div: {
-        display: 'flex',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        color: 'primary',
-        // backgroundColor: 'white',
-        width: '15rem',
-        padding: '0.2rem'
     }
-    // // icons: {
-    //     // display: 'flex',
-    //     // alignItems: 'center',
-    //     backgroundColor: 'white',
-    //     borderRadius: '90%',
-    //     padding: '0.2rem'
-    // }
 }))

@@ -295,6 +295,20 @@ export default function SpecificEventPage({ event, ticketCount }) {
         setIsRegistered(false)
     }
 
+    function convertDate() {
+        const dateFromIso = new DateTime.fromISO(
+            `${event.date}T${event.time}.000Z`
+        )
+        const localeDate = dateFromIso.toLocaleString({
+            weekday: 'short',
+            month: 'short',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        })
+        return localeDate
+    }
+
     return (
         <React.Fragment>
             {!editing ? (
@@ -329,7 +343,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
                     <p>{event.description}</p>
 
                     <Typography gutterBottom variant="h5" component="h3">
-                        {event.date} {event.time}
+                        {convertDate()}
                     </Typography>
 
                     <Typography gutterBottom variant="h5" component="h3">
@@ -345,17 +359,16 @@ export default function SpecificEventPage({ event, ticketCount }) {
                             onClick={() => {
                                 handleClickForTicket()
                             }}
-                            text={user ? 'REGISTER' : 'Log In'}
+                            text="REGISTER"
                         />
                     ) : (
                         <>
                             <p>You are registered - see you there!</p>
                             <ButtonGeneral
                                 onClick={() => {
-                                    console.log('TEST')
                                     handleClickForTicket()
                                 }}
-                                text={'CANCEL TICKET'}
+                                text="CANCEL TICKET"
                             />
                         </>
                     )}
