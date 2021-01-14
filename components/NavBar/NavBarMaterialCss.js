@@ -15,7 +15,7 @@ export const useStyles = makeStyles((theme) => ({
         top: '0',
         left: '0',
         zIndex: '50',
-        padding: '3rem',
+        padding: '2.5rem',
         width: '100%'
     },
     appBar: {
@@ -30,10 +30,10 @@ export const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         height: '3rem'
     },
-    link: {
-        margin: theme.spacing(1, 10),
-        color: theme.palette.primary.contrastText
-    },
+    // link: {
+    //     margin: theme.spacing(1, 10),
+    //     color: theme.palette.primary.contrastText
+    // },
     // image: {
     //     // height: '6.5rem',
     //     // position: 'absolute',

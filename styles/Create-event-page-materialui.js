@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles'
 export const useStyles = makeStyles((theme) => ({
-    title: {
+    heading: {
         padding: '1rem',
-        letterSpacing: '0.5vw'
+        letterSpacing: '0.025rem',
+        wordSpacing: '0.25rem'
     },
     //this styling would be good to replace with css modules
     // form: {

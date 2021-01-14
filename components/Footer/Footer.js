@@ -7,7 +7,7 @@ import Link from '@material-ui/core/Link'
 import Icon from '@material-ui/core/Icon'
 import { loadCSS } from 'fg-loadcss'
 import { useStyles } from './FooterMaterialCss'
-
+import styles from './Footer.module.css'
 const Footer = () => {
     const classes = useStyles()
     React.useEffect(() => {
@@ -21,7 +21,7 @@ const Footer = () => {
         <footer>
             <AppBar position="static" elevation={0} className={classes.appBar}>
                 <Toolbar className={classes.toolbar}>
-                    <div className={classes.div}>
+                    <div className={styles.div}>
                         <Typography variant="h6">Follow Us</Typography>
 
                         <Link
@@ -66,9 +66,9 @@ const Footer = () => {
                             />
                         </Link>
                     </div>
-                    <div className={classes.div}>
+                    <div className={styles.div}>
                         <Typography variant="h6">Contact Us</Typography>
-                        <div className={classes.icons}>
+                        <div className={styles.icons}>
                             <Link
                                 href="mailto:info@schoolofcode.co.uk"
                                 target="_blank"
