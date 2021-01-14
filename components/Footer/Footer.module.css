@@ -7,11 +7,10 @@
     padding: 0.2rem;
 }
 
-/*icons{
-    //     // display: flex;
-    //     // align-items: center;
-    //     background-color: white;,
-    //     border-radius: 90%;
-    //     padding: 0.2rem;
-    // }
-    */
+.icons:hover {
+    color: white;
+    text-decoration: underline;
+}
+.styles:hover {
+    color: white;
+}
