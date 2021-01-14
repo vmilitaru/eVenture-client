@@ -50,15 +50,18 @@ export default function EventCard({ event }) {
                     />
                     <CardContent className={classes.cardcontent}>
                         <Typography className={classes.date} variant="h6">
-                            {convertDate()}
+                            <span
+                                style={{
+                                    backgroundColor: 'white',
+                                    padding: '0vw 0.5vw 0vw 0.5vw'
+                                }}
+                            >
+                                {convertDate()}
+                            </span>
                         </Typography>
                         <Typography className={classes.title} variant="h4">
-                            <h4 className={styles.title}>{event.title}</h4>
+                            {event.title}
                         </Typography>
-
-                        {/* <Typography variant="h5">
-                            {shortenDescription()}
-                        </Typography> */}
                     </CardContent>
                 </CardActionArea>
             </Card>
