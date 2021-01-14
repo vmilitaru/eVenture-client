@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
-import { makeStyles } from '@material-ui/core/styles'
+
 import TextField from '@material-ui/core/TextField'
 import LuxonUtils from '@date-io/luxon'
 import { DateTime } from 'luxon'
@@ -11,17 +11,15 @@ import {
     KeyboardTimePicker,
     KeyboardDatePicker
 } from '@material-ui/pickers'
-import Grid from '@material-ui/core/Grid'
 
 import UploadImage from '../components/ImageUploader/index'
 import { useStyles } from '../styles/Create-event-page-materialui'
-import styles from './create-event.module.css'
+import styles from '../styles/create-event.module.css'
 
 // ENVIRONMENT VARIABLES
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import { serverUrl } from '../environment'
 import Loading from '../components/Loading/index'
-import { TrafficOutlined } from '@material-ui/icons'
 import { Typography } from '@material-ui/core'
 
 function AdminEventPage() {

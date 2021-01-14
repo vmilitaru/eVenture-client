@@ -9,4 +9,4 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '1rem',
         height: '1.75rem'
     }
-}))
+})) 
