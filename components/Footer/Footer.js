@@ -59,11 +59,7 @@ const Footer = () => {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Icon
-                                className="fab fa-youtube"
-                                color="primary"
-                                style={{ display: 'inline' }}
-                            />
+                            <Icon className="fab fa-youtube" color="primary" />
                         </Link>
                     </div>
                     <div className={styles.div}>

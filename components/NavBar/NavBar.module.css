@@ -26,14 +26,30 @@
 
 .link {
     color: white;
-    margin: 5rem;
-    font-weight: bold;
+    margin: 2.5rem;
+    font-weight: 400;
     font-size: 1.2rem;
     text-decoration: none;
-    letter-spacing: 0.05em;
-    font-family: Helvetica, Arial, sans-serif;
-    text-shadow: 1px 1px 2px rgb(77, 77, 77);
+    letter-spacing: 0.08em;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    text-shadow: 1px 1.25px 1px black;
+
+    /* fontWeight: 300,
+            fontSize: '6rem',
+            lineHeight: 1.167,
+            letterSpacing: '-0.01562em' */
 }
+.link:hover {
+    color: #004a9f;
+    margin: 2.5rem;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    text-decoration-color: white;
+    letter-spacing: 0.08em;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    text-shadow: 3px 3px 13px darkslategrey;
+}
+
 .box {
     position: fixed;
     background-color: #fafafa;

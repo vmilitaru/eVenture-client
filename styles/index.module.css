@@ -13,30 +13,37 @@
 .intro {
     display: flex;
     flex-direction: column;
-    padding: 4rem;
+    padding: 2rem;
     align-items: center;
+}
+.description {
+    font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif';
+    font-size: 1.2rem;
+    line-height: 1;
+    letter-spacing: 0em;
+    color: #006;
+    text-overflow: clip;
+    /* margin: 0.1rem; */
 }
 .event {
     display: flex;
-    align-items: center;
     flex-direction: row;
     color: blue;
     padding: 0rem;
-    word-wrap: break-word;
     width: 90%;
-    border: 1px solid #000000;
+
     border-width: 0.2rem;
     margin: auto;
 }
 .eventDetails {
     margin: 3.5%;
-    /* padding: 3.32%; */
-    /* border: 1px solid #000000;
-    border-width: 2px; */
 }
 .img {
     display: flex;
     flex-direction: column;
     width: 46%;
-    height: auto;
+    height: 25rem;
+    width: auto;
+    max-height: 30rem;
+    max-width: inherit;
 }

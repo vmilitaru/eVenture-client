@@ -40,7 +40,7 @@ const NavBar = () => {
                             <img
                                 className={styles.logo}
                                 id="logo"
-                                src="/soc.png"
+                                src="/Eventure.png"
                                 alt="logo"
                             />
                             <Link
@@ -49,7 +49,7 @@ const NavBar = () => {
                                 href="/"
                                 className={classes.link}
                             >
-                                <a className={styles.link}>HOME</a>
+                                <a className={styles.link}>HOME </a>
                             </Link>
                             <Link
                                 href="/events-page"
