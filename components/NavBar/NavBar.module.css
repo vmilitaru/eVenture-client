@@ -26,14 +26,26 @@
 
 .link {
     color: white;
-    margin: 5rem;
+    margin: 2.5rem;
     font-weight: bold;
     font-size: 1.2rem;
     text-decoration: none;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
     font-family: Helvetica, Arial, sans-serif;
-    text-shadow: 1px 1px 2px rgb(77, 77, 77);
+    text-shadow: 1px 1.25px 1px black;
 }
+.link:hover {
+    color: white;
+    margin: 2.5rem;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    text-decoration: underline;
+    text-decoration-color: white;
+    letter-spacing: 0.08em;
+    font-family: Helvetica, Arial, sans-serif;
+    text-shadow: 1px 1.25px 1px black;
+}
+
 .box {
     position: fixed;
     background-color: #fafafa;

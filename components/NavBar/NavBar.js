@@ -49,7 +49,7 @@ const NavBar = () => {
                                 href="/"
                                 className={classes.link}
                             >
-                                <a className={styles.link}>HOME</a>
+                                <a className={styles.link}>HOME </a>
                             </Link>
                             <Link
                                 href="/events-page"
