@@ -39,6 +39,7 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '1rem',
         padding: '0.5rem',
         borderBottom: '0.01px inset black',
-        margin: '0vw 3vw 0vw 3vw'
+        margin: '0vw 3vw 0vw 3vw',
+        height: '0vw'
     }
 }))
