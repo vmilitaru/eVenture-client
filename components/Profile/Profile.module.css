@@ -7,12 +7,16 @@
 }
 
 .picture {
-    height: 3.25rem;
-    width: 3.25rem;
+    height: 5rem;
+    width: auto;
+    border: thin solid white;
     border-radius: 50%;
 }
 
 .name {
     margin: 5px;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-weight: lighter;
+    text-shadow: 0.5px 0.5px 0.5px rgb(83, 83, 83);
+    letter-spacing: 0.5px;
 }
