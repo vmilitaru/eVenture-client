@@ -8,5 +8,9 @@
 }
 
 .icons:hover {
+    color: white;
     text-decoration: underline;
+}
+.styles:hover {
+    color: white;
 }
