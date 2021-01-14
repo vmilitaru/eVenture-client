@@ -60,7 +60,7 @@ export default function EventCard({ event }) {
                             </span>
                         </Typography>
                         <Typography className={classes.title} variant="h4">
-                            <h4 className={styles.title}>{event.title}</h4>
+                            {event.title}
                         </Typography>
 
                         {/* <Typography variant="h5">

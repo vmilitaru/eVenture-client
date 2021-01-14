@@ -85,10 +85,11 @@ const theme = createMuiTheme({
         },
         h4: {
             fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
-            fontWeight: 400,
-            fontSize: '2.5rem',
+            fontWeight: 300,
+            fontSize: '2.25rem',
             lineHeight: 1.1,
-            letterSpacing: '-0.02em'
+            letterSpacing: '-0.02em',
+            padding: '1.1vw 0.5vw 1vw 0.5vw'
         },
         h5: {
             fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
