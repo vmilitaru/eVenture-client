@@ -62,10 +62,6 @@ export default function EventCard({ event }) {
                         <Typography className={classes.title} variant="h4">
                             {event.title}
                         </Typography>
-
-                        {/* <Typography variant="h5">
-                            {shortenDescription()}
-                        </Typography> */}
                     </CardContent>
                 </CardActionArea>
             </Card>
