@@ -31,9 +31,9 @@
     color: blue;
     padding: 0rem;
     width: 90%;
-
     border-width: 0.2rem;
     margin: auto;
+    justify-content: inherit;
 }
 .eventDetails {
     margin: 3.5%;

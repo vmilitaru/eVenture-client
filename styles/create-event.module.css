@@ -8,7 +8,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     width: 50%;
-    background-color: green;
+    /* background-color: green; */
     padding-left: 4rem;
     margin-right: 1.5rem;
     justify-content: center;
@@ -19,12 +19,12 @@
     flex-wrap: wrap;
     justify-content: center; */
     width: 50%;
-    background-color: blueviolet;
+    /* background-color: blueviolet; */
     padding-right: 4rem;
     margin-left: 1.5rem;
 }
 .empty {
-    background-color: purple;
+    /* background-color: purple; */
     width: 12vw;
     margin: 2vw;
     padding: 2vw;

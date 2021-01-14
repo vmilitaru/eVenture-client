@@ -45,14 +45,16 @@ function Home({ event }) {
                 </div>
                 <div className={styles.event}>
                     <div className={styles.eventDetails}>
-                        <img src={event.banner}></img>
+                        <Eventcard event={event} />
+                        /* <img src={event.banner}></img> }
                         <Typography variant="h4">{event.title}</Typography>
                         <Typography variant="h5">
                             {convertDate()}
                         </Typography>{' '}
                         <p className={styles.description}>
                             {event.description}
-                        </p>
+                        </p>{' '}
+                        */
                         <Link href={`/event/${event.id}`}>
                             <ButtonGeneral text={'find out more'} />
                         </Link>
