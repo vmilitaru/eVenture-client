@@ -67,35 +67,23 @@ function AdminEventPage() {
 
     const handleDateChange = (d) => {
         //This function handles correct time conversion from object to ISO
-        console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
-        setDate(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
+        if (d !== null && d.c !== null) {
+            setDate(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
+        }
     }
 
     const handleTimeChange = (t) => {
         //This function handles correct time conversion from object to ISO
-        console.log(
-            DateTime.utc()
-                .set({
+        if (t !== null && t.c !== null) {
+            setTime(
+                DateTime.utc().set({
                     hour: t.c.hour,
                     minute: t.c.minute,
                     seconds: 0,
-                    milliseconds: 0
+                    millisecond: 0
                 })
-                .toISOTime({
-                    suppressSeconds: true,
-                    includeOffset: false,
-                    suppressMilliseconds: true
-                })
-        )
-
-        setTime(
-            DateTime.utc().set({
-                hour: t.c.hour,
-                minute: t.c.minute,
-                seconds: 0,
-                millisecond: 0
-            })
-        )
+            )
+        }
     }
 
     const classes = useStyles()
@@ -168,8 +156,7 @@ function AdminEventPage() {
     }
     return (
         <React.Fragment>
-            <Typography variant="h2" className={classes.title}>
-                {' '}
+            <Typography variant="h2" className={classes.heading}>
                 Create an Event
             </Typography>
             <form

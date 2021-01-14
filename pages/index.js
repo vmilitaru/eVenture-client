@@ -10,23 +10,22 @@ import Typography from '@material-ui/core/Typography'
 import Link from 'next/link'
 
 import { serverUrl } from '../environment'
+import { DateTime } from 'luxon'
 
 function Home({ event }) {
-    // const [event, setEvent] = useState({ time: '00:00:00', date: '2021-12-20' })
-
-    // useEffect(() => {
-    //     async function getData() {
-    //         const res = await fetch(`${serverUrl}/events/date`)
-    //         const { payload } = await res.json()
-    //         const chronologicalEvents = payload.sort(sortEventsByDate)
-    //         setEvent(chronologicalEvents[0])
-    //     }
-    //     getData()
-    // }, [])
-
-    // function sortEventsByDate(eventA, eventB) {
-    //     return eventA.date > eventB.date
-    // }
+    function convertDate() {
+        const dateFromIso = new DateTime.fromISO(
+            `${event.date}T${event.time}.000Z`
+        )
+        const localeDate = dateFromIso.toLocaleString({
+            weekday: 'short',
+            month: 'short',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        })
+        return localeDate
+    }
 
     return (
         <div className={styling.background}>
@@ -47,9 +46,7 @@ function Home({ event }) {
                 <div className={styling.event}>
                     <div className={styling.eventDetails}>
                         <Typography variant="h3">{event.title}</Typography>
-                        <Typography variant="h5">
-                            {event.date} - {event.time}
-                        </Typography>
+                        <Typography variant="h5">{convertDate()}</Typography>
                         <p>{event.description}</p>
                         <Link href={`/event/${event.id}`}>
                             <ButtonGeneral text={'find out more'} />

@@ -6,10 +6,13 @@ export const useStyles = makeStyles((theme) => ({
         maxHeight: '30vw',
         margin: '2vw',
         backgroundColor: `${theme.palette.primary.contrastText}`,
-        boxShadow: '0.1vw 0.1vw 0.5vw -0.05vw grey'
+        // boxShadow: '0.1vw 0.1vw 0.5vw -0.05vw grey'
+        '&:hover': {
+            boxShadow: '0vw 0.1vw 0.5vw 0vw darkgray'
+        }
     },
     card: {
-        backgroundColor: `${theme.palette.primary.light}`
+        // backgroundColor: `${theme.palette.primary.light}`
     },
     cardcontent: {
         display: 'flex',
@@ -19,11 +22,12 @@ export const useStyles = makeStyles((theme) => ({
         textDecoration: 'none'
     },
     media: {
-        height: 'auto',
+        height: '15vw',
         // padding: '1.5rem',
-        width: '25vw',
+        // width: '25vw',
         maxHeight: '20vw',
-        objectfit: 'cover'
+        objectfit: 'contain',
+        position: 'relative'
     },
     title: {
         variant: 'h2'
@@ -31,6 +35,7 @@ export const useStyles = makeStyles((theme) => ({
     date: {
         color: 'black',
         textShadow: 'none',
-        fontSize: '1rem'
+        fontSize: '1rem',
+        padding: '0.5rem'
     }
 }))

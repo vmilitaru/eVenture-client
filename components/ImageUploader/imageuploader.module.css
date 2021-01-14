@@ -10,11 +10,12 @@
     height: 15rem;
     width: 30em;
 }
-/* .input {
-    object-fit: contain;
+.input {
+    /* object-fit: contain;
     height: 20rem;
-    width: 10rem;
-} */
+    width: 10rem; */
+    display: none;
+}
 .buttons {
     position: absolute;
     z-index: 10;

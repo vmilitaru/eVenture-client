@@ -49,7 +49,7 @@ const NavBar = () => {
                             noWrap
                             className={classes.toolbarTitle}
                         ></Typography> */}
-                        <div className={styles.links}>
+                        <div className={styles.linksContainer}>
                             <img
                                 className={styles.logo}
                                 id="logo"
@@ -62,7 +62,7 @@ const NavBar = () => {
                                 href="/"
                                 className={classes.link}
                             >
-                                Home
+                                <a className={styles.link}>HOME</a>
                             </Link>
                             <Link
                                 href="/events-page"
@@ -70,7 +70,7 @@ const NavBar = () => {
                                 color="textPrimary"
                                 className={classes.link}
                             >
-                                Events
+                                <a className={styles.link}>EVENTS</a>
                             </Link>
                         </div>
                         {!user ? (
