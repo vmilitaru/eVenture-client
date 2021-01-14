@@ -7,8 +7,7 @@ import Countdown from '../components/Countdown/Countdown'
 import styles from '../styles/index.module.css'
 import Typography from '@material-ui/core/Typography'
 import Link from 'next/link'
-import EventCard from '../components/EventCard/EventCard'
-
+import { useStyles } from '../styles/index'
 import { serverUrl } from '../environment'
 import { DateTime } from 'luxon'
 
@@ -26,11 +25,12 @@ function Home({ event }) {
         })
         return localeDate
     }
+    const classes = useStyles()
 
     return (
         <div className={styles.background}>
             <Head>
-                <title>Eventure</title>
+                <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
@@ -38,7 +38,7 @@ function Home({ event }) {
                 <div className={styles.intro}>
                     <pic></pic>
                     <Typography variant="h2">
-                        Eventure- Develop with our community
+                        eVenture - Develop with our community
                     </Typography>
                     <Typography variant="h3">
                         {/* Develop with our community */}
@@ -46,15 +46,21 @@ function Home({ event }) {
                 </div>
                 <div className={styles.event}>
                     <div className={styles.eventDetails}>
-                        <EventCard event={event} />
-                        {/* <img src={event.banner}></img>
+                        <img src={event.banner}></img>
                         <Typography variant="h4">{event.title}</Typography>
                         <Typography variant="h5">
-                            {convertDate()}
+                            <span
+                                style={{
+                                    backgroundColor: 'white',
+                                    padding: '0vw 0.5vw 0vw 0.5vw'
+                                }}
+                            >
+                                {convertDate()}
+                            </span>
                         </Typography>{' '}
                         <p className={styles.description}>
                             {event.description}
-                        </p>{' '} */}
+                        </p>{' '}
                         <div className={styles.absolutes}>
                             <Link href={`/event/${event.id}`}>
                                 <ButtonGeneral text={'find out more'} />

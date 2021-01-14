@@ -28,7 +28,7 @@
 .event {
     display: flex;
     flex-direction: row;
-    background-color: blue;
+    /* background-color: blue; */
     padding: 0rem;
     width: 90%;
     border-width: 0.2rem;

@@ -32,81 +32,95 @@ const NavBar = () => {
     }
 
     return (
-        <nav>
-            <div elevation="0" className={classes.box}>
-                <AppBar className={classes.appBar}>
-                    <Toolbar className={classes.toolbar}>
-                        <div className={styles.linksContainer}>
-                            <img
-                                className={styles.logo}
-                                id="logo"
-                                src="/Eventure2.png"
-                                alt="logo"
-                            />
-                            <Link
-                                variant="h6"
-                                //color="textPrimary"
-                                href="/"
-                                className={classes.link}
+        <div className={styles.container}>
+            <nav>
+                <div elevation="0" className={classes.box}>
+                    <AppBar className={classes.appBar}>
+                        <Toolbar className={classes.toolbar}>
+                            <div className={styles.linksContainer}>
+                                <img
+                                    className={styles.logo}
+                                    id="logo"
+                                    src="/soclogo.png"
+                                    alt="logo"
+                                />
+                                <Link
+                                    variant="h6"
+                                    //color="textPrimary"
+                                    href="/"
+                                    className={classes.link}
+                                >
+                                    <a className={styles.link}>HOME </a>
+                                </Link>
+                                <Link
+                                    href="/events-page"
+                                    variant="h6"
+                                    //color="textPrimary"
+                                    className={classes.link}
+                                >
+                                    <a className={styles.link}>EVENTS</a>
+                                </Link>
+                                <Link
+                                    href="/my-events"
+                                    variant="h6"
+                                    //color="textPrimary"
+                                    className={classes.link}
+                                >
+                                    <a className={styles.link}>MY EVENTS</a>
+                                </Link>
+                                <Link
+                                    href="/create-event-page"
+                                    variant="h6"
+                                    //color="textPrimary"
+                                    className={classes.link}
+                                >
+                                    <a className={styles.link}>CREATE EVENT</a>
+                                </Link>
+                            </div>
+                            <Menu
+                                id="long-menu"
+                                anchorEl={anchorEl}
+                                keepMounted
+                                open={open}
+                                onClose={handleClose}
                             >
-                                <a className={styles.link}>HOME </a>
-                            </Link>
-                            <Link
-                                href="/events-page"
-                                variant="h6"
-                                //color="textPrimary"
-                                className={classes.link}
-                            >
-                                <a className={styles.link}>EVENTS</a>
-                            </Link>
-                        </div>
-                        {!user ? (
-                            <LoginButton />
-                        ) : (
-                            <>
-                                <div>
-                                    <div className={styles.profileLogin}>
-                                        <Profile />
+                                {isAuthenticated && Object.values(user)[0][0] && (
+                                    <MenuItem onClick={handleClose}>
+                                        <CreateEventButton />
+                                    </MenuItem>
+                                )}
+                                <MenuItem onClick={handleClose}>
+                                    <MyEventsButton />
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                    <LoginButton />
+                                </MenuItem>
+                            </Menu>
+                            {!user ? (
+                                <LoginButton />
+                            ) : (
+                                <>
+                                    <div>
+                                        <div className={styles.profileLogin}>
+                                            <Profile />
 
-                                        <IconButton
-                                            aria-label="more"
-                                            aria-controls="long-menu"
-                                            aria-haspopup="true"
-                                            onClick={handleClick}
-                                        >
-                                            <MoreVertIcon />
-                                        </IconButton>
-
-                                        <Menu
-                                            id="long-menu"
-                                            anchorEl={anchorEl}
-                                            keepMounted
-                                            open={open}
-                                            onClose={handleClose}
-                                        >
-                                            {isAuthenticated &&
-                                                Object.values(user)[0][0] && (
-                                                    <MenuItem
-                                                        onClick={handleClose}
-                                                    >
-                                                        <CreateEventButton />
-                                                    </MenuItem>
-                                                )}
-                                            <MenuItem onClick={handleClose}>
-                                                <MyEventsButton />
-                                            </MenuItem>
-                                            <MenuItem onClick={handleClose}>
-                                                <LoginButton />
-                                            </MenuItem>
-                                        </Menu>
+                                            <IconButton
+                                                aria-label="more"
+                                                aria-controls="long-menu"
+                                                aria-haspopup="true"
+                                                onClick={handleClick}
+                                            >
+                                                <MoreVertIcon />
+                                            </IconButton>
+                                        </div>
                                     </div>
-                                </div>
-                            </>
-                        )}
-                    </Toolbar>
-                </AppBar>
-            </div>
-        </nav>
+                                </>
+                            )}
+                        </Toolbar>
+                    </AppBar>
+                </div>
+            </nav>
+        </div>
     )
 }
 
