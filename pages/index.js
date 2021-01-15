@@ -8,6 +8,7 @@ import styles from '../styles/index.module.css'
 import Typography from '@material-ui/core/Typography'
 import Link from 'next/link'
 import { useStyles } from '../styles/index'
+import Eventcard from '../components/EventCard/EventCard'
 import { serverUrl } from '../environment'
 import { DateTime } from 'luxon'
 
@@ -55,11 +56,50 @@ function Home({ event }) {
                 </Typography>
             </div>
             <div className={styles.div}>
+//                 <div className={styles.intro}>
+                    
+//                 </div>
+                <div className={styles.text}>
+                    <div className={styles.animation}>
+                        <ul className={styles.mask}>
+                            <li>Develop</li>
+                            <li>Learn</li>
+                            <li>Grow</li>
+                            <li>Learn</li>
+                            <li>Develop</li>
+                        </ul>
+                        <ul>
+                            <li>Develop</li>
+                            <li>Learn</li>
+                            <li>Grow</li>
+                            <li>Learn</li>
+                            <li>Develop</li>
+                        </ul>
+                    </div>
+                    with our community at School of Code
+                </div>
                 <div className={styles.container}>
-                    <div className={styles.event}>
-                        <Typography variant="h3">UPCOMING EVENT:</Typography>
-                        <div className={styles.eventDetails}>
-                            {/* <img src={event.banner}></img> */}
+                <div className={styles.event}>
+                    <Typography variant="h3">UPCOMING EVENT:</Typography>
+                    <div className={styles.eventDetails}>
+                        <img src={event.banner}></img>
+                        <Typography variant="h4">{event.title}</Typography>
+                        <Typography variant="h5">
+                            {convertDate()}
+                        </Typography>{' '}
+                        <p className={styles.description}>
+                            {event.description}
+                        </p>
+                        <Link href={`/event/${event.id}`}>
+                            <ButtonGeneral text={'find out more'} />
+                        </Link>
+                        {event.date && (
+                            <Countdown
+                                eventDate={event.date}
+                                eventTime={event.time}
+                            />
+                        )}
+                    </div>
 
                             <Typography variant="h4">{event.title}</Typography>
                             <Typography variant="h5">
