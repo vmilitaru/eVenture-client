@@ -7,7 +7,7 @@ export const useStyles = makeStyles({
         justifyContent: 'center'
     },
 
-    linkspecific: {
+    linkSpecific: {
         textDecoration: 'none'
     }
 })

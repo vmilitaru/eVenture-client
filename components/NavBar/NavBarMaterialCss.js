@@ -28,7 +28,9 @@ export const useStyles = makeStyles((theme) => ({
     toolbar: {
         display: 'flex',
         justifyContent: 'space-between',
-        height: '3rem'
+        height: '3rem',
+        width: '80%',
+        margin: 'auto'
     },
     // link: {
     //     margin: theme.spacing(1, 10),

@@ -2,10 +2,6 @@
     height: 6.5rem;
 }
 
-#navButton {
-    background-color: yellow;
-}
-
 .profileLogin {
     display: flex;
     flex-direction: row;
@@ -26,13 +22,14 @@
 
 .link {
     color: white;
-    margin: 2.5rem;
+    margin: 2.5rem 0.5rem 2.5rem 0.5rem;
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-decoration: none;
-    letter-spacing: 0.08em;
+    /* letter-spacing: 0.08em; */
     font-family: Roboto, Helvetica, Arial, sans-serif;
-    text-shadow: 1px 1.25px 1px black;
+    padding: 0.3rem 2rem 0.3rem 2rem;
+    /* text-shadow: 1px 1.25px 1px black; */
 
     /* fontWeight: 300,
             fontSize: '6rem',
@@ -40,14 +37,15 @@
             letterSpacing: '-0.01562em' */
 }
 .link:hover {
-    color: #004a9f;
-    margin: 2.5rem;
+    margin: 2.5rem 0.5rem 2.5rem 0.5rem;
     font-weight: bolder;
-    font-size: 1.2rem;
     text-decoration-color: white;
-    letter-spacing: 0.08em;
+    /* letter-spacing: 0.08em; */
     font-family: Roboto, Helvetica, Arial, sans-serif;
-    text-shadow: 3px 3px 13px darkslategrey;
+    /* text-shadow: 3px 3px 13px darkslategrey; */
+    background-color: #227243;
+    border-radius: 10px;
+    padding: 0.3rem 2rem 0.3rem 2rem;
 }
 
 .box {
@@ -59,3 +57,8 @@
     padding: 3rem;
     width: 100%;
 }
+
+/* .container {
+    width: 80%;
+    margin: auto;
+} */

@@ -38,7 +38,9 @@ function MyEventsPage() {
             console.log(events)
         }
     }, [user])
+
     const classes = useStyles()
+
     return (
         <div>
             <Head>
@@ -56,7 +58,7 @@ function MyEventsPage() {
                                 href="/event/[id]"
                                 as={`/event/${event.event_id}`}
                             >
-                                <a>
+                                <a className={classes.linkSpecific}>
                                     <EventCard event={event} />
                                 </a>
                             </Link>
