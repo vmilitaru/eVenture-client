@@ -8,7 +8,7 @@ import styles from '../styles/index.module.css'
 import Typography from '@material-ui/core/Typography'
 import Link from 'next/link'
 import Eventcard from '../components/EventCard/EventCard'
-
+//import styles from '../styles/text-animation.module.css'
 import { serverUrl } from '../environment'
 import { DateTime } from 'luxon'
 
@@ -36,12 +36,31 @@ function Home({ event }) {
 
             <div className={styles.div}>
                 <div className={styles.intro}>
-                    <Typography variant="h2">
+                    {/* <Typography variant="h2">
                         Eventure- Develop with our community
-                    </Typography>
+                    </Typography> */}
                     <Typography variant="h3">
                         {/* Develop with our community */}
                     </Typography>
+                </div>
+                <div className={styles.text}>
+                    <div className={styles.animation}>
+                        <ul className={styles.mask}>
+                            <li>Develop</li>
+                            <li>Learn</li>
+                            <li>Grow</li>
+                            <li>Learn</li>
+                            <li>Develop</li>
+                        </ul>
+                        <ul>
+                            <li>Develop</li>
+                            <li>Learn</li>
+                            <li>Grow</li>
+                            <li>Learn</li>
+                            <li>Develop</li>
+                        </ul>
+                    </div>
+                    with our community at School of Code
                 </div>
                 <div className={styles.event}>
                     <div className={styles.eventDetails}>

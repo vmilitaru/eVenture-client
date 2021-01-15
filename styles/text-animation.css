@@ -1,54 +1,3 @@
-.background {
-    background-color: #fafafa;
-    height: 100vh;
-    padding-top: 50 px;
-}
-.div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1.75 rem;
-    text-align: justify;
-}
-.intro {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    align-items: center;
-}
-.description {
-    font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif';
-    font-size: 1.2rem;
-    line-height: 1;
-    letter-spacing: 0em;
-    color: #006;
-    text-overflow: clip;
-    /* margin: 0.1rem; */
-}
-.event {
-    display: flex;
-    flex-direction: row;
-    color: blue;
-    padding: 0rem;
-    width: 90%;
-
-    border-width: 0.2rem;
-    margin: auto;
-}
-.eventDetails {
-    margin: 3.5%;
-    z-index: 1;
-}
-.img {
-    display: flex;
-    flex-direction: column;
-    width: 46%;
-    height: 25rem;
-    width: auto;
-    max-height: 30rem;
-    max-width: inherit;
-}
-
 .text {
     font-size: 2em;
     font-family: sans-serif;
@@ -62,7 +11,7 @@
     border: 1px solid;
     overflow: visible;
     white-space: nowrap;
-    color: #fafafa;
+    color: lightgray;
     position: relative;
 }
 
