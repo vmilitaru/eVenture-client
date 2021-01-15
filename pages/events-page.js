@@ -31,11 +31,11 @@ function EventsPage({ events }) {
     return (
         <div>
             <Head>
-                <title>FrontEnd</title>
+                <title>EVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Typography variant="h2">Upcoming Events</Typography>
+                <Typography variant="h4">Upcoming Events</Typography>
 
                 {events ? (
                     <div className={classes.eventpage}>
@@ -46,7 +46,7 @@ function EventsPage({ events }) {
                                     href="/event/[id]"
                                     as={`/event/${event.id}`}
                                 >
-                                    <a className={classes.linkspecific}>
+                                    <a className={classes.linkSpecific}>
                                         <EventCard event={event} />
                                     </a>
                                 </Link>

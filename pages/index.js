@@ -7,7 +7,7 @@ import Countdown from '../components/Countdown/Countdown'
 import styles from '../styles/index.module.css'
 import Typography from '@material-ui/core/Typography'
 import Link from 'next/link'
-import Eventcard from '../components/EventCard/EventCard'
+import EventCard from '../components/EventCard/EventCard'
 
 import { serverUrl } from '../environment'
 import { DateTime } from 'luxon'
@@ -36,6 +36,7 @@ function Home({ event }) {
 
             <div className={styles.div}>
                 <div className={styles.intro}>
+                    <pic></pic>
                     <Typography variant="h2">
                         Eventure- Develop with our community
                     </Typography>
@@ -45,25 +46,27 @@ function Home({ event }) {
                 </div>
                 <div className={styles.event}>
                     <div className={styles.eventDetails}>
-                        <Eventcard event={event} />
-                        /* <img src={event.banner}></img> }
+                        <EventCard event={event} />
+                        {/* <img src={event.banner}></img>
                         <Typography variant="h4">{event.title}</Typography>
                         <Typography variant="h5">
                             {convertDate()}
                         </Typography>{' '}
                         <p className={styles.description}>
                             {event.description}
-                        </p>{' '}
-                        */
-                        <Link href={`/event/${event.id}`}>
-                            <ButtonGeneral text={'find out more'} />
-                        </Link>
-                        {event.date && (
-                            <Countdown
-                                eventDate={event.date}
-                                eventTime={event.time}
-                            />
-                        )}
+                        </p>{' '} */}
+                        <div className={styles.absolutes}>
+                            <Link href={`/event/${event.id}`}>
+                                <ButtonGeneral text={'find out more'} />
+                            </Link>
+                            {event.date && (
+                                <Countdown
+                                    eventDate={event.date}
+                                    eventTime={event.time}
+                                    className={styles.countdown}
+                                />
+                            )}
+                        </div>
                     </div>
 
                     <img
