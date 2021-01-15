@@ -60,22 +60,28 @@ const NavBar = () => {
                                 >
                                     <a className={styles.link}>EVENTS</a>
                                 </Link>
-                                <Link
-                                    href="/my-events"
-                                    variant="h6"
-                                    //color="textPrimary"
-                                    className={classes.link}
-                                >
-                                    <a className={styles.link}>MY EVENTS</a>
-                                </Link>
-                                <Link
-                                    href="/create-event-page"
-                                    variant="h6"
-                                    //color="textPrimary"
-                                    className={classes.link}
-                                >
-                                    <a className={styles.link}>CREATE EVENT</a>
-                                </Link>
+                                {user && (
+                                    <Link
+                                        href="/my-events"
+                                        variant="h6"
+                                        //color="textPrimary"
+                                        className={classes.link}
+                                    >
+                                        <a className={styles.link}>MY EVENTS</a>
+                                    </Link>
+                                )}
+                                {isAuthenticated && Object.values(user)[0][0] && (
+                                    <Link
+                                        href="/create-event-page"
+                                        variant="h6"
+                                        //color="textPrimary"
+                                        className={classes.link}
+                                    >
+                                        <a className={styles.link}>
+                                            CREATE EVENT
+                                        </a>
+                                    </Link>
+                                )}
                             </div>
                             <Menu
                                 id="long-menu"
@@ -84,14 +90,14 @@ const NavBar = () => {
                                 open={open}
                                 onClose={handleClose}
                             >
-                                {isAuthenticated && Object.values(user)[0][0] && (
+                                {/* {isAuthenticated && Object.values(user)[0][0] && (
                                     <MenuItem onClick={handleClose}>
                                         <CreateEventButton />
                                     </MenuItem>
                                 )}
                                 <MenuItem onClick={handleClose}>
                                     <MyEventsButton />
-                                </MenuItem>
+                                </MenuItem> */}
                                 <MenuItem onClick={handleClose}>
                                     <LoginButton />
                                 </MenuItem>

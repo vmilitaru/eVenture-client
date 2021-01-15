@@ -12,6 +12,8 @@ import { serverUrl } from '../environment'
 import { DateTime } from 'luxon'
 
 function Home({ event }) {
+    const classes = useStyles()
+
     function convertDate() {
         const dateFromIso = new DateTime.fromISO(
             `${event.date}T${event.time}.000Z`
@@ -25,7 +27,17 @@ function Home({ event }) {
         })
         return localeDate
     }
-    const classes = useStyles()
+
+    function shortenDescription() {
+        if (!event.description) {
+            return '...'
+        }
+        const descArray = event?.description.split('')
+        let shortDesc = descArray?.splice(0, 100)
+        shortDesc = shortDesc?.join('').trim()
+        shortDesc += '...'
+        return shortDesc
+    }
 
     return (
         <div className={styles.background}>
@@ -33,38 +45,41 @@ function Home({ event }) {
                 <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
+            <div className={styles.intro}>
+                <pic></pic>
+                <Typography variant="h2">
+                    eVenture - Develop with our community
+                </Typography>
+                <Typography variant="h3">
+                    {/* Develop with our community */}
+                </Typography>
+            </div>
             <div className={styles.div}>
-                <div className={styles.intro}>
-                    <pic></pic>
-                    <Typography variant="h2">
-                        eVenture - Develop with our community
-                    </Typography>
-                    <Typography variant="h3">
-                        {/* Develop with our community */}
-                    </Typography>
-                </div>
-                <div className={styles.event}>
-                    <div className={styles.eventDetails}>
-                        <img src={event.banner}></img>
-                        <Typography variant="h4">{event.title}</Typography>
-                        <Typography variant="h5">
-                            <span
-                                style={{
-                                    backgroundColor: 'white',
-                                    padding: '0vw 0.5vw 0vw 0.5vw'
-                                }}
-                            >
-                                {convertDate()}
-                            </span>
-                        </Typography>{' '}
-                        <p className={styles.description}>
-                            {event.description}
-                        </p>{' '}
-                        <div className={styles.absolutes}>
+                <div className={styles.container}>
+                    <div className={styles.event}>
+                        <Typography variant="h3">UPCOMING EVENT:</Typography>
+                        <div className={styles.eventDetails}>
+                            {/* <img src={event.banner}></img> */}
+
+                            <Typography variant="h4">{event.title}</Typography>
+                            <Typography variant="h5">
+                                <span
+                                    style={{
+                                        backgroundColor: '#fafafa',
+                                        padding: '0vw 0.5vw 0vw 0.5vw'
+                                    }}
+                                >
+                                    {convertDate()}
+                                </span>
+                            </Typography>
+                            <p className={styles.description}>
+                                {event.description}
+                            </p>
                             <Link href={`/event/${event.id}`}>
-                                <ButtonGeneral text={'find out more'} />
+                                <ButtonGeneral text={'FIND OUT MORE'} />
                             </Link>
+                        </div>
+                        <div className={styles.countdown}>
                             {event.date && (
                                 <Countdown
                                     eventDate={event.date}
@@ -74,12 +89,13 @@ function Home({ event }) {
                             )}
                         </div>
                     </div>
-
-                    <img
-                        src="SoC-other.jpg"
-                        className={styles.img}
-                        alt="Cohort 4 on Zoom"
-                    />
+                    <div className={styles.imageContainer}>
+                        <img
+                            src="SoC-other.jpg"
+                            className={styles.img}
+                            alt="Cohort 4 on Zoom"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

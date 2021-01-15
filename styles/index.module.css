@@ -1,14 +1,16 @@
 .background {
     background-color: #fafafa;
     height: 100vh;
-    padding-top: 50 px;
+    /* padding-top: 50px; */
 }
 .div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1.75 rem;
+    margin-top: 1.75rem;
     text-align: justify;
+    width: 80%;
+    margin: auto;
 }
 .intro {
     display: flex;
@@ -27,33 +29,43 @@
 }
 .event {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     /* background-color: blue; */
-    padding: 0rem;
-    width: 90%;
+    padding: 0rem 4rem 0rem 4rem;
+    width: 50%;
     border-width: 0.2rem;
-    margin: auto;
-    justify-content: center;
+    /* margin: auto; */
+    justify-content: space-between;
     align-items: center;
     position: relative;
+    /* height: 100%; */
+}
+.imageContainer {
+    width: 50%;
+    overflow: hidden;
 }
 .eventDetails {
-    margin: 3.5%;
+    /* margin: 3.5%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 80%;
 }
 .img {
     display: flex;
     flex-direction: column;
-    width: 46%;
-    height: 25rem;
-    width: auto;
-    max-height: 30rem;
-    max-width: inherit;
+    width: 100%;
+    /* height: 25rem; */
+    /* width: auto; */
+    /* max-height: 30rem; */
+    /* max-width: inherit; */
 }
-.absolutes {
-    position: absolute;
-    bottom: 4vw;
+.countdown {
+    font-size: 2rem;
 }
 
-.absolutes .countdown {
-    position: relative;
+.container {
+    display: flex;
+    height: 30rem;
 }

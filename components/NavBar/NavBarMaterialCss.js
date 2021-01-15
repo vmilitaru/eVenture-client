@@ -29,7 +29,7 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         height: '3rem',
-        width: '70%',
+        width: '80%',
         margin: 'auto'
     },
     // link: {
