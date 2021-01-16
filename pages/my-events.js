@@ -46,7 +46,7 @@ function MyEventsPage() {
     return (
         <div>
             <Head>
-                <title>FrontEnd</title>
+                <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 

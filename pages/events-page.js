@@ -31,7 +31,7 @@ function EventsPage({ events }) {
     return (
         <div>
             <Head>
-                <title>EVenture</title>
+                <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
