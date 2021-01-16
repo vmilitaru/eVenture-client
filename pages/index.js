@@ -3,7 +3,7 @@ import Head from 'next/head'
 
 // COMPONENTS
 import ButtonGeneral from '../components/Button/Button'
-import Countdown from '../components/Countdown/Countdown'
+import Countdown from '../components/Countdown2'
 import styles from '../styles/index.module.css'
 import Typography from '@material-ui/core/Typography'
 import Link from 'next/link'

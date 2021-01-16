@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import ChevronRight from '@material-ui/icons/ChevronRight'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import AppBar from '@material-ui/core/AppBar'
@@ -115,8 +116,9 @@ const NavBar = () => {
                                                 aria-controls="long-menu"
                                                 aria-haspopup="true"
                                                 onClick={handleClick}
+                                                className={classes.menu}
                                             >
-                                                <MoreVertIcon />
+                                                <ChevronRight />
                                             </IconButton>
                                         </div>
                                     </div>
