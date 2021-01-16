@@ -6,7 +6,7 @@ import { useStyles } from '../styles/events-page-materialCss'
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import Loading from '../components/Loading'
 import Typography from '@material-ui/core/Typography'
-
+import ButtonGeneral from '../components/Button/Button'
 import EventCard from '../components/EventCard/EventCard'
 
 // ENVIRONMENT
@@ -52,7 +52,7 @@ function MyEventsPage() {
 
             <Typography variant="h2">Events you're signed up for:</Typography>
 
-            {events ? (
+            {events && events.length > 0 ? (
                 <div className={classes.eventpage}>
                     {events.map((event) => (
                         <div key={event.id} className={classes.event}>
@@ -68,7 +68,38 @@ function MyEventsPage() {
                     ))}
                 </div>
             ) : (
-                <div>Loading events...</div>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexdirection: 'column',
+                        alignItems: 'center',
+                        alignContent: 'stretch',
+                        flexWrap: 'wrap',
+                        justifyContent: 'center',
+                        width: '50rem',
+                        margin: '3rem auto 5rem auto',
+                        boxshadow: '0rem 0rem 1rem 0.05px rgb(216, 216, 216)'
+                    }}
+                >
+                    <img
+                        src="/NoTicketsYet.svg"
+                        id="NoTicketsYet"
+                        alt="You haven't signed up for any events yet."
+                    />
+                    {/* <link href="/events-page"> */}
+                    <a href="/events-page">
+                        <ButtonGeneral
+                            style={{
+                                padding: '1rem',
+                                margin: '1rem',
+                                fontSize: '1.2rem'
+                            }}
+                            text={'Sign up for events here!'}
+                            // href="/events-page"
+                        ></ButtonGeneral>
+                    </a>
+                    {/* </link> */}
+                </div>
             )}
         </div>
     )
