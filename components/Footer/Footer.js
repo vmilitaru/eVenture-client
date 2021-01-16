@@ -31,7 +31,7 @@ const Footer = () => {
                         >
                             <Icon
                                 className="fab fa-facebook-square"
-                                color="primary"
+                                color="secondary"
                             />
                         </Link>
 
@@ -42,7 +42,7 @@ const Footer = () => {
                         >
                             <Icon
                                 className="fab fa-twitter-square"
-                                color="primary"
+                                color="secondary"
                             />
                         </Link>
 
@@ -51,7 +51,10 @@ const Footer = () => {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Icon className="fab fa-linkedin" color="primary" />
+                            <Icon
+                                className="fab fa-linkedin"
+                                color="secondary"
+                            />
                         </Link>
 
                         <Link
@@ -59,7 +62,10 @@ const Footer = () => {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Icon className="fab fa-youtube" color="primary" />
+                            <Icon
+                                className="fab fa-youtube"
+                                color="secondary"
+                            />
                         </Link>
                     </div>
                     <div className={styles.div}>
@@ -72,7 +78,7 @@ const Footer = () => {
                             >
                                 <Icon
                                     className="fas fa-envelope"
-                                    color="primary"
+                                    color="secondary"
                                 />
                             </Link>
                         </div>
