@@ -55,8 +55,15 @@
 .description {
     width: 66%;
     padding: 3rem;
+    letter-spacing: 0.04rem;
 }
 .additionalInfo {
     width: 34%;
     padding: 3rem;
+}
+.icons {
+    background-color: #318855;
+}
+.icons:hover {
+    background-color: #227243;
 }

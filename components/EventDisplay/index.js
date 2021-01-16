@@ -2,6 +2,10 @@ import React from 'react'
 import ButtonGeneral from '../Button/Button'
 import Typography from '@material-ui/core/Typography'
 import styles from './EventDisplay.module.css'
+import IconButton from '@material-ui/core/IconButton'
+import EditIcon from '@material-ui/icons/Edit'
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
+import { useStyles } from './EventDisplayMaterialCSS'
 
 export default function EventDisplay({
     event,
@@ -16,6 +20,8 @@ export default function EventDisplay({
     numtickets,
     eventAttendeeCount
 }) {
+    const classes = useStyles()
+
     return (
         <>
             {/* <div className={styles.background}></div> */}
@@ -41,7 +47,8 @@ export default function EventDisplay({
                         </div>
                         <h3 className={styles.title}>{event.title}</h3>
                         <Typography gutterBottom variant="h5" component="h3">
-                            <strong>WHERE?:</strong> {event.location}
+                            <strong>WHERE?:</strong>
+                            {`\n${event.location}`}
                         </Typography>
                     </div>
                 </section>
@@ -49,7 +56,7 @@ export default function EventDisplay({
                     <div>
                         {user && Object.values(user)[0][0] && (
                             <>
-                                <ButtonGeneral
+                                {/* <ButtonGeneral
                                     text={'EDIT'}
                                     onClick={() => {
                                         setEditing(true)
@@ -58,7 +65,21 @@ export default function EventDisplay({
                                 <ButtonGeneral
                                     text={'DELETE'}
                                     onClick={deleteEvent}
-                                />
+                                /> */}
+                                <IconButton
+                                    className={classes.icons}
+                                    aria-label="Edit"
+                                    onClick={() => setEditing(true)}
+                                >
+                                    <EditIcon />
+                                </IconButton>
+                                <IconButton
+                                    className={classes.icons}
+                                    aria-label="Delete"
+                                    onClick={deleteEvent}
+                                >
+                                    <DeleteForeverIcon />
+                                </IconButton>
                             </>
                         )}
                     </div>
