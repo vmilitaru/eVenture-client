@@ -7,10 +7,21 @@ import Countdown from '../components/Countdown2'
 import styles from '../styles/index.module.css'
 import Typography from '@material-ui/core/Typography'
 import Link from 'next/link'
-import { useStyles } from '../styles/index'
 import Eventcard from '../components/EventCard/EventCard'
 import { serverUrl } from '../environment'
 import { DateTime } from 'luxon'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles({
+    media: {
+        height: 300
+    }
+})
 
 function Home({ event }) {
     const classes = useStyles()
@@ -34,7 +45,7 @@ function Home({ event }) {
             return '...'
         }
         const descArray = event?.description.split('')
-        let shortDesc = descArray?.splice(0, 100)
+        let shortDesc = descArray?.splice(0, 200)
         shortDesc = shortDesc?.join('').trim()
         shortDesc += '...'
         return shortDesc
@@ -46,42 +57,38 @@ function Home({ event }) {
                 <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {/* <div className={styles.intro}>
-                    <pic></pic>
-                    <Typography variant="h2">
-                        eVenture - Develop with our community
-                    </Typography>
-                    <Typography variant="h3">
-                        {/* Develop with our community}
-                    </Typography>
-                </div> */}
+
             <div className={styles.heading}>
                 <div className={styles.animation}>
                     <ul className={styles.mask}>
                         <li>Develop</li>
                         <li>Learn</li>
                         <li>Grow</li>
-                        <li>Learn</li>
+                        <li>Discover</li>
                         <li>Develop</li>
                     </ul>
                     <ul>
-                        <li>Develop</li>
                         <li>Learn</li>
                         <li>Grow</li>
-                        <li>Learn</li>
+                        <li>Discover</li>
                         <li>Develop</li>
+                        <li>Learn</li>
                     </ul>
                 </div>
                 with our community at School of Code
             </div>
+
             <div className={styles.div}>
                 <div className={styles.container}>
-                    <div className={styles.event}>
-                        <Typography variant="h3">UPCOMING EVENT:</Typography>
+                    {/* <div className={styles.eventContainer}>
+                       <Typography variant="h3">Upcoming Event</Typography>
+
                         <div className={styles.eventDetails}>
-                            {/* <img src={event.banner}></img> */}
+                        
+                            <img src={event.banner}></img>
 
                             <Typography variant="h4">{event.title}</Typography>
+
                             <Typography variant="h5">
                                 <span
                                     style={{
@@ -92,31 +99,77 @@ function Home({ event }) {
                                     {convertDate()}
                                 </span>
                             </Typography>
+
                             <p className={styles.description}>
-                                {event.description}
+                                {shortenDescription()}
                             </p>
+
                             <Link href={`/event/${event.id}`}>
                                 <ButtonGeneral text={'FIND OUT MORE'} />
                             </Link>
                         </div>
-                        <div className={styles.countdown}>
-                            {event.date && (
-                                <Countdown
-                                    eventDate={event.date}
-                                    eventTime={event.time}
-                                    className={styles.countdown}
-                                />
-                            )}
-                        </div>
-                    </div>
-                    <div className={styles.imageContainer}>
+                    </div> */}
+                    <Card className={styles.root}>
+                        <CardActionArea>
+                            <CardMedia
+                                className={classes.media}
+                                image={event.banner}
+                                title={event.banner}
+                            />
+                            <CardContent>
+                                <Typography
+                                    gutterBottom
+                                    variant="h5"
+                                    component="h2"
+                                >
+                                    {event.title}
+                                </Typography>
+                                <Typography
+                                    variant="body2"
+                                    color="textSecondary"
+                                    component="p"
+                                >
+                                    {shortenDescription()}
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                            <Link href={`/event/${event.id}`}>
+                                <ButtonGeneral text={'FIND OUT MORE'} />
+                            </Link>
+                        </CardActions>
+                    </Card>
+
+                    {/* <div className={styles.imageContainer}>
                         <img
                             src="SoC-other.jpg"
                             className={styles.img}
                             alt="Cohort 4 on Zoom"
-                        />
+                        ></img>
+                    </div> */}
+                    <div className={styles.imageContainer}>
+                        <a
+                            href="www.schoolofcode.co.uk"
+                            className={styles.textWithBlurredBg}
+                        >
+                            <img
+                                src="SoC-other.jpg"
+                                alt="Cohort 4 on Zoom"
+                            ></img>
+                            <h2>Join the School of Code</h2>
+                        </a>
                     </div>
                 </div>
+            </div>
+
+            <div className={styles.countdown}>
+                {event.date && (
+                    <Countdown
+                        eventDate={event.date}
+                        eventTime={event.time}
+                        className={styles.countdown}
+                    />
+                )}
             </div>
         </div>
     )
