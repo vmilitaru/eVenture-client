@@ -34,7 +34,10 @@ function Home({ event }) {
             return '...'
         }
         const descArray = event?.description.split('')
-        let shortDesc = descArray?.splice(0, 100)
+        if (descArray.length < 250) {
+            return event.description
+        }
+        let shortDesc = descArray?.splice(0, 250)
         shortDesc = shortDesc?.join('').trim()
         shortDesc += '...'
         return shortDesc
@@ -93,7 +96,7 @@ function Home({ event }) {
                                 </span>
                             </Typography>
                             <p className={styles.description}>
-                                {event.description}
+                                {shortenDescription()}
                             </p>
                             <Link href={`/event/${event.id}`}>
                                 <ButtonGeneral text={'FIND OUT MORE'} />

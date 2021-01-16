@@ -28,9 +28,9 @@ const FlipUnitContainer = ({ digit, shuffle, unit }) => {
 
     // to prevent a negative value
     if (unit !== 'hours' || unit !== 'days') {
-        previousDigit = previousDigit === 0 ? 59 : previousDigit
+        previousDigit = previousDigit === 60 ? 0 : previousDigit
     } else {
-        previousDigit = previousDigit === 1 ? 23 : previousDigit
+        previousDigit = previousDigit === 24 ? 0 : previousDigit
     }
 
     // add zero
@@ -157,7 +157,7 @@ function FlipClock({ eventDate, eventTime }) {
                 digit={second}
                 shuffle={secondShuffle}
             />
-            {/* <div className={style.time}>
+            <div className={style.time}>
                 <div className={style.timeType}>
                     <h2 className={style.timetext}>Days </h2>
                 </div>
@@ -170,7 +170,7 @@ function FlipClock({ eventDate, eventTime }) {
                 <div className={style.timeType}>
                     <h2 className={style.timetext}>Seconds </h2>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }

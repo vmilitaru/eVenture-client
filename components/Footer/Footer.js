@@ -2,7 +2,6 @@ import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import { makeStyles } from '@material-ui/core/styles'
 import Link from '@material-ui/core/Link'
 import Icon from '@material-ui/core/Icon'
 import { loadCSS } from 'fg-loadcss'
@@ -31,7 +30,7 @@ const Footer = () => {
                         >
                             <Icon
                                 className="fab fa-facebook-square"
-                                color="primary"
+                                color="secondary"
                             />
                         </Link>
 
@@ -42,7 +41,7 @@ const Footer = () => {
                         >
                             <Icon
                                 className="fab fa-twitter-square"
-                                color="primary"
+                                color="secondary"
                             />
                         </Link>
 
@@ -51,7 +50,10 @@ const Footer = () => {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Icon className="fab fa-linkedin" color="primary" />
+                            <Icon
+                                className="fab fa-linkedin"
+                                color="secondary"
+                            />
                         </Link>
 
                         <Link
@@ -59,7 +61,10 @@ const Footer = () => {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <Icon className="fab fa-youtube" color="primary" />
+                            <Icon
+                                className="fab fa-youtube"
+                                color="secondary"
+                            />
                         </Link>
                     </div>
                     <div className={styles.div}>
@@ -72,7 +77,7 @@ const Footer = () => {
                             >
                                 <Icon
                                     className="fas fa-envelope"
-                                    color="primary"
+                                    color="secondary"
                                 />
                             </Link>
                         </div>
