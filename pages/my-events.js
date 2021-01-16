@@ -20,6 +20,7 @@ function MyEventsPage() {
         if (user) {
             async function getTicketsByUser() {
                 const accessToken = await getAccessTokenSilently()
+                console.log(accessToken)
 
                 const response = await fetch(
                     `${serverUrl}/prot/tickets?email=${user.email}`,

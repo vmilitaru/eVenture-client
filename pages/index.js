@@ -55,7 +55,7 @@ function Home({ event }) {
                         {/* Develop with our community}
                     </Typography>
                 </div> */}
-            <div className={styles.text}>
+            <div className={styles.heading}>
                 <div className={styles.animation}>
                     <ul className={styles.mask}>
                         <li>Develop</li>

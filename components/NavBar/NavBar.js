@@ -41,7 +41,7 @@ const NavBar = () => {
                                 <img
                                     className={styles.logo}
                                     id="logo"
-                                    src="/soclogo.png"
+                                    src="/Eventure (1).png"
                                     alt="logo"
                                 />
                                 <Link
