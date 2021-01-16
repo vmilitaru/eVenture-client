@@ -81,6 +81,7 @@ function AdminEventPage() {
                     millisecond: 0
                 })
             )
+            console.log(timeObj)
         }
     }
 

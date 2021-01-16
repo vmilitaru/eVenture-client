@@ -6,6 +6,7 @@ import Head from 'next/head'
 import PropTypes from 'prop-types'
 
 // STYLES
+import '../styles/globals.css'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../src/theme'
@@ -47,7 +48,7 @@ export default function MyApp(props) {
                 <ProtectedRouteAndRoleProvider>
                     <React.Fragment>
                         <Head>
-                            <title>My page</title>
+                            <title>eVenture</title>
                             <meta
                                 name="viewport"
                                 content="minimum-scale=1, initial-scale=1, width=device-width"

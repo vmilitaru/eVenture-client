@@ -1,0 +1,16 @@
+.card {
+    display: flex;
+}
+.image {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.actionsBar {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+.details {
+    display: flex;
+}

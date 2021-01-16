@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row-reverse;
     height: 50px;
-    margin-right: 1rem;
     align-items: center;
 }
 
@@ -20,5 +19,4 @@
     font-weight: bold;
     text-shadow: 0.5px 0.5px 0.5px rgb(83, 83, 83);
     letter-spacing: 0.7px;
-
 }

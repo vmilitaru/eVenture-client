@@ -5,6 +5,7 @@ import fetch from 'isomorphic-unfetch'
 import { useStyles } from '../styles/events-page-materialCss'
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import Loading from '../components/Loading'
+import Typography from '@material-ui/core/Typography'
 
 import EventCard from '../components/EventCard/EventCard'
 
@@ -20,6 +21,7 @@ function MyEventsPage() {
         if (user) {
             async function getTicketsByUser() {
                 const accessToken = await getAccessTokenSilently()
+                console.log(accessToken)
 
                 const response = await fetch(
                     `${serverUrl}/prot/tickets?email=${user.email}`,
@@ -38,7 +40,9 @@ function MyEventsPage() {
             console.log(events)
         }
     }, [user])
+
     const classes = useStyles()
+
     return (
         <div>
             <Head>
@@ -46,7 +50,7 @@ function MyEventsPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <h1>A list of all events</h1>
+            <Typography variant="h2">Events you're signed up for:</Typography>
 
             {events ? (
                 <div className={classes.eventpage}>
@@ -56,7 +60,7 @@ function MyEventsPage() {
                                 href="/event/[id]"
                                 as={`/event/${event.event_id}`}
                             >
-                                <a>
+                                <a className={classes.linkSpecific}>
                                     <EventCard event={event} />
                                 </a>
                             </Link>

@@ -1,0 +1,64 @@
+.text {
+    font-size: 2em;
+    font-family: sans-serif;
+    line-height: 1.2;
+}
+
+.animation {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    border: 1px solid;
+    overflow: visible;
+    white-space: nowrap;
+    color: lightgray;
+    position: relative;
+}
+
+.animation ul {
+    list-style: none;
+    padding: 0 0.5ex;
+    margin: 0;
+    height: 1.2em;
+}
+
+.animation li {
+    position: relative;
+    animation: cycle-5-items 5s ease-in-out alternate infinite;
+}
+
+.animation ul.mask {
+    color: black;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+@keyframes cycle-5-items {
+    0%,
+    10% {
+        transform: translateY(0%);
+    }
+
+    15%,
+    35% {
+        transform: translateY(-100%);
+    }
+
+    40%,
+    60% {
+        transform: translateY(-200%);
+    }
+
+    65%,
+    85% {
+        transform: translateY(-300%);
+    }
+
+    90%,
+    100% {
+        transform: translateY(-400%);
+    }
+}
