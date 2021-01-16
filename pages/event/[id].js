@@ -45,6 +45,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
     const [speaker, setSpeaker] = useState(event.speaker)
     const [location, setLocation] = useState(event.location)
     const [numtickets, setNumTickets] = useState(event.numtickets)
+    const [eventAttendeeCount, setEventAttendeeCount] = useState(ticketCount)
 
     const router = useRouter()
     const refreshData = () => router.replace(router.asPath)
@@ -87,7 +88,6 @@ export default function SpecificEventPage({ event, ticketCount }) {
 
     const handleDateChange = (d) => {
         //This function handles correct time conversion from object to ISO
-        console.log(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
         setDate(DateTime.utc(d.c.year, d.c.month, d.c.day).toISODate())
     }
 
@@ -260,6 +260,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
             if (user) {
                 getYoSelfATicket()
                 setIsRegistered(true)
+                setEventAttendeeCount(parseInt(eventAttendeeCount) + 1)
             }
             if (!user) {
                 loginWithRedirect()
@@ -268,6 +269,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
         }
         deleteTicket()
         setIsRegistered(false)
+        setEventAttendeeCount(parseInt(eventAttendeeCount) - 1)
     }
 
     function convertDate() {
@@ -295,6 +297,10 @@ export default function SpecificEventPage({ event, ticketCount }) {
                     handleClickForTicket={handleClickForTicket}
                     setEditing={setEditing}
                     isRegistered={isRegistered}
+                    availableTickets={availableTickets}
+                    ticketCount={ticketCount}
+                    numtickets={numtickets}
+                    eventAttendeeCount={eventAttendeeCount}
                 />
             ) : (
                 <EventForm
