@@ -9,4 +9,8 @@ export const useStyles = makeStyles((theme) => ({
     //     fontSize: '1rem',
     //     height: '1.75rem'
     // }
+    button: {
+        backgroundColor: 'white',
+        color: theme.palette.third.main
+    }
 }))

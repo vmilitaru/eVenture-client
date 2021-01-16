@@ -2,7 +2,7 @@ import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 
 import ButtonGeneral from '../Button/Button.js'
-import { useStyles } from '../NavBar/NavBarMaterialCss'
+import { useStyles } from './LoginMaterialCss'
 
 import { clientUrl } from '../../environment'
 
@@ -16,7 +16,7 @@ const LoginButton = () => {
 
         return (
             <ButtonGeneral
-                // className={classes.button}
+                className={classes.button}
                 onClick={() => loginWithRedirect()}
                 text={'LOG IN'}
             />
@@ -26,7 +26,7 @@ const LoginButton = () => {
 
         return (
             <ButtonGeneral
-                // className={classes.button}
+                className={classes.button}
                 onClick={() => logout({ returnTo: `${clientUrl}/events-page` })}
                 text={'LOG OUT'}
             />
