@@ -5,6 +5,7 @@ import fetch from 'isomorphic-unfetch'
 import { useStyles } from '../styles/events-page-materialCss'
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 import Loading from '../components/Loading'
+import Typography from '@material-ui/core/Typography'
 
 import EventCard from '../components/EventCard/EventCard'
 
@@ -49,7 +50,7 @@ function MyEventsPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <h1>A list of all events</h1>
+            <Typography variant="h2">Events you're signed up for:</Typography>
 
             {events ? (
                 <div className={classes.eventpage}>
