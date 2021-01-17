@@ -40,15 +40,31 @@ function Home({ event }) {
         return localeDate
     }
 
-    function shortenDescription() {
-        if (!event.description) {
-            return '...'
+    // function shortenDescription() {
+    //     if (!event.description) {
+    //         return '...'
+    //     }
+    //     const descArray = event?.description.split('')
+    //     let shortDesc = descArray?.splice(0, 200)
+    //     shortDesc = shortDesc?.join('').trim()
+    //     shortDesc += '...'
+    //     return shortDesc
+    // }
+    let str = event.description
+
+    function shortenDescription(str, min, n, max, useWordBoundary) {
+        if (str.length <= max) return str
+        if (useWordBoundary) {
+            // Prefer to break after a dot:
+            var i = str.indexOf('.', n) + 1 // Look forward
+            if (i < min || i > max) i = str.slice(0, n).lastIndexOf('.') + 1 // ...or backward
+            if (i >= min) return str.slice(0, i) // No ellipsis necessary
+            // If dot-break is impossible, try word break:
+            i = str.indexOf(' ', n) // Look forward
+            if (i < min || i > max) i = str.slice(0, n).lastIndexOf(' ') // ...backward
+            if (i >= min) n = i // Found an acceptable position
         }
-        const descArray = event?.description.split('')
-        let shortDesc = descArray?.splice(0, 200)
-        shortDesc = shortDesc?.join('').trim()
-        shortDesc += '...'
-        return shortDesc
+        return str.substr(0, n) + ' ...'
     }
 
     return (
@@ -61,18 +77,18 @@ function Home({ event }) {
             <div className={styles.heading}>
                 <div className={styles.animation}>
                     <ul className={styles.mask}>
-                        <li>Develop</li>
-                        <li>Learn</li>
-                        <li>Grow</li>
-                        <li>Discover</li>
-                        <li>Develop</li>
+                        <li className={styles.develop}>Develop</li>
+                        <li className={styles.learn}>Learn</li>
+                        <li className={styles.grow}>Grow</li>
+                        <li className={styles.discover}>Discover</li>
+                        <li className={styles.develop}>Develop</li>
                     </ul>
                     <ul>
-                        <li>Learn</li>
-                        <li>Grow</li>
-                        <li>Discover</li>
-                        <li>Develop</li>
-                        <li>Learn</li>
+                        <li className={styles.learn}>Learn</li>
+                        <li className={styles.grow}>Grow</li>
+                        <li className={styles.discover}>Discover</li>
+                        <li className={styles.develop}>Develop</li>
+                        <li className={styles.learn}>Learn</li>
                     </ul>
                 </div>
                 with our community at School of Code
@@ -80,35 +96,6 @@ function Home({ event }) {
 
             <div className={styles.div}>
                 <div className={styles.container}>
-                    {/* <div className={styles.eventContainer}>
-                       <Typography variant="h3">Upcoming Event</Typography>
-
-                        <div className={styles.eventDetails}>
-                        
-                            <img src={event.banner}></img>
-
-                            <Typography variant="h4">{event.title}</Typography>
-
-                            <Typography variant="h5">
-                                <span
-                                    style={{
-                                        backgroundColor: '#fafafa',
-                                        padding: '0vw 0.5vw 0vw 0.5vw'
-                                    }}
-                                >
-                                    {convertDate()}
-                                </span>
-                            </Typography>
-
-                            <p className={styles.description}>
-                                {shortenDescription()}
-                            </p>
-
-                            <Link href={`/event/${event.id}`}>
-                                <ButtonGeneral text={'FIND OUT MORE'} />
-                            </Link>
-                        </div>
-                    </div> */}
                     <Card className={styles.root}>
                         <CardActionArea>
                             <CardMedia
@@ -129,7 +116,13 @@ function Home({ event }) {
                                     color="textSecondary"
                                     component="p"
                                 >
-                                    {shortenDescription()}
+                                    {shortenDescription(
+                                        str,
+                                        200,
+                                        250,
+                                        255,
+                                        true
+                                    )}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
@@ -140,16 +133,9 @@ function Home({ event }) {
                         </CardActions>
                     </Card>
 
-                    {/* <div className={styles.imageContainer}>
-                        <img
-                            src="SoC-other.jpg"
-                            className={styles.img}
-                            alt="Cohort 4 on Zoom"
-                        ></img>
-                    </div> */}
                     <div className={styles.imageContainer}>
                         <a
-                            href="www.schoolofcode.co.uk"
+                            href="https://www.schoolofcode.co.uk"
                             className={styles.textWithBlurredBg}
                         >
                             <img

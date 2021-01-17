@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
 .background {
     background-color: #fafafa;
     height: 100vh;
@@ -102,7 +104,7 @@
 .animation {
     display: inline-block;
     vertical-align: top;
-    text-align: center;
+    text-align: right;
     border: 1px solid;
     overflow: visible;
     white-space: nowrap;
@@ -193,3 +195,9 @@
 .textWithBlurredBg:hover :not(img) {
     opacity: 1;
 }
+/* .grow {
+    font-family: 'Courgette', cursive;
+}
+.learn {
+    font-family: 'Fraunces', serif;
+} */
