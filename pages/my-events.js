@@ -12,6 +12,7 @@ import styles from '../styles/my-events.module.css'
 
 // ENVIRONMENT
 import { serverUrl } from '../environment'
+import Share from '../components/Share/Share'
 
 function MyEventsPage() {
     const { user, getAccessTokenSilently } = useAuth0()
@@ -50,7 +51,7 @@ function MyEventsPage() {
                 <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
+            <Share />
             {events && events.length > 0 ? (
                 <div className={classes.eventpage}>
                     <Typography variant="h2">
