@@ -52,10 +52,12 @@ function MyEventsPage() {
             </Head>
 
             {events && events.length > 0 ? (
-                <div className={classes.eventpage}>
-                    <Typography variant="h2">
+                <>
+                <Typography variant="h2">
                         Events you're signed up for:
                     </Typography>
+                <div className={classes.eventpage}>
+                   
                     {events.map((event) => (
                         <div key={event.id} className={classes.event}>
                             <Link
@@ -69,6 +71,7 @@ function MyEventsPage() {
                         </div>
                     ))}
                 </div>
+                </>
             ) : (
                 <div
                     ckassName={styles.noEvent}
