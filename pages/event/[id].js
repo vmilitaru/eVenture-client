@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography'
 import UploadImage from '../../components/ImageUploader/index'
 import EventDisplay from '../../components/EventDisplay'
 import EventForm from '../../components/EventForm'
+var gfm = require('remark-gfm')
 
 // ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
@@ -477,7 +478,7 @@ export async function getServerSideProps(context) {
     const mdxSource = await renderToString(content, {
         // Optionally pass remark/rehype plugins
         mdxOptions: {
-          remarkPlugins: [],
+          remarkPlugins: [gfm],
           rehypePlugins: [],
         },
       })
