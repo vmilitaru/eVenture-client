@@ -53,7 +53,7 @@ export default function EventDisplay({
                     </div>
                 </section>
                 <section className={styles.actionsBar}>
-                    <div>
+                    <div className={styles.editDelete}>
                         {user && Object.values(user)[0][0] && (
                             <>
                                 {/* <ButtonGeneral
@@ -94,13 +94,21 @@ export default function EventDisplay({
                             />
                         ) : (
                             <>
+                                <p
+                                    style={{
+                                        display: 'inline',
+                                        marginRight: '2rem'
+                                    }}
+                                >
+                                    You are registered - see you there!
+                                </p>
                                 <ButtonGeneral
                                     onClick={() => {
                                         handleClickForTicket()
                                     }}
+                                    style={{ width: '20rem', height: '2.5rem' }}
                                     text="CANCEL TICKET"
                                 />
-                                <p>You are registered - see you there!</p>
                             </>
                         )}
                     </div>
@@ -116,8 +124,8 @@ export default function EventDisplay({
 
                         {user && Object.values(user)[0][0] && (
                             <p>
-                                There are {eventAttendeeCount} booked tickets
-                                out of {numtickets}
+                                Ticket availability: {eventAttendeeCount}/
+                                {numtickets}
                             </p>
                         )}
                         {user && !Object.values(user)[0][0] && (

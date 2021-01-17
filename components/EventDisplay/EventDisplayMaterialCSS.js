@@ -1,13 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 export const useStyles = makeStyles((theme) => ({
-    // icons: {
-    //     backgroundColor: '#318855',
-    //     color: 'white',
-    //     '&:hover': {
-    //         backgroundColor: '#227243'
-    //     }
-    // }
     icons: {
         color: '#318855',
         backgroundColor: '#fafafa',

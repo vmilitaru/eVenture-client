@@ -5,9 +5,9 @@ export const useStyles = makeStyles((theme) => ({
         maxWidth: '25vw',
         height: '20vw',
         maxHeight: '20vw',
-        margin: '2vw',
+        margin: '1vw 0.5vw 5vw 0.5vw',
         backgroundColor: `${theme.palette.primary.contrastText}`,
-        // boxShadow: '0.1vw 0.1vw 0.5vw -0.05vw grey'
+        boxShadow: '0vw 0.1vw 0.1vw 0.1vw #dfdfdf',
         '&:hover': {
             boxShadow: '0vw 0.1vw 0.5vw 0vw darkgray'
         }
@@ -22,7 +22,10 @@ export const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         flexWrap: 'wrap',
         backgroundColor: `${theme.palette.primary.contrastText}`,
-        textDecoration: 'none'
+        textDecoration: 'none',
+        '&:hover': {
+            backgroundColor: `${theme.palette.primary.contrastText}`
+        }
     },
     media: {
         height: '10vw',

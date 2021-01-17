@@ -18,7 +18,6 @@
     width: 100%;
 }
 .image {
-    background-size: cover;
     width: 66%;
     height: 100%;
     border-top-left-radius: 5px;
@@ -43,7 +42,7 @@
 .actionsBar {
     display: flex;
     justify-content: space-between;
-    padding: 0.8rem 1rem 0.8rem 18rem;
+    padding: 0.8rem 1rem 0.8rem 17rem;
     width: 100%;
     border-top: thin solid darkgray;
     border-bottom: thin solid darkgray;
@@ -56,14 +55,20 @@
     width: 66%;
     padding: 3rem;
     letter-spacing: 0.04rem;
+    text-align: left;
 }
 .additionalInfo {
     width: 34%;
     padding: 3rem;
 }
-.icons {
+.editDelete {
+    display: flex;
+    justify-content: space-between;
+    width: 10rem;
+}
+/* .icons {
     background-color: #318855;
 }
 .icons:hover {
     background-color: #227243;
-}
+} */

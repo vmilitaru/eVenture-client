@@ -316,13 +316,13 @@ export default function SpecificEventPage({ event, ticketCount }) {
                     speaker={speaker}
                     location={location}
                     numtickets={numtickets}
-                    image={previewSource}
+                    previewSource={previewSource}
                     setDescription={setDescription}
                     setSpeaker={setSpeaker}
                     setLocation={setLocation}
                     setNumTickets={setNumTickets}
                     setEditing={setEditing}
-                    setImage={setPreviewSource}
+                    setPreviewSource={setPreviewSource}
                 />
                 // <form
                 //     autoComplete="off"
