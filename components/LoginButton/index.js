@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-
+import style from './LoginMaterial.module.css'
 import ButtonGeneral from '../Button/Button.js'
 import { useStyles } from './LoginMaterialCss'
 
@@ -16,7 +16,7 @@ const LoginButton = () => {
 
         return (
             <ButtonGeneral
-                className={classes.button}
+                className={style.button}
                 onClick={() => loginWithRedirect()}
                 text={'LOG IN'}
             />
