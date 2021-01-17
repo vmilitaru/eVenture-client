@@ -115,7 +115,7 @@ export default function EventDisplay({
                 </section>
                 <section className={styles.details}>
                     <div className={styles.description}>
-                        <p>{event.description}</p>
+                        <p style={{ margin: '0' }}>{event.description}</p>
                     </div>
                     <div className={styles.additionalInfo}>
                         <Typography gutterBottom variant="h5" component="h3">
