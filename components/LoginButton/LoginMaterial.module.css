@@ -1,0 +1,14 @@
+.button {
+    background-color: #fafafa;
+    color: #318855;
+    font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif';
+    padding: 0.5rem;
+    margin: 0rem;
+    box-shadow: 0.1rem 0.01rem 0.1rem 0.01rem grey;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+}
+.button:hover {
+    background-color: #d6d6d6;
+}
