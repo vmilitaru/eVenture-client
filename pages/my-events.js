@@ -50,10 +50,11 @@ function MyEventsPage() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Typography variant="h2">Events you're signed up for:</Typography>
-
             {events && events.length > 0 ? (
                 <div className={classes.eventpage}>
+                    <Typography variant="h2">
+                        Events you're signed up for:
+                    </Typography>
                     {events.map((event) => (
                         <div key={event.id} className={classes.event}>
                             <Link
@@ -76,17 +77,18 @@ function MyEventsPage() {
                         alignContent: 'stretch',
                         flexWrap: 'wrap',
                         justifyContent: 'center',
-                        width: '50rem',
-                        margin: '3rem auto 5rem auto',
-                        boxshadow: '0rem 0rem 1rem 0.05px rgb(216, 216, 216)'
+                        width: '75rem',
+                        margin: '3rem auto 5rem auto'
                     }}
                 >
                     <img
                         src="/NoTicketsYet.svg"
                         id="NoTicketsYet"
                         alt="You haven't signed up for any events yet."
+                        style={{
+                            width: '75 rem'
+                        }}
                     />
-                    {/* <link href="/events-page"> */}
                     <a href="/events-page">
                         <ButtonGeneral
                             style={{
@@ -95,10 +97,8 @@ function MyEventsPage() {
                                 fontSize: '1.2rem'
                             }}
                             text={'Sign up for events here!'}
-                            // href="/events-page"
                         ></ButtonGeneral>
                     </a>
-                    {/* </link> */}
                 </div>
             )}
         </div>
