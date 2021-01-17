@@ -26,7 +26,8 @@ import ButtonGeneral from '../../components/Button/Button'
 import renderToString from 'next-mdx-remote/render-to-string'
 import matter from 'gray-matter'
 
-export default function SpecificEventPage({ event, ticketCount }) {
+
+export default function SpecificEventPage({ event, ticketCount,source }) {
     const [editing, setEditing] = useState(false)
     const {
         user,
@@ -49,6 +50,8 @@ export default function SpecificEventPage({ event, ticketCount }) {
     const [location, setLocation] = useState(event.location)
     const [numtickets, setNumTickets] = useState(event.numtickets)
     const [eventAttendeeCount, setEventAttendeeCount] = useState(ticketCount)
+    
+    
 
     const router = useRouter()
     const refreshData = () => router.replace(router.asPath)
@@ -304,6 +307,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
                     ticketCount={ticketCount}
                     numtickets={numtickets}
                     eventAttendeeCount={eventAttendeeCount}
+                    source={source}
                 />
             ) : (
                 <EventForm
@@ -468,7 +472,7 @@ export async function getServerSideProps(context) {
     console.log(result)
     const event = result.payload.event
     const source = event.description
-    const { content, data } = matter(source)
+    const { content} = matter(source)
    
     const mdxSource = await renderToString(content, {
         // Optionally pass remark/rehype plugins
@@ -476,9 +480,8 @@ export async function getServerSideProps(context) {
           remarkPlugins: [],
           rehypePlugins: [],
         },
-        scope: data,
       })
     const ticketCount = result.payload.ticketCount.count
-    return { props: { event, ticketCount,source: mdxSource,
-        frontMatter: data } }
+    return { props: { event, ticketCount,source: mdxSource
+        } }
 }
