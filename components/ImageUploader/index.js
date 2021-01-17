@@ -1,7 +1,7 @@
 import React from 'react'
 import Fab from '@material-ui/core/Fab'
 import IconButton from '@material-ui/core/IconButton'
-import DeleteIcon from '@material-ui/icons/Delete'
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate'
 
 import { useStyles } from './imageuploadermaterialCss'
@@ -18,19 +18,15 @@ const UploadImage = ({
     }
 
     return (
-        <div
-            className={styles.uploadImage}
-            // style={{ backgroundImage: `url(${previewSource})` }}
-        >
+        <>
             {previewSource && (
-                <div className={styles.buttons}>
-                    <IconButton
-                        aria-label="Delete"
-                        onClick={deletePreviewBanner}
-                    >
-                        <DeleteIcon className={classes.icons} />
-                    </IconButton>
-                </div>
+                <IconButton
+                    className={classes.icons}
+                    aria-label="Delete"
+                    onClick={deletePreviewBanner}
+                >
+                    <DeleteForeverIcon />
+                </IconButton>
             )}
             {!previewSource && (
                 <div>
@@ -56,7 +52,7 @@ const UploadImage = ({
                     alt="Event Image"
                 />
             )}
-        </div>
+        </>
     )
 }
 export default UploadImage
