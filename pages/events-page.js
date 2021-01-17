@@ -1,31 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import fetch from 'isomorphic-unfetch'
 import { useStyles } from '../styles/events-page-materialCss'
 import { useAuth0 } from '@auth0/auth0-react'
+import styles from '../styles/events.module.css'
 // COMPONENTS
 import Typography from '@material-ui/core/Typography'
 import EventCard from '../components/EventCard/EventCard'
+import TextField from '@material-ui/core/TextField'
 
 // ENVIRONMENT VARIABLES
 import { serverUrl } from '../environment'
 import { typography } from '@material-ui/system'
 
 function EventsPage({ events }) {
-    //const {user,isAuthenticated}=useAuth()
-    // const [events, setEvents] = useState([])
-
-    // useEffect(() => {
-    //     async function getEvents() {
-    //         const response = await fetch(`${serverUrl}/events`)
-    //         const data = await response.json()
-    //         setEvents(data.payload)
-    //     }
-
-    //     getEvents()
-    // }, [])
-
+    const [filter, setFilter] = useState('')
     const classes = useStyles()
 
     return (
@@ -35,23 +25,41 @@ function EventsPage({ events }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Typography variant="h4">Upcoming Events</Typography>
-
+                <div className={styles.title}>
+                    <Typography variant="h2">Upcoming Events</Typography>
+                </div>
+                <div className={styles.search}>
+                    <TextField
+                        placeholder={'Search events...'}
+                        onChange={(e) => setFilter(e.target.value)}
+                    />
+                </div>
                 {events ? (
                     <div className={classes.eventpage}>
-                        {events.map((event) => (
-                            <div key={event.id} className={classes.event}>
-                                <Link
-                                    className={classes.link}
-                                    href="/event/[id]"
-                                    as={`/event/${event.id}`}
-                                >
-                                    <a className={classes.linkSpecific}>
-                                        <EventCard event={event} />
-                                    </a>
-                                </Link>
-                            </div>
-                        ))}
+                        {events.map((event) => {
+                            if (
+                                event.title
+                                    .toLowerCase()
+                                    .includes(filter.toLowerCase())
+                            ) {
+                                return (
+                                    <div
+                                        key={event.id}
+                                        className={classes.event}
+                                    >
+                                        <Link
+                                            className={classes.link}
+                                            href="/event/[id]"
+                                            as={`/event/${event.id}`}
+                                        >
+                                            <a className={classes.linkSpecific}>
+                                                <EventCard event={event} />
+                                            </a>
+                                        </Link>
+                                    </div>
+                                )
+                            }
+                        })}
                     </div>
                 ) : (
                     <div>Loading events...</div>

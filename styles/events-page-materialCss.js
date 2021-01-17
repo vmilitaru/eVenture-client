@@ -6,7 +6,6 @@ export const useStyles = makeStyles({
         flexWrap: 'wrap',
         justifyContent: 'center'
     },
-
     linkSpecific: {
         textDecoration: 'none'
     }

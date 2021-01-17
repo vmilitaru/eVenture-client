@@ -1,14 +1,13 @@
-.uploadImage {
-    height: 15rem;
-    width: 30em;
-    /* max-height: 12rem; */
-    /* max-width: auto; */
-    /* object-fit: contain; */
-}
+/* .uploadImage {
+    width: 100%;
+    overflow: hidden;
+    max-height: 12rem;
+    max-width: auto;
+    object-fit: contain;
+} */
 .image {
     object-fit: cover;
-    height: 15rem;
-    width: 30em;
+    width: 100%;
 }
 .input {
     /* object-fit: contain;

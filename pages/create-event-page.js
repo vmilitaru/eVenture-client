@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
+import { useRouter } from 'next/router'
 
 import TextField from '@material-ui/core/TextField'
 import LuxonUtils from '@date-io/luxon'
@@ -15,6 +16,7 @@ import {
 import UploadImage from '../components/ImageUploader/index'
 import { useStyles } from '../styles/Create-event-page-materialui'
 import styles from '../styles/create-event.module.css'
+import EventForm from '../components/EventForm'
 
 // ENVIRONMENT VARIABLES
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
@@ -38,6 +40,9 @@ function AdminEventPage() {
 
     const [previewSource, setPreviewSource] = useState('')
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+    const router = useRouter()
+    const redirect = () => router.replace('/events-page')
 
     useEffect(() => {
         user &&
@@ -158,7 +163,28 @@ function AdminEventPage() {
             <Typography variant="h2" className={classes.heading}>
                 Create an Event
             </Typography>
-            <form
+            <EventForm
+                handleSubmit={handleSubmit}
+                handleDateChange={handleDateChange}
+                handleTimeChange={handleTimeChange}
+                handleFileInputChange={handleFileInputChange}
+                setTitle={setTitle}
+                title={title}
+                description={description}
+                date={date}
+                time={timeObj}
+                speaker={speaker}
+                location={location}
+                numtickets={numtickets}
+                previewSource={previewSource}
+                setDescription={setDescription}
+                setSpeaker={setSpeaker}
+                setLocation={setLocation}
+                setNumTickets={setNumTickets}
+                setEditing={redirect}
+                setPreviewSource={setPreviewSource}
+            />
+            {/* <form
                 className={styles.form}
                 noValidate
                 autoComplete="off"
@@ -211,11 +237,11 @@ function AdminEventPage() {
                             utils={LuxonUtils}
                             className={classes.datetime}
                         >
-                            {/* <Grid
+                            <Grid
                                 container
                                 // justify="space-around"
                                 direction="row"
-                            > */}
+                            >
                             <KeyboardDatePicker
                                 className={classes.date}
                                 margin="normal"
@@ -242,7 +268,7 @@ function AdminEventPage() {
                                 }}
                                 className={classes.datetime}
                             />
-                            {/* </Grid> */}
+                            </Grid>
                         </MuiPickersUtilsProvider>
 
                         <TextField
@@ -313,7 +339,7 @@ function AdminEventPage() {
                         Save
                     </Button>
                 </div>
-            </form>
+            </form> */}
         </React.Fragment>
     )
 }
