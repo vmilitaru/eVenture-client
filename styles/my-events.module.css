@@ -1,0 +1,13 @@
+.noEvent {
+    display: 'flex';
+    flex-direction: 'column';
+    align-items: 'center';
+    align-content: 'stretch';
+    flex-wrap: 'wrap';
+    justify-content: 'center';
+    width: '75rem';
+    margin: '3rem auto 5rem auto';
+}
+.image {
+    width: '75 rem';
+}
