@@ -49,15 +49,6 @@ function Home({ event }) {
                 <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {/* <div className={styles.intro}>
-                    <pic></pic>
-                    <Typography variant="h2">
-                        eVenture - Develop with our community
-                    </Typography>
-                    <Typography variant="h3">
-                        {/* Develop with our community}
-                    </Typography>
-                </div> */}
             <div className={styles.heading}>
                 <div className={styles.animation}>
                     <ul className={styles.mask}>

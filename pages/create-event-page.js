@@ -34,7 +34,7 @@ function AdminEventPage() {
     const [description, setDescription] = useState('')
     const [speaker, setSpeaker] = useState('')
     const [location, setLocation] = useState('')
-    const [numtickets, setNumTickets] = useState(null)
+    const [numtickets, setNumTickets] = useState('')
     const [buttonState, setButtonState] = useState(true)
     /* ------------------------------------IMAGE UPLOADER PREVIEW STATE------------------------------------------------------------------------- */
 
