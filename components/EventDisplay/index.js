@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import { useStyles } from './EventDisplayMaterialCSS'
+import Description from './DescriptionDisplay'
 
 export default function EventDisplay({
     event,
@@ -18,10 +19,13 @@ export default function EventDisplay({
     availableTickets,
     ticketCount,
     numtickets,
-    eventAttendeeCount
+    eventAttendeeCount,
+    source,
+    frontMatter
 }) {
     const classes = useStyles()
-
+    console.log(source)
+    console.log(frontMatter)
     return (
         <>
             {/* <div className={styles.background}></div> */}
@@ -106,9 +110,10 @@ export default function EventDisplay({
                     </div>
                 </section>
                 <section className={styles.details}>
-                    <div className={styles.description}>
+                    <Description source={source} frontMatter={frontMatter} />
+                    {/* <div className={styles.description}>
                         <p>{event.description}</p>
-                    </div>
+                    </div> */}
                     <div className={styles.additionalInfo}>
                         <Typography gutterBottom variant="h5" component="h3">
                             {event.speaker}

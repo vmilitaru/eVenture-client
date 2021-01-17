@@ -23,6 +23,9 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../../environment'
 import ButtonGeneral from '../../components/Button/Button'
 
+import renderToString from 'next-mdx-remote/render-to-string'
+import matter from 'gray-matter'
+
 export default function SpecificEventPage({ event, ticketCount }) {
     const [editing, setEditing] = useState(false)
     const {
@@ -461,9 +464,21 @@ export default function SpecificEventPage({ event, ticketCount }) {
 export async function getServerSideProps(context) {
     const { id } = context.query
     const res = await fetch(`${serverUrl}/events/${id}`)
-    const data = await res.json()
-    console.log(data)
-    const event = data.payload.event
-    const ticketCount = data.payload.ticketCount.count
-    return { props: { event, ticketCount } }
+    const result = await res.json()
+    console.log(result)
+    const event = result.payload.event
+    const source = event.description
+    const { content, data } = matter(source)
+   
+    const mdxSource = await renderToString(content, {
+        // Optionally pass remark/rehype plugins
+        mdxOptions: {
+          remarkPlugins: [],
+          rehypePlugins: [],
+        },
+        scope: data,
+      })
+    const ticketCount = result.payload.ticketCount.count
+    return { props: { event, ticketCount,source: mdxSource,
+        frontMatter: data } }
 }

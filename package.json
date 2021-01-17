@@ -31,10 +31,13 @@
     "express": "^4.17.1",
     "express-openid-connect": "^2.1.0",
     "fg-loadcss": "^3.1.0",
+    "gray-matter": "^4.0.2",
     "isomorphic-unfetch": "^3.1.0",
     "luxon": "^1.25.0",
     "moment": "^2.29.1",
     "next": "^10.0.3",
+    "next-mdx-remote": "^2.1.1",
+    "next-remote-watch": "^0.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   }
