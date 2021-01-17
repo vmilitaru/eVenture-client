@@ -8,6 +8,7 @@ import Loading from '../components/Loading'
 import Typography from '@material-ui/core/Typography'
 import ButtonGeneral from '../components/Button/Button'
 import EventCard from '../components/EventCard/EventCard'
+import styles from '../styles/my-events.module.css'
 
 // ENVIRONMENT
 import { serverUrl } from '../environment'
@@ -70,24 +71,23 @@ function MyEventsPage() {
                 </div>
             ) : (
                 <div
-                    style={{
-                        display: 'flex',
-                        flexdirection: 'column',
-                        alignItems: 'center',
-                        alignContent: 'stretch',
-                        flexWrap: 'wrap',
-                        justifyContent: 'center',
-                        width: '75rem',
-                        margin: '3rem auto 5rem auto'
-                    }}
+                    ckassName={styles.noEvent}
+                    // style={{
+                    //     display: 'flex',
+                    //     flexdirection: 'column',
+                    //     alignItems: 'center',
+                    //     alignContent: 'stretch',
+                    //     flexWrap: 'wrap',
+                    //     justifyContent: 'center',
+                    //     width: '60rem',
+                    //     margin: '3rem auto 5rem auto'
+                    // }}
                 >
                     <img
+                        className={styles.image}
                         src="/NoTicketsYet.svg"
                         id="NoTicketsYet"
                         alt="You haven't signed up for any events yet."
-                        style={{
-                            width: '75 rem'
-                        }}
                     />
                     <a href="/events-page">
                         <ButtonGeneral
