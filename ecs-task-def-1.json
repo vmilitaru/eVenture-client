@@ -1,0 +1,29 @@
+{
+    "family": "ec2-task-def-next-1",
+    "executionRoleArn": "arn:aws:iam::007555096130:role/ecsTaskExecutionRole",
+    "networkMode": "bridge",
+    "containerDefinitions": [
+        {
+            "name": "next-communiteam",
+            "image": "007555096130.dkr.ecr.eu-west-1.amazonaws.com/next-communiteam:latest",
+            "environmentFiles": [
+                {
+                  "value": "arn:aws:s3:::communiteam-ci-cd/.env.local",
+                  "type": "s3"
+                }],
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true
+        }
+    ],
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "1024",
+    "memory": "512"
+}
