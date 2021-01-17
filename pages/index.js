@@ -34,10 +34,10 @@ function Home({ event }) {
             return '...'
         }
         const descArray = event?.description.split('')
-        if (descArray.length < 250) {
+        if (descArray.length < 400) {
             return event.description
         }
-        let shortDesc = descArray?.splice(0, 250)
+        let shortDesc = descArray?.splice(0, 400)
         shortDesc = shortDesc?.join('').trim()
         shortDesc += '...'
         return shortDesc
@@ -49,50 +49,60 @@ function Home({ event }) {
                 <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className={styles.heading}>
-                <div className={styles.animation}>
-                    <ul className={styles.mask}>
-                        <li>Develop</li>
-                        <li>Learn</li>
-                        <li>Grow</li>
-                        <li>Learn</li>
-                        <li>Develop</li>
-                    </ul>
-                    <ul>
-                        <li>Develop</li>
-                        <li>Learn</li>
-                        <li>Grow</li>
-                        <li>Learn</li>
-                        <li>Develop</li>
-                    </ul>
+            <div className={styles.contrastBackground}>
+                <div className={styles.heading}>
+                    <h4>Discover A World Of Events</h4>
+                    <h4
+                        style={{
+                            fontFamily: 'Nanum Pen Script',
+                            color: 'white'
+                        }}
+                    >
+                        With School Of Code
+                    </h4>
+                    <div className={styles.animation}>
+                        <ul className={styles.mask}>
+                            <li>Develop</li>
+                            <li>Learn</li>
+                            <li>Grow</li>
+                            <li>Learn</li>
+                            <li>Develop</li>
+                        </ul>
+                        <ul>
+                            <li>Develop</li>
+                            <li>Learn</li>
+                            <li>Grow</li>
+                            <li>Learn</li>
+                            <li>Develop</li>
+                        </ul>
+                    </div>
                 </div>
-                with our community at School of Code
-            </div>
-            <div className={styles.div}>
-                <div className={styles.container}>
+                <div className={styles.div}>
+                    <div className={styles.imageContainer}>
+                        <img
+                            src="SoC-other.jpg"
+                            className={styles.img}
+                            alt="Cohort 4 on Zoom"
+                        />
+                    </div>
+                    {/* <div className={styles.container}> */}
                     <div className={styles.event}>
-                        <Typography variant="h3">UPCOMING EVENT:</Typography>
-                        <div className={styles.eventDetails}>
-                            {/* <img src={event.banner}></img> */}
-
-                            <Typography variant="h4">{event.title}</Typography>
-                            <Typography variant="h5">
-                                <span
-                                    style={{
-                                        backgroundColor: '#fafafa',
-                                        padding: '0vw 0.5vw 0vw 0.5vw'
-                                    }}
-                                >
-                                    {convertDate()}
-                                </span>
-                            </Typography>
-                            <p className={styles.description}>
-                                {shortenDescription()}
-                            </p>
-                            <Link href={`/event/${event.id}`}>
-                                <ButtonGeneral text={'FIND OUT MORE'} />
-                            </Link>
-                        </div>
+                        <Typography variant="h5" className={classes.featured}>
+                            Featured Event
+                        </Typography>
+                        <Typography variant="h4" className={classes.title}>
+                            {event.title}
+                        </Typography>
+                        <Typography variant="h5">
+                            <span
+                                // style={{
+                                //     padding: '0.5vw 0vw 0.5vw 0vw'
+                                // }}
+                                className={styles.date}
+                            >
+                                {convertDate()}
+                            </span>
+                        </Typography>
                         <div className={styles.countdown}>
                             {event.date && (
                                 <Countdown
@@ -102,13 +112,12 @@ function Home({ event }) {
                                 />
                             )}
                         </div>
-                    </div>
-                    <div className={styles.imageContainer}>
-                        <img
-                            src="SoC-other.jpg"
-                            className={styles.img}
-                            alt="Cohort 4 on Zoom"
-                        />
+                        <p className={styles.description}>
+                            {shortenDescription()}
+                        </p>
+                        <Link href={`/event/${event.id}`}>
+                            <ButtonGeneral text={'FIND OUT MORE'} />
+                        </Link>
                     </div>
                 </div>
             </div>
