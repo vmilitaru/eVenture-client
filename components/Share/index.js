@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
+import serverUrl from '../../environment'
 import {
     EmailShareButton,
     FacebookShareButton,
@@ -14,13 +15,17 @@ import {
     EmailIcon
 } from 'react-share'
 
-const Share = forwardRef(({ shareUrl, title, onClick, href }, ref) => {
+const Sharebuttons = ({ event }) => {
+    const shareUrl = `https://eventure.vercel.app/event/${event.id}`
+
+    // `${serverUrl}/event/${event.id}`
+    const eventtitle = `eVenture bring you ${event.title}`
     return (
         <div className="Demo__container">
             <div className="share">
                 <FacebookShareButton
                     url={shareUrl}
-                    quote={title}
+                    quote={eventtitle}
                     className="share-button"
                 >
                     <FacebookIcon size={32} round />
@@ -30,7 +35,7 @@ const Share = forwardRef(({ shareUrl, title, onClick, href }, ref) => {
             <div className="share">
                 <FacebookMessengerShareButton
                     url={shareUrl}
-                    appId="521270401588372"
+                    appId="3973808456080757"
                     className="share-button"
                 >
                     <FacebookMessengerIcon size={32} round />
@@ -40,7 +45,7 @@ const Share = forwardRef(({ shareUrl, title, onClick, href }, ref) => {
             <div className="share">
                 <TwitterShareButton
                     url={shareUrl}
-                    title={title}
+                    title={event.title}
                     className="share-button"
                 >
                     <TwitterIcon size={32} round />
@@ -52,7 +57,7 @@ const Share = forwardRef(({ shareUrl, title, onClick, href }, ref) => {
             <div className="share">
                 <WhatsappShareButton
                     url={shareUrl}
-                    title={title}
+                    title={event.title}
                     separator=":: "
                     className="share-button"
                 >
@@ -71,7 +76,7 @@ const Share = forwardRef(({ shareUrl, title, onClick, href }, ref) => {
             <div className="share">
                 <EmailShareButton
                     url={shareUrl}
-                    subject={title}
+                    subject={event.title}
                     body="body"
                     className="share-button"
                 >
@@ -80,6 +85,6 @@ const Share = forwardRef(({ shareUrl, title, onClick, href }, ref) => {
             </div>
         </div>
     )
-})
+}
 
-export default Share
+export default Sharebuttons

@@ -12,7 +12,6 @@ import styles from '../styles/my-events.module.css'
 
 // ENVIRONMENT
 import { serverUrl } from '../environment'
-import Share from '../components/Share/Share'
 
 function MyEventsPage() {
     const { user, getAccessTokenSilently } = useAuth0()
@@ -51,25 +50,27 @@ function MyEventsPage() {
                 <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Share />
+
             {events && events.length > 0 ? (
-                <div className={classes.eventpage}>
+                <>
                     <Typography variant="h2">
                         Events you're signed up for:
                     </Typography>
-                    {events.map((event) => (
-                        <div key={event.id} className={classes.event}>
-                            <Link
-                                href="/event/[id]"
-                                as={`/event/${event.event_id}`}
-                            >
-                                <a className={classes.linkSpecific}>
-                                    <EventCard event={event} />
-                                </a>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
+                    <div className={classes.eventpage}>
+                        {events.map((event) => (
+                            <div key={event.id} className={classes.event}>
+                                <Link
+                                    href="/event/[id]"
+                                    as={`/event/${event.event_id}`}
+                                >
+                                    <a className={classes.linkSpecific}>
+                                        <EventCard event={event} />
+                                    </a>
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
+                </>
             ) : (
                 <div
                     ckassName={styles.noEvent}

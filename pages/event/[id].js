@@ -17,7 +17,7 @@ import Typography from '@material-ui/core/Typography'
 import UploadImage from '../../components/ImageUploader/index'
 import EventDisplay from '../../components/EventDisplay'
 import EventForm from '../../components/EventForm'
-
+import Sharebuttons from '../../components/Share/index'
 // ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
 import { serverUrl } from '../../environment'
@@ -288,6 +288,11 @@ export default function SpecificEventPage({ event, ticketCount }) {
 
     return (
         <React.Fragment>
+            <Sharebuttons
+                shareUrl={`${serverUrl}/event/${event.id}`}
+                event={event}
+            />
+
             {!editing ? (
                 <EventDisplay
                     event={event}
