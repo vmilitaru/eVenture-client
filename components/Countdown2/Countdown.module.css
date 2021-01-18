@@ -111,8 +111,8 @@
     background-color: #efefef;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-    border: 0.5px solid whitesmoke;
-    border-top: 0.5px solid whitesmoke;
+    /* border: 0.5px solid #eeeeee; */
+    /* border-top: 0.5px solid #eeeeee; */
 }
 .flipCard.unfold span {
     transform: translateY(-50%);
@@ -125,8 +125,8 @@
     background-color: #f2f2f2;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    border: 0.5px solid whitesmoke;
-    border-bottom: 0.5px solid whitesmoke;
+    /* border: 0.5px solid #eeeeee; */
+    /* border-bottom: 0.5px solid #eeeeee; */
 }
 .flipCard.fold span {
     transform: translateY(50%);
