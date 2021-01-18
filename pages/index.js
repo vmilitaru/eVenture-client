@@ -120,7 +120,10 @@ function Home({ events, nextEvent }) {
                             {shortenDescription()}
                         </p>
                         <Link href={`/event/${nextEvent.id}`}>
-                            <ButtonGeneral text={'FIND OUT MORE'} />
+                            <ButtonGeneral
+                                text={'FIND OUT MORE'}
+                                style={{ width: '8rem' }}
+                            />
                         </Link>
                     </div>
                 </div>

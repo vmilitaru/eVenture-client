@@ -63,16 +63,6 @@ export default function EventDisplay({
                         <div className={styles.editDelete}>
                             {user && Object.values(user)[0][0] && (
                                 <>
-                                    {/* <ButtonGeneral
-                                    text={'EDIT'}
-                                    onClick={() => {
-                                        setEditing(true)
-                                    }}
-                                />
-                                <ButtonGeneral
-                                    text={'DELETE'}
-                                    onClick={deleteEvent}
-                                /> */}
                                     <IconButton
                                         className={classes.icons}
                                         aria-label="Edit"
@@ -101,23 +91,16 @@ export default function EventDisplay({
                                 />
                             ) : (
                                 <>
-                                    <p
-                                        style={{
-                                            display: 'inline',
-                                            marginRight: '2rem'
-                                        }}
-                                    >
-                                        You are registered - see you there!
-                                    </p>
                                     <ButtonGeneral
                                         onClick={() => {
                                             handleClickForTicket()
                                         }}
                                         style={{
                                             width: '20rem',
-                                            height: '2.5rem'
+                                            height: '2.5rem',
+                                            backgroundColor: '#ff6978'
                                         }}
-                                        text="CANCEL TICKET"
+                                        text="UNREGISTER"
                                     />
                                 </>
                             )}

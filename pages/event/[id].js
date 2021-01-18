@@ -210,7 +210,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
         window.location.href = '/events-page'
     }
 
-    async function getYoSelfATicket() {
+    async function bookTicket() {
         if (availableTickets > 0) {
             const accessToken = await getAccessTokenSilently()
 
@@ -258,7 +258,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
     function handleClickForTicket() {
         if (!isRegistered) {
             if (user) {
-                getYoSelfATicket()
+                bookTicket()
                 setIsRegistered(true)
                 setEventAttendeeCount(parseInt(eventAttendeeCount) + 1)
             }
@@ -462,7 +462,6 @@ export async function getServerSideProps(context) {
     const { id } = context.query
     const res = await fetch(`${serverUrl}/events/${id}`)
     const data = await res.json()
-    console.log(data)
     const event = data.payload.event
     const ticketCount = data.payload.ticketCount.count
     return { props: { event, ticketCount } }

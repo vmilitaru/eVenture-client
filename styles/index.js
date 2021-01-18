@@ -10,7 +10,10 @@ export const useStyles = makeStyles({
         padding: 0
     },
     featured: {
-        color: '#ff6978'
+        fontFamily: 'Mulish',
+        color: '#ff6978',
+        letterSpacing: '0em',
+        fontWeight: 600
     }
     //     linkSpecific: {
     //         textDecoration: 'none'

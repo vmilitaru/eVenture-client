@@ -2,7 +2,7 @@
 .background {
     background: #f2faf6 0% 0% no-repeat padding-box;
     opacity: 1;
-    height: 100vh;
+    min-height: 100vh;
     /* padding-top: 50px; */
 }
 .contrastBackground {
@@ -11,6 +11,9 @@
     opacity: 1;
     max-height: 66vh;
     height: 66vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .div {
     display: flex;
@@ -19,7 +22,7 @@
     text-align: justify;
     width: 75%;
     position: absolute;
-    top: 60vh;
+    top: 55vh;
     left: 0;
     right: 0;
     opacity: 1;
@@ -50,11 +53,11 @@
 .event {
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
     height: 100%;
     width: 50%;
     border-width: 0.2rem;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: left;
     position: relative;
 }
