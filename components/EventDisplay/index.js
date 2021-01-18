@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import { useStyles } from './EventDisplayMaterialCSS'
+import ShareButtons from '../Share'
 
 export default function EventDisplay({
     event,
@@ -53,6 +54,7 @@ export default function EventDisplay({
                     </div>
                 </section>
                 <section className={styles.actionsBar}>
+                    <ShareButtons event={event} />
                     <div className={styles.editDelete}>
                         {user && Object.values(user)[0][0] && (
                             <>
