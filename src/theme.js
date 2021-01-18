@@ -70,16 +70,18 @@ const theme = createMuiTheme({
             letterSpacing: '-0.01562em'
         },
         h2: {
-            fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
-            fontWeight: 300,
+            fontFamily: "'Poppins', 'Helvetica', 'Arial', 'sans-serif'",
+            fontWeight: 600,
             fontSize: '3rem',
             lineHeight: 1.2,
-            letterSpacing: '-0.00833em'
+            letterSpacing: '-0.00833em',
+            color: 'white',
+            padding: '4rem'
         },
         h3: {
-            fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
-            fontWeight: 400,
-            fontSize: '3rem',
+            fontFamily: "'Poppins', 'Helvetica', 'Arial', 'sans-serif'",
+            fontWeight: 600,
+            fontSize: '2.25rem',
             lineHeight: 1.167,
             letterSpacing: '0em'
         },

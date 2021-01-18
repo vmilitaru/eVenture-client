@@ -11,13 +11,14 @@ import { useStyles } from '../styles/index'
 import Eventcard from '../components/EventCard/EventCard'
 import { serverUrl } from '../environment'
 import { DateTime } from 'luxon'
+import EventsList from '../components/EventsList'
 
-function Home({ event }) {
+function Home({ events, nextEvent }) {
     const classes = useStyles()
 
     function convertDate() {
         const dateFromIso = new DateTime.fromISO(
-            `${event.date}T${event.time}.000Z`
+            `${nextEvent.date}T${nextEvent.time}.000Z`
         )
         const localeDate = dateFromIso.toLocaleString({
             weekday: 'short',
@@ -30,14 +31,14 @@ function Home({ event }) {
     }
 
     function shortenDescription() {
-        if (!event.description) {
+        if (!nextEvent.description) {
             return '...'
         }
-        const descArray = event?.description.split('')
-        if (descArray.length < 250) {
-            return event.description
+        const descArray = nextEvent?.description.split('')
+        if (descArray.length < 400) {
+            return nextEvent.description
         }
-        let shortDesc = descArray?.splice(0, 250)
+        let shortDesc = descArray?.splice(0, 400)
         shortDesc = shortDesc?.join('').trim()
         shortDesc += '...'
         return shortDesc
@@ -49,69 +50,38 @@ function Home({ event }) {
                 <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {/* <div className={styles.intro}>
-                    <pic></pic>
-                    <Typography variant="h2">
-                        eVenture - Develop with our community
-                    </Typography>
-                    <Typography variant="h3">
-                        {/* Develop with our community}
-                    </Typography>
-                </div> */}
-            <div className={styles.heading}>
-                <div className={styles.animation}>
-                    <ul className={styles.mask}>
-                        <li>Develop</li>
-                        <li>Learn</li>
-                        <li>Grow</li>
-                        <li>Learn</li>
-                        <li>Develop</li>
-                    </ul>
-                    <ul>
-                        <li>Develop</li>
-                        <li>Learn</li>
-                        <li>Grow</li>
-                        <li>Learn</li>
-                        <li>Develop</li>
-                    </ul>
-                </div>
-                with our community at School of Code
-            </div>
-            <div className={styles.div}>
-                <div className={styles.container}>
-                    <div className={styles.event}>
-                        <Typography variant="h3">UPCOMING EVENT:</Typography>
-                        <div className={styles.eventDetails}>
-                            {/* <img src={event.banner}></img> */}
-
-                            <Typography variant="h4">{event.title}</Typography>
-                            <Typography variant="h5">
-                                <span
-                                    style={{
-                                        backgroundColor: '#fafafa',
-                                        padding: '0vw 0.5vw 0vw 0.5vw'
-                                    }}
-                                >
-                                    {convertDate()}
-                                </span>
-                            </Typography>
-                            <p className={styles.description}>
-                                {shortenDescription()}
-                            </p>
-                            <Link href={`/event/${event.id}`}>
-                                <ButtonGeneral text={'FIND OUT MORE'} />
-                            </Link>
-                        </div>
-                        <div className={styles.countdown}>
-                            {event.date && (
-                                <Countdown
-                                    eventDate={event.date}
-                                    eventTime={event.time}
-                                    className={styles.countdown}
-                                />
-                            )}
-                        </div>
+            <div className={styles.contrastBackground}>
+                <div className={styles.heading}>
+                    <h4 style={{ fontFamily: 'Poppins', margin: '0 0 1rem 0' }}>
+                        Discover A World Of Events
+                    </h4>
+                    <h4
+                        style={{
+                            fontFamily: 'Nanum Pen Script',
+                            color: 'white',
+                            margin: '0'
+                        }}
+                    >
+                        With School Of Code
+                    </h4>
+                    <div className={styles.animation}>
+                        <ul className={styles.mask}>
+                            <li>Develop</li>
+                            <li>Learn</li>
+                            <li>Grow</li>
+                            <li>Learn</li>
+                            <li>Develop</li>
+                        </ul>
+                        <ul>
+                            <li>Develop</li>
+                            <li>Learn</li>
+                            <li>Grow</li>
+                            <li>Learn</li>
+                            <li>Develop</li>
+                        </ul>
                     </div>
+                </div>
+                <div className={styles.div}>
                     <div className={styles.imageContainer}>
                         <img
                             src="SoC-other.jpg"
@@ -119,8 +89,54 @@ function Home({ event }) {
                             alt="Cohort 4 on Zoom"
                         />
                     </div>
+                    {/* <div className={styles.container}> */}
+                    <div className={styles.event}>
+                        <Typography variant="h5" className={classes.featured}>
+                            Featured Event
+                        </Typography>
+                        <Typography variant="h4" className={classes.title}>
+                            {nextEvent.title}
+                        </Typography>
+                        <Typography variant="h5">
+                            <span
+                                // style={{
+                                //     padding: '0.5vw 0vw 0.5vw 0vw'
+                                // }}
+                                className={styles.date}
+                            >
+                                {convertDate()}
+                            </span>
+                        </Typography>
+                        <div className={styles.countdown}>
+                            {nextEvent.date && (
+                                <Countdown
+                                    eventDate={nextEvent.date}
+                                    eventTime={nextEvent.time}
+                                    className={styles.countdown}
+                                />
+                            )}
+                        </div>
+                        <p className={styles.description}>
+                            {shortenDescription()}
+                        </p>
+                        <Link href={`/event/${nextEvent.id}`}>
+                            <ButtonGeneral
+                                text={'FIND OUT MORE'}
+                                style={{ width: '8rem' }}
+                            />
+                        </Link>
+                    </div>
                 </div>
             </div>
+            <section className={styles.eventsList}>
+                <Typography
+                    variant="h3"
+                    style={{ width: '75%', margin: 'auto', textAlign: 'left' }}
+                >
+                    Discover More Online Events
+                </Typography>
+                <EventsList events={events} />
+            </section>
         </div>
     )
 }
@@ -129,7 +145,7 @@ export async function getServerSideProps(context) {
     const res = await fetch(`${serverUrl}/events/date`)
     const { payload } = await res.json()
     const upcomingEvents = payload
-    return { props: { event: upcomingEvents[0] } }
+    return { props: { events: upcomingEvents, nextEvent: upcomingEvents[0] } }
 }
 
 export default Home

@@ -55,6 +55,7 @@ const FlipUnitContainer = ({ digit, shuffle, unit }) => {
             <StaticCard position={style.lowerCard} digit={previousDigit} />
             <AnimatedCard digit={digit1} animation={animation1} />
             <AnimatedCard digit={digit2} animation={animation2} />
+            {/* {unit} */}
         </div>
     )
 }
@@ -140,6 +141,7 @@ function FlipClock({ eventDate, eventTime }) {
     return (
         <div className={style.flipClock}>
             <FlipUnitContainer unit={'days'} digit={day} shuffle={dayShuffle} />
+            <div className={style.separator}>:</div>
             <FlipUnitContainer
                 unit={'hours'}
                 digit={hour}

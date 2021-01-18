@@ -6,6 +6,9 @@ import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import { useStyles } from './EventDisplayMaterialCSS'
+import unified from 'unified'
+import parse from 'remark-parse'
+import remark2react from 'remark-react'
 
 export default function EventDisplay({
     event,
@@ -24,14 +27,13 @@ export default function EventDisplay({
 
     return (
         <>
-            {/* <div className={styles.background}></div> */}
             <article className={styles.mainContainer}>
                 <section className={styles.card}>
-                    <div className={styles.image}>
+                    <div className={styles.imageContainer}>
                         <img
                             src={event.banner}
                             alt={event.banner}
-                            style={{ objectFit: 'cover' }}
+                            style={{ objectFit: 'cover', width: '100%' }}
                         />
                     </div>
                     <div className={styles.titleContainer}>
@@ -56,16 +58,6 @@ export default function EventDisplay({
                     <div className={styles.editDelete}>
                         {user && Object.values(user)[0][0] && (
                             <>
-                                {/* <ButtonGeneral
-                                    text={'EDIT'}
-                                    onClick={() => {
-                                        setEditing(true)
-                                    }}
-                                />
-                                <ButtonGeneral
-                                    text={'DELETE'}
-                                    onClick={deleteEvent}
-                                /> */}
                                 <IconButton
                                     className={classes.icons}
                                     aria-label="Edit"
@@ -94,20 +86,16 @@ export default function EventDisplay({
                             />
                         ) : (
                             <>
-                                <p
-                                    style={{
-                                        display: 'inline',
-                                        marginRight: '2rem'
-                                    }}
-                                >
-                                    You are registered - see you there!
-                                </p>
                                 <ButtonGeneral
                                     onClick={() => {
                                         handleClickForTicket()
                                     }}
-                                    style={{ width: '20rem', height: '2.5rem' }}
-                                    text="CANCEL TICKET"
+                                    style={{
+                                        width: '20rem',
+                                        height: '2.5rem',
+                                        backgroundColor: '#ff6978'
+                                    }}
+                                    text="UNREGISTER"
                                 />
                             </>
                         )}
@@ -115,7 +103,12 @@ export default function EventDisplay({
                 </section>
                 <section className={styles.details}>
                     <div className={styles.description}>
-                        <p style={{ margin: '0' }}>{event.description}</p>
+                        {
+                            unified()
+                                .use(parse)
+                                .use(remark2react)
+                                .processSync(event.description).result
+                        }
                     </div>
                     <div className={styles.additionalInfo}>
                         <Typography gutterBottom variant="h5" component="h3">
@@ -124,28 +117,23 @@ export default function EventDisplay({
 
                         {user && Object.values(user)[0][0] && (
                             <p>
-                                Ticket availability: {eventAttendeeCount}/
-                                {numtickets}
+                                Ticket availability:{' '}
+                                {numtickets - eventAttendeeCount}/{numtickets}
                             </p>
                         )}
                         {user && !Object.values(user)[0][0] && (
                             <>
-                                {availableTickets <= 5 ? (
-                                    <p>
-                                        There are only {ticketCount} tickets
-                                        left for this event!
-                                    </p>
+                                {availableTickets <= ticketCount * 0.25 ? (
+                                    <p>Limited Availability!</p>
                                 ) : (
-                                    <p>
-                                        Hurry up you don't want to miss this one
-                                        time opportunity...
-                                    </p>
+                                    <p>Available!</p>
                                 )}
                             </>
                         )}
                     </div>
                 </section>
             </article>
+            {/* </div> */}
         </>
     )
 }

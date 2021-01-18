@@ -21,14 +21,14 @@ export const useStyles = makeStyles((theme) => ({
     appBar: {
         position: 'fixed',
         borderBottom: `1px solid ${theme.palette.divider}`,
-        marginTop: '1.75rem',
+        // marginTop: '1.75rem',
         boxShadow: '0px 1.75px 1px -1px grey',
         backgroundColor: `${theme.palette.third.light}`
     },
     toolbar: {
         display: 'flex',
         justifyContent: 'space-between',
-        height: '3rem',
+        height: '4rem',
         width: '80%',
         margin: 'auto'
     },

@@ -12,7 +12,7 @@ export default function CreateEventButton() {
     return (
         <div>
             {isAuthenticated && userRole && (
-                <Link href="/create-event-page" passHref>
+                <Link href="/create-event" passHref>
                     <ButtonGeneral
                         className={classes.button}
                         text={'Create Event'}
