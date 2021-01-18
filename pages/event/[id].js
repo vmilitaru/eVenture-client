@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography'
 import UploadImage from '../../components/ImageUploader/index'
 import EventDisplay from '../../components/EventDisplay'
 import EventForm from '../../components/EventForm'
+import styles from '../../styles/event.module.css'
 
 // ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
@@ -207,10 +208,10 @@ export default function SpecificEventPage({ event, ticketCount }) {
             requestOptions
         )
         console.log(response)
-        window.location.href = '/events-page'
+        window.location.href = '/'
     }
 
-    async function getYoSelfATicket() {
+    async function bookTicket() {
         if (availableTickets > 0) {
             const accessToken = await getAccessTokenSilently()
 
@@ -258,7 +259,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
     function handleClickForTicket() {
         if (!isRegistered) {
             if (user) {
-                getYoSelfATicket()
+                bookTicket()
                 setIsRegistered(true)
                 setEventAttendeeCount(parseInt(eventAttendeeCount) + 1)
             }
@@ -288,6 +289,9 @@ export default function SpecificEventPage({ event, ticketCount }) {
 
     return (
         <React.Fragment>
+            <div className={styles.contrastBackground}>
+                <Typography variant="h2">Attend An Event</Typography>
+            </div>
             {!editing ? (
                 <EventDisplay
                     event={event}
@@ -462,7 +466,6 @@ export async function getServerSideProps(context) {
     const { id } = context.query
     const res = await fetch(`${serverUrl}/events/${id}`)
     const data = await res.json()
-    console.log(data)
     const event = data.payload.event
     const ticketCount = data.payload.ticketCount.count
     return { props: { event, ticketCount } }

@@ -9,3 +9,15 @@
     margin: 0;
     padding: 1.1vw 0.5vw 1vw 0.5vw;
 }
+.attending {
+    background-color: #ffc15e;
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 0.8vw;
+    box-shadow: 0px 3px 8px #0000001a;
+    border-radius: 0px 8px 8px 0px;
+    opacity: 1;
+    font-family: 'Mulish';
+    padding: 0.25vw 0.25vw 0.25vw 0.5vw;
+}

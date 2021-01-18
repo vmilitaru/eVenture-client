@@ -14,7 +14,7 @@ import {
 } from '@material-ui/pickers'
 
 import UploadImage from '../components/ImageUploader/index'
-import { useStyles } from '../styles/Create-event-page-materialui'
+import { useStyles } from '../styles/CreateEventMaterialCSS'
 import styles from '../styles/create-event.module.css'
 import EventForm from '../components/EventForm'
 
@@ -42,7 +42,7 @@ function AdminEventPage() {
     /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
     const router = useRouter()
-    const redirect = () => router.replace('/events-page')
+    const redirect = () => router.replace('/')
 
     useEffect(() => {
         user &&
@@ -160,9 +160,9 @@ function AdminEventPage() {
     }
     return (
         <React.Fragment>
-            <Typography variant="h2" className={classes.heading}>
-                Create an Event
-            </Typography>
+            <div className={styles.contrastBackground}>
+                <Typography variant="h2">Create An Event</Typography>
+            </div>
             <EventForm
                 handleSubmit={handleSubmit}
                 handleDateChange={handleDateChange}

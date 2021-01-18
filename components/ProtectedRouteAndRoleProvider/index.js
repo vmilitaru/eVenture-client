@@ -13,15 +13,17 @@ function ProtectedRouteAndRoleProvider({ children }) {
         if (isAuthenticated) {
             const roleAssigned = Object.values(user)[0][0]
             setUserRole(roleAssigned)
-           
         }
     }
 
-
     useEffect(() => {
-        console.log({user})
+        console.log({ user })
         getUser()
-        if (user && pathname === '/create-event-page' && !Object.values(user)[0][0]) {
+        if (
+            user &&
+            pathname === '/create-event' &&
+            !Object.values(user)[0][0]
+        ) {
             window.location.href = '/'
         }
     }, [user])

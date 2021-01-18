@@ -1,12 +1,25 @@
+.contrastBackground {
+    position: relative;
+    height: 40vh;
+    background: #0a1045;
+    opacity: 1;
+    z-index: -50;
+}
 .noEvent {
-    display: 'flex';
-    flex-direction: 'column';
-    align-items: 'center';
-    align-content: 'stretch';
-    flex-wrap: 'wrap';
-    justify-content: 'center';
-    width: '75rem';
-    margin: '3rem auto 5rem auto';
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: stretch;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 75rem;
+    margin: 3rem auto 5rem auto;
+    position: relative;
+    top: -25vh;
+}
+.eventsList {
+    position: relative;
+    top: -20vh;
 }
 .image {
     width: '75 rem';

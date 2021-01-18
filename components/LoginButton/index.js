@@ -26,7 +26,7 @@ const LoginButton = () => {
 
         return (
             <ButtonGeneral
-                onClick={() => logout({ returnTo: `${clientUrl}/events-page` })}
+                onClick={() => logout({ returnTo: `${clientUrl}/` })}
                 text={'LOG OUT'}
             />
         )

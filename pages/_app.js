@@ -39,7 +39,7 @@ export default function MyApp(props) {
             redirectUri={
                 props.router.pathname !== '/event/[id]'
                     ? `${redirectUrl}${props.router.pathname}`
-                    : `${redirectUrl}/events-page`
+                    : `${redirectUrl}/`
             }
             audience={auth0Audience}
         >
@@ -56,13 +56,12 @@ export default function MyApp(props) {
                         <ThemeProvider theme={theme}>
                             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                             <CssBaseline />
-
                             <ConditionedRenderedNavBar />
                             <main
                                 style={{
-                                    paddingTop: '7rem',
+                                    paddingTop: '4rem',
                                     textAlign: 'center',
-                                    backgroundColor: `${theme.palette.fourth.main}`,
+                                    // backgroundColor: `${theme.palette.fourth.main}`,
                                     minHeight: '100vh'
                                 }}
                             >
