@@ -117,22 +117,16 @@ export default function EventDisplay({
 
                         {user && Object.values(user)[0][0] && (
                             <p>
-                                Ticket availability: {eventAttendeeCount}/
-                                {numtickets}
+                                Ticket availability:{' '}
+                                {numtickets - eventAttendeeCount}/{numtickets}
                             </p>
                         )}
                         {user && !Object.values(user)[0][0] && (
                             <>
-                                {availableTickets <= 5 ? (
-                                    <p>
-                                        There are only {ticketCount} tickets
-                                        left for this event!
-                                    </p>
+                                {availableTickets <= ticketCount * 0.25 ? (
+                                    <p>Limited Availability!</p>
                                 ) : (
-                                    <p>
-                                        Hurry up you don't want to miss this one
-                                        time opportunity...
-                                    </p>
+                                    <p>Available!</p>
                                 )}
                             </>
                         )}

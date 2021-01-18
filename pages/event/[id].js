@@ -208,7 +208,7 @@ export default function SpecificEventPage({ event, ticketCount }) {
             requestOptions
         )
         console.log(response)
-        window.location.href = '/events-page'
+        window.location.href = '/'
     }
 
     async function bookTicket() {

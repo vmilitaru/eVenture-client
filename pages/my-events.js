@@ -8,7 +8,7 @@ import Loading from '../components/Loading'
 import Typography from '@material-ui/core/Typography'
 import ButtonGeneral from '../components/Button/Button'
 import EventCard from '../components/EventCard/EventCard'
-import styles from '../styles/events.module.css'
+import styles from '../styles/my-events.module.css'
 import EventsList from '../components/EventsList'
 
 // ENVIRONMENT
@@ -71,39 +71,46 @@ function MyEventsPage() {
                             </div>
                         ))}
                     </div> */}
-                    <EventsList events={events} />
+                    <div className={styles.eventsList}>
+                        <EventsList events={events} />
+                    </div>
                 </>
             ) : (
-                <div
-                    ckassName={styles.noEvent}
-                    // style={{
-                    //     display: 'flex',
-                    //     flexdirection: 'column',
-                    //     alignItems: 'center',
-                    //     alignContent: 'stretch',
-                    //     flexWrap: 'wrap',
-                    //     justifyContent: 'center',
-                    //     width: '60rem',
-                    //     margin: '3rem auto 5rem auto'
-                    // }}
-                >
-                    <img
-                        className={styles.image}
-                        src="/NoTicketsYet.svg"
-                        id="NoTicketsYet"
-                        alt="You haven't signed up for any events yet."
-                    />
-                    <a href="/events-page">
-                        <ButtonGeneral
-                            style={{
-                                padding: '1rem',
-                                margin: '1rem',
-                                fontSize: '1.2rem'
-                            }}
-                            text={'Sign up for events here!'}
-                        ></ButtonGeneral>
-                    </a>
-                </div>
+                <>
+                    <div className={styles.contrastBackground}>
+                        {/* <Typography variant="h2">{`There's nothing here... :(`}</Typography> */}
+                    </div>
+                    <div
+                        className={styles.noEvent}
+                        // style={{
+                        //     display: 'flex',
+                        //     flexdirection: 'column',
+                        //     alignItems: 'center',
+                        //     alignContent: 'stretch',
+                        //     flexWrap: 'wrap',
+                        //     justifyContent: 'center',
+                        //     width: '60rem',
+                        //     margin: '3rem auto 5rem auto'
+                        // }}
+                    >
+                        <img
+                            className={styles.image}
+                            src="/NoTicketsYet.svg"
+                            id="NoTicketsYet"
+                            alt="You haven't signed up for any events yet."
+                        />
+                        <a href="/">
+                            <ButtonGeneral
+                                style={{
+                                    padding: '1rem',
+                                    margin: '4rem 1rem 1rem 1rem',
+                                    fontSize: '1.2rem'
+                                }}
+                                text={'Sign up for events here!'}
+                            ></ButtonGeneral>
+                        </a>
+                    </div>
+                </>
             )}
         </div>
     )

@@ -161,7 +161,7 @@ function AdminEventPage() {
     return (
         <React.Fragment>
             <div className={styles.contrastBackground}>
-                <Typography variant="h2">Attend An Event</Typography>
+                <Typography variant="h2">Create An Event</Typography>
             </div>
             <EventForm
                 handleSubmit={handleSubmit}
