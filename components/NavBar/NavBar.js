@@ -53,14 +53,14 @@ const NavBar = () => {
                             >
                                 <a className={styles.link}>HOME </a>
                             </Link>
-                            <Link
+                            {/* <Link
                                 href="/events-page"
                                 variant="h6"
                                 //color="textPrimary"
                                 className={classes.link}
                             >
                                 <a className={styles.link}>EVENTS</a>
-                            </Link>
+                            </Link> */}
                             {user && (
                                 <Link
                                     href="/my-events"
@@ -73,7 +73,7 @@ const NavBar = () => {
                             )}
                             {isAuthenticated && Object.values(user)[0][0] && (
                                 <Link
-                                    href="/create-event-page"
+                                    href="/create-event"
                                     variant="h6"
                                     //color="textPrimary"
                                     className={classes.link}

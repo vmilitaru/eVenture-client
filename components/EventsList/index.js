@@ -17,9 +17,6 @@ export default function EventsList({ events }) {
 
     return (
         <>
-            <div className={styles.title}>
-                <Typography variant="h2">Upcoming Events</Typography>
-            </div>
             {/* <div className={styles.search}>
                 <TextField
                     placeholder={'Search events...'}

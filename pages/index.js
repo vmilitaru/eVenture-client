@@ -129,6 +129,12 @@ function Home({ events, nextEvent }) {
                 </div>
             </div>
             <section className={styles.eventsList}>
+                <Typography
+                    variant="h3"
+                    style={{ width: '75%', margin: 'auto', textAlign: 'left' }}
+                >
+                    Discover More Online Events
+                </Typography>
                 <EventsList events={events} />
             </section>
         </div>

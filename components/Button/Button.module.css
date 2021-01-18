@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 .button {
     background-color: #0b5351;
-    font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif';
+    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
     /* variant: outlined; */
     padding: 0.5rem;
     margin: 0rem;

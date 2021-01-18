@@ -15,7 +15,7 @@ import ButtonGeneral from '../Button/Button'
 import { serverUrl } from '../../environment'
 
 export default function EventCard({ event }) {
-    const { user, getAccessTokenSilently } = useAuth0()
+    const { user, getAccessTokenSilently, loginWithRedirect } = useAuth0()
     const classes = useStyles()
 
     const [isRegistered, setIsRegistered] = useState(false)
@@ -165,19 +165,17 @@ export default function EventCard({ event }) {
                                 text="REGISTER"
                             />
                         ) : (
-                            <>
-                                <ButtonGeneral
-                                    onClick={() => {
-                                        handleClickForTicket()
-                                    }}
-                                    style={{
-                                        width: '7rem',
-                                        height: '2rem',
-                                        backgroundColor: '#ff6978'
-                                    }}
-                                    text="UNREGISTER"
-                                />
-                            </>
+                            <ButtonGeneral
+                                onClick={() => {
+                                    handleClickForTicket()
+                                }}
+                                style={{
+                                    width: '7rem',
+                                    height: '2rem',
+                                    backgroundColor: '#ff6978'
+                                }}
+                                text="UNREGISTER"
+                            />
                         )}
                     </CardContent>
                 </CardActionArea>

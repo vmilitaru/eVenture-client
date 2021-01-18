@@ -4,7 +4,7 @@ export const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         width: '75%',
         margin: 'auto',
         padding: '2rem 0 2rem 0'

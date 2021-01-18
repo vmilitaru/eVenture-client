@@ -8,7 +8,8 @@ import Loading from '../components/Loading'
 import Typography from '@material-ui/core/Typography'
 import ButtonGeneral from '../components/Button/Button'
 import EventCard from '../components/EventCard/EventCard'
-import styles from '../styles/my-events.module.css'
+import styles from '../styles/events.module.css'
+import EventsList from '../components/EventsList'
 
 // ENVIRONMENT
 import { serverUrl } from '../environment'
@@ -53,24 +54,24 @@ function MyEventsPage() {
 
             {events && events.length > 0 ? (
                 <>
-                <Typography variant="h2">
-                        Events you're signed up for:
-                    </Typography>
-                <div className={classes.eventpage}>
-                   
-                    {events.map((event) => (
-                        <div key={event.id} className={classes.event}>
-                            <Link
-                                href="/event/[id]"
-                                as={`/event/${event.event_id}`}
-                            >
+                    <div className={styles.contrastBackground}>
+                        <Typography variant="h2">Attending...</Typography>
+                    </div>
+                    {/* <div className={classes.eventPage}>
+                        {events.map((event) => (
+                            <div key={event.id} className={classes.event}>
+                                {/* <Link
+                                    href="/event/[id]"
+                                    as={`/event/${event.event_id}`}
+                                >
                                 <a className={classes.linkSpecific}>
                                     <EventCard event={event} />
                                 </a>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
+                                {/* </Link>}
+                            </div>
+                        ))}
+                    </div> */}
+                    <EventsList events={events} />
                 </>
             ) : (
                 <div

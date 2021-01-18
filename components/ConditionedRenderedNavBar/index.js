@@ -8,11 +8,11 @@ function ConditionedRenderedNavBar() {
 
     return (
         <div>
-            {pathname === '/create-event-page' &&
+            {pathname === '/create-event' &&
                 user &&
                 Object.values(user)[0][0] && <NavBar />}
 
-            {pathname !== '/create-event-page' && <NavBar />}
+            {pathname !== '/create-event' && <NavBar />}
         </div>
     )
 }

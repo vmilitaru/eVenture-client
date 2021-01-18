@@ -39,7 +39,7 @@ export default function MyApp(props) {
             redirectUri={
                 props.router.pathname !== '/event/[id]'
                     ? `${redirectUrl}${props.router.pathname}`
-                    : `${redirectUrl}/events-page`
+                    : `${redirectUrl}/`
             }
             audience={auth0Audience}
         >
@@ -59,15 +59,15 @@ export default function MyApp(props) {
                             <ConditionedRenderedNavBar />
                             <main
                                 style={{
-                                    paddingTop: '3rem',
+                                    paddingTop: '4rem',
                                     textAlign: 'center',
-                                    backgroundColor: `${theme.palette.fourth.main}`,
+                                    // backgroundColor: `${theme.palette.fourth.main}`,
                                     minHeight: '100vh'
                                 }}
                             >
                                 <Component {...pageProps} />
                             </main>
-                            {/* <ConditionedRenderedFooter /> */}
+                            <ConditionedRenderedFooter />
                         </ThemeProvider>
                     </React.Fragment>
                 </ProtectedRouteAndRoleProvider>

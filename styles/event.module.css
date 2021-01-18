@@ -1,0 +1,7 @@
+.contrastBackground {
+    position: relative;
+    height: 40vh;
+    background: #0a1045;
+    opacity: 1;
+    z-index: -50;
+}

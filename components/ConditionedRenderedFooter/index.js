@@ -8,11 +8,11 @@ function ConditionedRenderedFooter() {
 
     return (
         <div>
-            {pathname === '/create-event-page' &&
+            {pathname === '/create-event' &&
                 user &&
                 Object.values(user)[0][0] && <Footer />}
 
-            {pathname !== '/create-event-page' && <Footer />}
+            {pathname !== '/create-event' && <Footer />}
         </div>
     )
 }

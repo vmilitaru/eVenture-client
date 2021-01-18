@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography'
 import UploadImage from '../../components/ImageUploader/index'
 import EventDisplay from '../../components/EventDisplay'
 import EventForm from '../../components/EventForm'
+import styles from '../../styles/event.module.css'
 
 // ENVIRONMENT VARIABLES
 import { useAuth0 } from '@auth0/auth0-react'
@@ -288,6 +289,9 @@ export default function SpecificEventPage({ event, ticketCount }) {
 
     return (
         <React.Fragment>
+            <div className={styles.contrastBackground}>
+                <Typography variant="h2">Attend An Event</Typography>
+            </div>
             {!editing ? (
                 <EventDisplay
                     event={event}
