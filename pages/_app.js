@@ -56,11 +56,10 @@ export default function MyApp(props) {
                         <ThemeProvider theme={theme}>
                             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                             <CssBaseline />
-
                             <ConditionedRenderedNavBar />
                             <main
                                 style={{
-                                    paddingTop: '7rem',
+                                    paddingTop: '5.5rem',
                                     textAlign: 'center',
                                     backgroundColor: `${theme.palette.fourth.main}`,
                                     minHeight: '100vh'
@@ -68,7 +67,7 @@ export default function MyApp(props) {
                             >
                                 <Component {...pageProps} />
                             </main>
-                            <ConditionedRenderedFooter />
+                            {/* <ConditionedRenderedFooter /> */}
                         </ThemeProvider>
                     </React.Fragment>
                 </ProtectedRouteAndRoleProvider>

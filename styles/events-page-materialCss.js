@@ -5,8 +5,12 @@ export const useStyles = makeStyles({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center'
+        // width: '75%'
     },
     linkSpecific: {
         textDecoration: 'none'
     }
+    // event: {
+    //     width: '24%'
+    // }
 })

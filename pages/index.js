@@ -11,13 +11,14 @@ import { useStyles } from '../styles/index'
 import Eventcard from '../components/EventCard/EventCard'
 import { serverUrl } from '../environment'
 import { DateTime } from 'luxon'
+import EventsList from '../components/EventsList'
 
-function Home({ event }) {
+function Home({ events, nextEvent }) {
     const classes = useStyles()
 
     function convertDate() {
         const dateFromIso = new DateTime.fromISO(
-            `${event.date}T${event.time}.000Z`
+            `${nextEvent.date}T${nextEvent.time}.000Z`
         )
         const localeDate = dateFromIso.toLocaleString({
             weekday: 'short',
@@ -30,12 +31,12 @@ function Home({ event }) {
     }
 
     function shortenDescription() {
-        if (!event.description) {
+        if (!nextEvent.description) {
             return '...'
         }
-        const descArray = event?.description.split('')
+        const descArray = nextEvent?.description.split('')
         if (descArray.length < 400) {
-            return event.description
+            return nextEvent.description
         }
         let shortDesc = descArray?.splice(0, 400)
         shortDesc = shortDesc?.join('').trim()
@@ -51,11 +52,14 @@ function Home({ event }) {
             </Head>
             <div className={styles.contrastBackground}>
                 <div className={styles.heading}>
-                    <h4>Discover A World Of Events</h4>
+                    <h4 style={{ fontFamily: 'Poppins', margin: '0 0 1rem 0' }}>
+                        Discover A World Of Events
+                    </h4>
                     <h4
                         style={{
                             fontFamily: 'Nanum Pen Script',
-                            color: 'white'
+                            color: 'white',
+                            margin: '0'
                         }}
                     >
                         With School Of Code
@@ -91,7 +95,7 @@ function Home({ event }) {
                             Featured Event
                         </Typography>
                         <Typography variant="h4" className={classes.title}>
-                            {event.title}
+                            {nextEvent.title}
                         </Typography>
                         <Typography variant="h5">
                             <span
@@ -104,10 +108,10 @@ function Home({ event }) {
                             </span>
                         </Typography>
                         <div className={styles.countdown}>
-                            {event.date && (
+                            {nextEvent.date && (
                                 <Countdown
-                                    eventDate={event.date}
-                                    eventTime={event.time}
+                                    eventDate={nextEvent.date}
+                                    eventTime={nextEvent.time}
                                     className={styles.countdown}
                                 />
                             )}
@@ -115,12 +119,15 @@ function Home({ event }) {
                         <p className={styles.description}>
                             {shortenDescription()}
                         </p>
-                        <Link href={`/event/${event.id}`}>
+                        <Link href={`/event/${nextEvent.id}`}>
                             <ButtonGeneral text={'FIND OUT MORE'} />
                         </Link>
                     </div>
                 </div>
             </div>
+            <section className={styles.eventsList}>
+                <EventsList events={events} />
+            </section>
         </div>
     )
 }
@@ -129,7 +136,7 @@ export async function getServerSideProps(context) {
     const res = await fetch(`${serverUrl}/events/date`)
     const { payload } = await res.json()
     const upcomingEvents = payload
-    return { props: { event: upcomingEvents[0] } }
+    return { props: { events: upcomingEvents, nextEvent: upcomingEvents[0] } }
 }
 
 export default Home
