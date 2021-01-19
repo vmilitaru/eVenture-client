@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
 import { ProtectedRouteAndRoleProvider } from '../components/ProtectedRouteAndRoleProvider'
-import { SearchProvider } from '../contexts/search-context'
+import { SearchProvider } from '../contexts/search'
 import Wrapper from '../components/Wrapper/index'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
@@ -53,7 +53,7 @@ export default function MyApp(props) {
                             <title>eVenture</title>
                             <meta
                                 name="viewport"
-                                content="minimum-scale=1, initial-scale=1, width=device-width"
+                                content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
                             />
                         </Head>
                         <ThemeProvider theme={theme}>
@@ -65,7 +65,6 @@ export default function MyApp(props) {
                                     style={{
                                         paddingTop: '4rem',
                                         textAlign: 'center',
-                                        // backgroundColor: `${theme.palette.fourth.main}`,
                                         minHeight: '100vh'
                                     }}
                                 >

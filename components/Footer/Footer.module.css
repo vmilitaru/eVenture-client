@@ -2,15 +2,10 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    color: primary;
     width: 15rem;
     padding: 0.2rem;
 }
-
-.icons:hover {
-    color: white;
-    text-decoration: underline;
-}
-.styles:hover {
-    color: white;
+.icons {
+    display: flex;
+    align-items: center;
 }

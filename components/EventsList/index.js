@@ -1,19 +1,15 @@
 import React from 'react'
-import { useState } from 'react'
-import Link from 'next/link'
-import { useSearchContext } from '../../contexts/search-context'
+import { useSearchContext } from '../../contexts/search'
 
 // STYLES
 import { useStyles } from '../../styles/events-page-materialCss'
 import styles from '../../styles/events.module.css'
 
 // COMPONENTS
-import Typography from '@material-ui/core/Typography'
 import EventCard from '../EventCard/EventCard'
-import TextField from '@material-ui/core/TextField'
 
 export default function EventsList({ events }) {
-    const [search] = useSearchContext()
+    const { search } = useSearchContext()
     const classes = useStyles()
 
     return (

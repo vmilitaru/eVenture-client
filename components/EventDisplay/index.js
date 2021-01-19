@@ -101,7 +101,7 @@ export default function EventDisplay({
                                     style={{
                                         width: '20rem',
                                         height: '2.5rem',
-                                        backgroundColor: '#ff6978'
+                                        backgroundColor: 'gray'
                                     }}
                                     disabled={true}
                                     text="SOLD OUT!"
@@ -135,7 +135,12 @@ export default function EventDisplay({
                         }
                     </div>
                     <div className={styles.additionalInfo}>
-                        <Typography gutterBottom variant="h5" component="h3">
+                        <Typography variant="h4">Speakers</Typography>
+                        <Typography
+                            gutterBottom
+                            variant="h5"
+                            style={{ margin: '0.75rem 0 2rem 0' }}
+                        >
                             {event.speaker}
                         </Typography>
 
@@ -147,7 +152,9 @@ export default function EventDisplay({
                         )}
                         {user && !Object.values(user)[0][0] && (
                             <>
-                                {availableTickets <= ticketCount * 0.25 ? (
+                                {availableTickets <= 0 ? (
+                                    <p>Unavailable!</p>
+                                ) : availableTickets <= ticketCount * 0.25 ? (
                                     <p>Limited Availability!</p>
                                 ) : (
                                     <p>Available!</p>
