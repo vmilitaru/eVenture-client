@@ -44,6 +44,10 @@ export const useStyles = makeStyles((theme) => ({
             backgroundColor: '#e4e4e4'
         }
     },
+    home: {
+        color: '#efefef',
+        marginLeft: '1rem'
+    },
     menu: {
         padding: '0'
     }

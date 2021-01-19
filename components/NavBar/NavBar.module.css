@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-left: 4rem;
+    margin-left: 2rem;
     /* padding-left: 1rem; */
     border-radius: 3px;
     background-color: #3d9d62;
@@ -54,6 +54,7 @@
     max-height: 4rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     text-decoration: none;
 }
 .link:active {

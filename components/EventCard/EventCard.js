@@ -19,6 +19,7 @@ export default function EventCard({ event }) {
     const classes = useStyles()
 
     const [isRegistered, setIsRegistered] = useState(false)
+    const [ticketsAvailable, setTicketsAvailable] = useState(true)
 
     useEffect(() => {
         async function getIsRegistered() {
@@ -46,6 +47,16 @@ export default function EventCard({ event }) {
                     e.event_id === event.id && user.email === e.attendee_email
             )
             setIsRegistered(ticketExists)
+
+            const ticketsRes = await fetch(
+                `${serverUrl}/events/${event.id}/tickets`,
+                requestOptions
+            )
+            const data = await ticketsRes.json()
+            if (data.payload.count >= event.numtickets) {
+                setTicketsAvailable(false)
+            }
+            console.log(data)
         }
         getIsRegistered()
     }, [])
@@ -157,13 +168,25 @@ export default function EventCard({ event }) {
                             </Typography>
                         </div>
                         {!isRegistered ? (
-                            <ButtonGeneral
-                                onClick={() => {
-                                    handleClickForTicket()
-                                }}
-                                style={{ width: '6rem', height: '2rem' }}
-                                text="REGISTER"
-                            />
+                            ticketsAvailable ? (
+                                <ButtonGeneral
+                                    onClick={() => {
+                                        handleClickForTicket()
+                                    }}
+                                    style={{ width: '6rem', height: '2rem' }}
+                                    text="REGISTER"
+                                />
+                            ) : (
+                                <ButtonGeneral
+                                    style={{
+                                        width: '6rem',
+                                        height: '2rem',
+                                        backgroundColor: 'gray'
+                                    }}
+                                    text="SOLD OUT"
+                                    disabled={true}
+                                />
+                            )
                         ) : (
                             <ButtonGeneral
                                 onClick={() => {

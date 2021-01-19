@@ -3,6 +3,7 @@ import Head from 'next/head'
 import unified from 'unified'
 import parse from 'remark-parse'
 import remark2react from 'remark-react'
+import { useSearchContext } from '../contexts/search'
 
 // COMPONENTS
 import ButtonGeneral from '../components/Button/Button'
@@ -11,12 +12,12 @@ import styles from '../styles/index.module.css'
 import Typography from '@material-ui/core/Typography'
 import Link from 'next/link'
 import { useStyles } from '../styles/index'
-import Eventcard from '../components/EventCard/EventCard'
 import { serverUrl } from '../environment'
 import { DateTime } from 'luxon'
 import EventsList from '../components/EventsList'
 
 function Home({ events, nextEvent }) {
+    const { discoverRef } = useSearchContext()
     const classes = useStyles()
 
     function convertDate() {
@@ -72,22 +73,6 @@ function Home({ events, nextEvent }) {
                     >
                         With School Of Code
                     </h4>
-                    {/* <div className={styles.animation}>
-                        <ul className={styles.mask}>
-                            <li id="develop">Develop</li>
-                            <li id="learn">Learn</li>
-                            <li id="grow">Grow</li>
-                            <li id="learn">Learn</li>
-                            <li id="develop">Develop</li>
-                        </ul>
-                        <ul>
-                            <li id="develop">Develop</li>
-                            <li id="learn">Learn</li>
-                            <li id="grow">Grow</li>
-                            <li id="learn">Learn</li>
-                            <li id="develop">Develop</li>
-                        </ul>
-                    </div> */}
                     <div className={styles.slidingVertical}>
                         <span id={styles.develop}>Develop</span>
                         <span id={styles.learn}>Learn</span>
@@ -131,7 +116,7 @@ function Home({ events, nextEvent }) {
                     </Link>
                 </div>
             </section>
-            <section className={styles.eventsList}>
+            <section className={styles.eventsList} ref={discoverRef}>
                 <Typography
                     variant="h3"
                     style={{ width: '75%', margin: 'auto', textAlign: 'left' }}

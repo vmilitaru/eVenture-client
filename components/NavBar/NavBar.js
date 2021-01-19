@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useSearchContext } from '../../contexts/search-context'
+import { useSearchContext } from '../../contexts/search'
 
 import IconButton from '@material-ui/core/IconButton'
 import ChevronRight from '@material-ui/icons/ChevronRight'
@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import InputBase from '@material-ui/core/InputBase'
+import HomeIcon from '@material-ui/icons/Home'
 import SearchIcon from '@material-ui/icons/Search'
 
 import LoginButton from '../LoginButton/index'
@@ -23,7 +24,7 @@ import { useStyles } from './NavBarMaterialCss.js'
 
 const NavBar = () => {
     const { user, isAuthenticated } = useAuth0()
-    const [search, setSearchFilter] = useSearchContext()
+    const { setSearchFilter } = useSearchContext()
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl)
     const classes = useStyles()
@@ -55,6 +56,7 @@ const NavBar = () => {
                                     src="/eVenture.png"
                                     alt="logo"
                                 />
+                                <HomeIcon className={classes.home} />
                             </a>
                         </Link>
                         <div className={styles.searchBar}>

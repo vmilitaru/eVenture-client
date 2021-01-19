@@ -105,11 +105,11 @@ const theme = createMuiTheme({
             color: '#006'
         },
         h6: {
-            fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
+            fontFamily: "'Lato', 'Helvetica', 'Arial', 'sans-serif'",
             fontSize: '1.2rem',
             lineHeight: 1.2,
-            fontWeight: 'bold',
-            letterSpacing: '0.06em',
+            fontWeight: '500',
+            // letterSpacing: '0.06em',
             color: 'white',
             textShadow: '1px 1px 1px black'
         },

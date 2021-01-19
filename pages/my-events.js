@@ -79,34 +79,31 @@ function MyEventsPage() {
                 <>
                     <div className={styles.contrastBackground}></div>
                     <div className={styles.noEvent}>
-                        {/* <img
-                            className={styles.image}
-                            src="/NoTicketsYet.svg"
-                            id="NoTicketsYet"
-                            alt="You haven't signed up for any events yet."
-                        />
-                        <a href="/">
-                            <ButtonGeneral
-                                style={{
-                                    padding: '1rem',
-                                    margin: '4rem 1rem 1rem 1rem',
-                                    fontSize: '1.2rem'
-                                }}
-                                text={'Sign up for events here!'}
-                            ></ButtonGeneral>
-                        </a> */}
                         <img src={'/rocket.png'} />
                         <span className={styles.notFound}>
                             <Typography
                                 variant="h1"
                                 style={{ padding: '2rem 0 2rem 0' }}
                             >
-                                404:
+                                204:
                             </Typography>
                             <Typography
                                 variant="h2"
                                 style={{ padding: '0', fontSize: '2.5rem' }}
-                            >{`Events being attended by you not found... :(`}</Typography>
+                            >
+                                You're not attending any{' '}
+                                <Link href="/">
+                                    <a
+                                        style={{
+                                            color: '#ffc15e',
+                                            textDecoration: 'none'
+                                        }}
+                                    >
+                                        events...
+                                    </a>
+                                </Link>
+                                {` :(`}
+                            </Typography>
                         </span>
                     </div>
                 </>

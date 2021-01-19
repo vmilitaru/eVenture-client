@@ -4,7 +4,7 @@ export const useStyles = makeStyles((theme) => ({
         position: 'static',
         backgroundColor: `#4ab473`,
         bottom: '0',
-        boxShadow: '0rem -0.1rem 0.2rem 0.01rem darkgray'
+        boxShadow: '0px -1.75px 1px -1px gray'
     },
     toolbar: {
         display: 'flex',
