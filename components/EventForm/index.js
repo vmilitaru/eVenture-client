@@ -88,9 +88,10 @@ export default function EventForm({
                                     KeyboardButtonProps={{
                                         'aria-label': 'change time'
                                     }}
-                                    className={classes.datetime}
+                                    className={(classes.datetime, styles.time)}
                                     disablePast
                                     style={{ margin: '0' }}
+                                    injectFirst
                                 />
                             </Grid>
                         </MuiPickersUtilsProvider>

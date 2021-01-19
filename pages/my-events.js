@@ -46,7 +46,7 @@ function MyEventsPage() {
     const classes = useStyles()
 
     return (
-        <div>
+        <div className={!events.length > 0 ? styles.empty : null}>
             <Head>
                 <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -77,23 +77,9 @@ function MyEventsPage() {
                 </>
             ) : (
                 <>
-                    <div className={styles.contrastBackground}>
-                        {/* <Typography variant="h2">{`There's nothing here... :(`}</Typography> */}
-                    </div>
-                    <div
-                        className={styles.noEvent}
-                        // style={{
-                        //     display: 'flex',
-                        //     flexdirection: 'column',
-                        //     alignItems: 'center',
-                        //     alignContent: 'stretch',
-                        //     flexWrap: 'wrap',
-                        //     justifyContent: 'center',
-                        //     width: '60rem',
-                        //     margin: '3rem auto 5rem auto'
-                        // }}
-                    >
-                        <img
+                    <div className={styles.contrastBackground}></div>
+                    <div className={styles.noEvent}>
+                        {/* <img
                             className={styles.image}
                             src="/NoTicketsYet.svg"
                             id="NoTicketsYet"
@@ -108,7 +94,20 @@ function MyEventsPage() {
                                 }}
                                 text={'Sign up for events here!'}
                             ></ButtonGeneral>
-                        </a>
+                        </a> */}
+                        <img src={'/rocket.png'} />
+                        <span className={styles.notFound}>
+                            <Typography
+                                variant="h1"
+                                style={{ padding: '2rem 0 2rem 0' }}
+                            >
+                                404:
+                            </Typography>
+                            <Typography
+                                variant="h2"
+                                style={{ padding: '0', fontSize: '2.5rem' }}
+                            >{`Events being attended by you not found... :(`}</Typography>
+                        </span>
                     </div>
                 </>
             )}

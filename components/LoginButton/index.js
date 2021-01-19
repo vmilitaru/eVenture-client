@@ -16,9 +16,8 @@ const LoginButton = () => {
 
         return (
             <ButtonGeneral
-                className={style.button}
                 onClick={() => loginWithRedirect()}
-                text={'LOG IN'}
+                text={'Log in'}
             />
         )
     } else {
@@ -27,7 +26,7 @@ const LoginButton = () => {
         return (
             <ButtonGeneral
                 onClick={() => logout({ returnTo: `${clientUrl}/` })}
-                text={'LOG OUT'}
+                text={'Log out'}
             />
         )
     }

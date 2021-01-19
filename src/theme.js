@@ -63,11 +63,12 @@ const theme = createMuiTheme({
         fontWeightMedium: 500,
         fontWeightBold: 700,
         h1: {
-            fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
-            fontWeight: 300,
+            fontFamily: "'Poppins', 'Helvetica', 'Arial', 'sans-serif'",
+            fontWeight: 600,
             fontSize: '6rem',
             lineHeight: 1.167,
-            letterSpacing: '-0.01562em'
+            letterSpacing: '-0.01562em',
+            color: '#ca535f'
         },
         h2: {
             fontFamily: "'Poppins', 'Helvetica', 'Arial', 'sans-serif'",
@@ -86,21 +87,21 @@ const theme = createMuiTheme({
             letterSpacing: '0em'
         },
         h4: {
-            fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
-
-            fontWeight: 400,
-            fontSize: '2rem',
-
+            fontFamily: "'Mulish', 'Helvetica', 'Arial', 'sans-serif'",
+            fontWeight: 600,
+            fontSize: '1.5rem',
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
-            padding: '1.1vw 0.5vw 1vw 0.5vw'
+            // padding: '1.1vw 0.5vw 1vw 0.5vw'
+            color: '#006'
         },
         h5: {
-            fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
+            fontFamily: "'Mulish', 'Helvetica', 'Arial', 'sans-serif'",
             fontSize: '1rem',
+            fontWeight: 600,
             lineHeight: 1,
             // fontWeight: 'bold',
-            letterSpacing: '0.1em',
+            // letterSpacing: '0.1em',
             color: '#006'
         },
         h6: {

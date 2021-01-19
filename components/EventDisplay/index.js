@@ -47,11 +47,22 @@ export default function EventDisplay({
                                 {convertDate()}
                             </Typography>
                         </div>
-                        <h3 className={styles.title}>{event.title}</h3>
-                        <Typography gutterBottom variant="h5" component="h3">
-                            <strong>WHERE?:</strong>
-                            {`\n${event.location}`}
+                        <Typography variant="h3" className={styles.title}>
+                            {event.title}
                         </Typography>
+                        <div className={styles.location}>
+                            <Typography variant="h5">
+                                <strong>WHERE?:</strong>
+                            </Typography>
+                            <Typography
+                                gutterBottom
+                                variant="h5"
+                                component="h3"
+                            >
+                                {/* <strong>WHERE?:</strong> */}
+                                {`\n${event.location}`}
+                            </Typography>
+                        </div>
                     </div>
                 </section>
                 <section className={styles.actionsBar}>
@@ -77,13 +88,25 @@ export default function EventDisplay({
                     </div>
                     <div>
                         {!isRegistered ? (
-                            <ButtonGeneral
-                                onClick={() => {
-                                    handleClickForTicket()
-                                }}
-                                style={{ width: '20rem', height: '2.5rem' }}
-                                text="REGISTER"
-                            />
+                            ticketCount < numtickets ? (
+                                <ButtonGeneral
+                                    onClick={() => {
+                                        handleClickForTicket()
+                                    }}
+                                    style={{ width: '20rem', height: '2.5rem' }}
+                                    text="REGISTER"
+                                />
+                            ) : (
+                                <ButtonGeneral
+                                    style={{
+                                        width: '20rem',
+                                        height: '2.5rem',
+                                        backgroundColor: '#ff6978'
+                                    }}
+                                    disabled={true}
+                                    text="SOLD OUT!"
+                                />
+                            )
                         ) : (
                             <>
                                 <ButtonGeneral
@@ -103,6 +126,7 @@ export default function EventDisplay({
                 </section>
                 <section className={styles.details}>
                     <div className={styles.description}>
+                        <Typography variant="h4">About This Event</Typography>
                         {
                             unified()
                                 .use(parse)

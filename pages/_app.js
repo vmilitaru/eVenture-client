@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
 import { ProtectedRouteAndRoleProvider } from '../components/ProtectedRouteAndRoleProvider'
+import { SearchProvider } from '../contexts/search-context'
 import Wrapper from '../components/Wrapper/index'
 import Head from 'next/head'
 import PropTypes from 'prop-types'
@@ -23,6 +24,7 @@ import {
 
 export default function MyApp(props) {
     const { Component, pageProps } = props
+    const [filter, setFilter] = useState('')
 
     React.useEffect(() => {
         // Remove the server-side injected CSS.
@@ -56,17 +58,19 @@ export default function MyApp(props) {
                         <ThemeProvider theme={theme}>
                             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                             <CssBaseline />
-                            <ConditionedRenderedNavBar />
-                            <main
-                                style={{
-                                    paddingTop: '4rem',
-                                    textAlign: 'center',
-                                    // backgroundColor: `${theme.palette.fourth.main}`,
-                                    minHeight: '100vh'
-                                }}
-                            >
-                                <Component {...pageProps} />
-                            </main>
+                            <SearchProvider>
+                                <ConditionedRenderedNavBar />
+                                <main
+                                    style={{
+                                        paddingTop: '4rem',
+                                        textAlign: 'center',
+                                        // backgroundColor: `${theme.palette.fourth.main}`,
+                                        minHeight: '100vh'
+                                    }}
+                                >
+                                    <Component {...pageProps} />
+                                </main>
+                            </SearchProvider>
                             <ConditionedRenderedFooter />
                         </ThemeProvider>
                     </React.Fragment>

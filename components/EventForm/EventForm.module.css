@@ -29,6 +29,7 @@
     width: 66%;
     height: 100%;
     min-height: 22rem;
+    max-height: 22rem;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;
     overflow: hidden;
