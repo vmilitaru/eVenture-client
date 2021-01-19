@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import Link from 'next/link'
+import { useSearchContext } from '../../contexts/search-context'
 
 // STYLES
 import { useStyles } from '../../styles/events-page-materialCss'
@@ -12,24 +13,18 @@ import EventCard from '../EventCard/EventCard'
 import TextField from '@material-ui/core/TextField'
 
 export default function EventsList({ events }) {
-    const [filter, setFilter] = useState('')
+    const [search] = useSearchContext()
     const classes = useStyles()
 
     return (
         <>
-            {/* <div className={styles.search}>
-                <TextField
-                    placeholder={'Search events...'}
-                    onChange={(e) => setFilter(e.target.value)}
-                />
-            </div> */}
             {events ? (
                 <div className={classes.eventPage}>
                     {events.map((event) => {
                         if (
                             event.title
                                 .toLowerCase()
-                                .includes(filter.toLowerCase())
+                                .includes(search.toLowerCase())
                         ) {
                             return (
                                 <div key={event.id} className={classes.event}>

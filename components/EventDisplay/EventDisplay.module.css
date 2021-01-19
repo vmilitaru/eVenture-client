@@ -17,7 +17,7 @@
     left: 0;
     right: 0;
     top: -25vh;
-    box-shadow: 0px 2px 4px #00000014;
+    box-shadow: 0px 2px 2px 2px #00000014;
 }
 .card {
     display: flex;
@@ -29,6 +29,7 @@
     width: 66%;
     height: 100%;
     min-height: 22rem;
+    max-height: 22rem;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;
     overflow: hidden;
@@ -51,6 +52,13 @@
 .title {
     font-size: 2rem;
 }
+.location {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 3rem;
+    max-height: 3rem;
+}
 .actionsBar {
     display: flex;
     justify-content: space-between;
@@ -66,7 +74,8 @@
 .description {
     width: 66%;
     padding: 3rem;
-    letter-spacing: 0.04rem;
+    letter-spacing: 0.01rem;
+    font-family: 'Mulish';
     text-align: left;
 }
 .additionalInfo {

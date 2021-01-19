@@ -5,6 +5,10 @@
     opacity: 1;
     z-index: -50;
 }
+.empty {
+    background: #0a1045;
+    height: 100vh;
+}
 .noEvent {
     display: flex;
     flex-direction: column;
@@ -15,12 +19,13 @@
     width: 75rem;
     margin: 3rem auto 5rem auto;
     position: relative;
-    top: -25vh;
+    top: -32vh;
+    /* color: #ca535f */
 }
 .eventsList {
     position: relative;
     top: -20vh;
 }
-.image {
+/* .image {
     width: '75 rem';
-}
+} */

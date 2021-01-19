@@ -1,5 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
+import unified from 'unified'
+import parse from 'remark-parse'
+import remark2react from 'remark-react'
 
 // COMPONENTS
 import ButtonGeneral from '../components/Button/Button'
@@ -36,22 +39,27 @@ function Home({ events, nextEvent }) {
         }
         const descArray = nextEvent?.description.split('')
         if (descArray.length < 400) {
-            return nextEvent.description
+            return unified()
+                .use(parse)
+                .use(remark2react)
+                .processSync(nextEvent.description).result
         }
         let shortDesc = descArray?.splice(0, 400)
         shortDesc = shortDesc?.join('').trim()
         shortDesc += '...'
-        return shortDesc
+        return unified().use(parse).use(remark2react).processSync(shortDesc)
+            .result
     }
 
     return (
-        <div className={styles.background}>
+        <article className={styles.background}>
             <Head>
                 <title>eVenture</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className={styles.contrastBackground}>
+            <section className={styles.contrastBackground}>
                 <div className={styles.heading}>
+                    <img src="/rocket.png" className={styles.rocket} />
                     <h4 style={{ fontFamily: 'Poppins', margin: '0 0 1rem 0' }}>
                         Discover A World Of Events
                     </h4>
@@ -64,70 +72,65 @@ function Home({ events, nextEvent }) {
                     >
                         With School Of Code
                     </h4>
-                    <div className={styles.animation}>
+                    {/* <div className={styles.animation}>
                         <ul className={styles.mask}>
-                            <li>Develop</li>
-                            <li>Learn</li>
-                            <li>Grow</li>
-                            <li>Learn</li>
-                            <li>Develop</li>
+                            <li id="develop">Develop</li>
+                            <li id="learn">Learn</li>
+                            <li id="grow">Grow</li>
+                            <li id="learn">Learn</li>
+                            <li id="develop">Develop</li>
                         </ul>
                         <ul>
-                            <li>Develop</li>
-                            <li>Learn</li>
-                            <li>Grow</li>
-                            <li>Learn</li>
-                            <li>Develop</li>
+                            <li id="develop">Develop</li>
+                            <li id="learn">Learn</li>
+                            <li id="grow">Grow</li>
+                            <li id="learn">Learn</li>
+                            <li id="develop">Develop</li>
                         </ul>
+                    </div> */}
+                    <div className={styles.slidingVertical}>
+                        <span id={styles.develop}>Develop</span>
+                        <span id={styles.learn}>Learn</span>
+                        <span id={styles.grow}>Grow</span>
                     </div>
                 </div>
-                <div className={styles.div}>
-                    <div className={styles.imageContainer}>
-                        <img
-                            src="SoC-other.jpg"
-                            className={styles.img}
-                            alt="Cohort 4 on Zoom"
-                        />
-                    </div>
-                    {/* <div className={styles.container}> */}
-                    <div className={styles.event}>
-                        <Typography variant="h5" className={classes.featured}>
-                            Featured Event
-                        </Typography>
-                        <Typography variant="h4" className={classes.title}>
-                            {nextEvent.title}
-                        </Typography>
-                        <Typography variant="h5">
-                            <span
-                                // style={{
-                                //     padding: '0.5vw 0vw 0.5vw 0vw'
-                                // }}
-                                className={styles.date}
-                            >
-                                {convertDate()}
-                            </span>
-                        </Typography>
-                        <div className={styles.countdown}>
-                            {nextEvent.date && (
-                                <Countdown
-                                    eventDate={nextEvent.date}
-                                    eventTime={nextEvent.time}
-                                    className={styles.countdown}
-                                />
-                            )}
-                        </div>
-                        <p className={styles.description}>
-                            {shortenDescription()}
-                        </p>
-                        <Link href={`/event/${nextEvent.id}`}>
-                            <ButtonGeneral
-                                text={'FIND OUT MORE'}
-                                style={{ width: '8rem' }}
+            </section>
+            <section className={styles.div}>
+                <div className={styles.imageContainer}>
+                    <img
+                        src="SoC-other.jpg"
+                        className={styles.img}
+                        alt="Cohort 4 on Zoom"
+                    />
+                </div>
+                <div className={styles.event}>
+                    <Typography variant="h5" className={classes.featured}>
+                        Featured Event
+                    </Typography>
+                    <Typography variant="h4" className={classes.title}>
+                        {nextEvent.title}
+                    </Typography>
+                    <Typography variant="h5">
+                        <span className={styles.date}>{convertDate()}</span>
+                    </Typography>
+                    <div className={styles.countdown}>
+                        {nextEvent.date && (
+                            <Countdown
+                                eventDate={nextEvent.date}
+                                eventTime={nextEvent.time}
+                                className={styles.countdown}
                             />
-                        </Link>
+                        )}
                     </div>
+                    <p className={styles.description}>{shortenDescription()}</p>
+                    <Link href={`/event/${nextEvent.id}`}>
+                        <ButtonGeneral
+                            text={'FIND OUT MORE'}
+                            style={{ width: '8rem' }}
+                        />
+                    </Link>
                 </div>
-            </div>
+            </section>
             <section className={styles.eventsList}>
                 <Typography
                     variant="h3"
@@ -137,7 +140,7 @@ function Home({ events, nextEvent }) {
                 </Typography>
                 <EventsList events={events} />
             </section>
-        </div>
+        </article>
     )
 }
 
