@@ -30,6 +30,12 @@
 .login {
     width: 3.5rem;
 }
+.twoButtonsContainer {
+    display: flex;
+    align-items: center;
+    width: 13.5rem;
+    justify-content: space-between;
+}
 .buttonsContainer {
     display: flex;
     align-items: center;

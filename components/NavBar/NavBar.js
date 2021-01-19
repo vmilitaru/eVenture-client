@@ -76,7 +76,11 @@ const NavBar = () => {
                     </div>
                     <div
                         className={
-                            user ? styles.buttonsContainer : styles.login
+                            user
+                                ? Object.values(user)[0][0]
+                                    ? styles.buttonsContainer
+                                    : styles.twoButtonsContainer
+                                : styles.login
                         }
                     >
                         {isAuthenticated && Object.values(user)[0][0] && (
