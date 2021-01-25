@@ -1,20 +1,20 @@
 {
-    "family": "ec2-task-def-next-1",
+    "family": "fargate-task-def-next-1",
     "executionRoleArn": "arn:aws:iam::007555096130:role/ecsTaskExecutionRole",
-    "networkMode": "bridge",
+    "networkMode": "awsvpc",
     "containerDefinitions": [
         {
-            "name": "next-communiteam",
+            "name": "next-communiteam-fargate",
             "image": "007555096130.dkr.ecr.eu-west-1.amazonaws.com/next-communiteam:latest",
             "environmentFiles": [
                 {
-                  "value": "arn:aws:s3:::communiteam-ci-cd/.env.local",
+                  "value": "arn:aws:s3:::s3-next-1/.env",
                   "type": "s3"
                 }],
             "portMappings": [
                 {
                     "containerPort": 3000,
-                    "hostPort": 8080,
+                    "hostPort": 3000,
                     "protocol": "tcp"
                 }
             ],
@@ -22,8 +22,8 @@
         }
     ],
     "requiresCompatibilities": [
-        "EC2"
+        "FARGATE"
     ],
-    "cpu": "1024",
-    "memory": "512"
+    "cpu": "512",
+    "memory": "1024"
 }
