@@ -18,7 +18,7 @@ A [School of Code](https://www.schoolofcode.co.uk/) event management and ticketi
 
 - Organisers can track the attendance to a specific event.
 
-![image](https://user-images.githubusercontent.com/70764326/106626276-7003bb00-656f-11eb-82c1-384ef7443abe.png)
+![eVenture-organiser-view-of-a-specific-event](https://user-images.githubusercontent.com/70764326/106626276-7003bb00-656f-11eb-82c1-384ef7443abe.png)
 
  If you want to see the backend code of this application head to this [repository](https://github.com/vmilitaru/eVenture-server.git).
  
@@ -60,15 +60,15 @@ npm i
 5. Configure the following settings:
    -  _Allowed Callback URLs_: Should be set to `http://localhost:3000` when testing locally or typically to `https://myapp.com` when deploying your application and any other URL to which you want the user to be redirected to after the autentication
    - _Allowed Logout URLs_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application or any other URL to which you want the user to be redirected to after logout from Auth0
-   - _Absolute Expiration_: Should be enabled
-   - _Inactivity Expiration_: Should be enabled
+   - Enable _Absolute Expiration_ option
+   - Enable _Inactivity Expiration_ option
 6. Save the settings
 7. Go to the _APIs_ page from the [Auth0 dashboard](https://manage.auth0.com/) and create an API. This API is used to restriction the access the the organiser APIs
 8. Go to the settings tab of the new created API page
 9. Configure the following settings:
    - Enable _Enable RBAC_ option
    - Enable _Add Permissions in the Access Token_ option
-    - Enable _Allow Skipping User Consent_ option
+   - Enable _Allow Skipping User Consent_ option
 10. Save the settings
 11. Stay on the new created API page but go to Permisssions tab and add a permission to the API - remember by doing this we are making sure that, based on the role assigned to their account only certain users will have access to the organiser APIs :
 
@@ -129,16 +129,25 @@ npm run build # create a production build.
 ```bash
 npm run start # start the app in production mode.
 ```
+## Deploy on Vercel
+
+You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+### Deploy Your Local Project
+
+To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/import/git?utm_source=github&utm_medium=readme&utm_campaign=next-example).
+
+**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
 
 ## Contributors ✨
 
 <table>
   <tr>
-    <td align="center"><a href="github link1"><img src="https://avatars0.githubusercontent.com/u/71390607?s=60&v=4" width="100px;" alt=" Fadumo avatar"/><b>Fadumo Aideed</b></a></td>
-    <td align="center"><a href="https://github.com/vmilitaru"><img src="https://avatars0.githubusercontent.com/u/70764326?s=120&v=4" width="100px;" alt="Valentina avatar"/><b>Valentina Militaru</b></a></td>
-   <td align="center"><a href="https://github.com/Cpanda3"><img src="https://ca.slack-edge.com/T6L933W4X-U019WPN4M51-380f3738d180-512" width="100px;" alt="Amelia-avatar"/><b>Amelia Collins-Patel</b></a></td>
-   <td align="center"><a href="https://github.com/Teeenbe"><img src="https://ca.slack-edge.com/T6L933W4X-U019WQM1Q4V-183cc3dedaa7-512" width="100px;" alt="Tom-avatar"/><b>Tom Bennet</b></a></td>
-  <td align="center"><a href="https://github.com/michaelfswann"><img src="https://avatars3.githubusercontent.com/u/20445671?s=64&v=4" width="100px;" alt="Michael-avatar"/><b>Michael Swann</b></a></td>
+    <td align="center"><a href="https://github.com/fadumoaideed"><img src="https://avatars0.githubusercontent.com/u/71390607?s=60&v=4" width="120px;" alt=" Fadumo avatar"/><b>Fadumo Aideed</b></a></td>
+    <td align="center"><a href="https://github.com/vmilitaru"><img src="https://avatars0.githubusercontent.com/u/70764326?s=120&v=4" width="120px;" alt="Valentina avatar"/><b>Valentina Militaru</b></a></td>
+   <td align="center"><a href="https://github.com/Cpanda3"><img src="https://ca.slack-edge.com/T6L933W4X-U019WPN4M51-380f3738d180-512" width="120px;" alt="Amelia-avatar"/><b>Amelia Collins-Patel</b></a></td>
+   <td align="center"><a href="https://github.com/Teeenbe"><img src="https://ca.slack-edge.com/T6L933W4X-U019WQM1Q4V-183cc3dedaa7-512" width="120px;" alt="Tom-avatar"/><b>Tom Bennet</b></a></td>
+  <td align="center"><a href="https://github.com/michaelfswann"><img src="https://avatars3.githubusercontent.com/u/20445671?s=64&v=4" width="120px;" alt="Michael-avatar"/><b>Michael Swann</b></a></td>
   </tr>
 </table>
 
