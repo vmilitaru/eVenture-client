@@ -60,6 +60,8 @@ npm i
 5. Configure the following settings:
    -  _Allowed Callback URLs_: Should be set to `http://localhost:3000` when testing locally or typically to `https://myapp.com` when deploying your application and any other URL to which you want the user to be redirected to after the autentication
    - _Allowed Logout URLs_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application or any other URL to which you want the user to be redirected to after logout from Auth0
+   - _Allowed Web Origins_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application
+   - _Allowed Origins (CORS)_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application
    - Enable _Absolute Expiration_ option
    - Enable _Inactivity Expiration_ option
 6. Save the settings
@@ -105,16 +107,13 @@ callback(null, user, context);
 
 To connect the app with Auth0, you'll need to add the settings from your Auth0 application as environment variables.
 
-15. Copy the content of `.env.example` into a new file called `.env.local`.
+15. Copy the content of `.env.example` into a new file called `.env.local` at the root of this project, then add the missing environment variables:
 
-Then, open `.env.local` and add the missing environment variables:
-
-
-- `NEXT_PUBLIC_AUTH0_DOMAIN` - Can be found in the Auth0 dashboard under _Applications_ ,select the created Application and go to `settings`.
-- `NEXT_PUBLIC_AUTH0_CLIENT_ID` - Can be found in the Auth0 dashboard under _Applications_ ,select the created Application and go to `settings`.
-- `NEXT_PUBLIC_AUTH0_AUDIENCE` - Can be found in the Auth0 dashboard under _APIs_ ,got to `settings` tab and copy the _Identifier_.
-- `NEXT_PUBLIC_SERVER_URL` - Should be set to `http://localhost:5000` when testing locally (if you check the back end code of this project you will see that 5000 is the port to which the express server is currently listening to) or typically to `https://myserver.com` when deploying the server.
-- `NEXT_PUBLIC_CLIENT_URL` - Should be set to `http://localhost:3000` when testing locally or typically to `https://myapp.com` when deploying the server.
+    - `NEXT_PUBLIC_AUTH0_DOMAIN` - Can be found in the Auth0 dashboard under _Applications_ ,select the created Application and go to `settings`.
+    - `NEXT_PUBLIC_AUTH0_CLIENT_ID` - Can be found in the Auth0 dashboard under _Applications_ ,select the created Application and go to `settings`.
+    - `NEXT_PUBLIC_AUTH0_AUDIENCE` - Can be found in the Auth0 dashboard under _APIs_ ,got to `settings` tab and copy the _Identifier_.
+    - `NEXT_PUBLIC_SERVER_URL` - Should be set to `http://localhost:5000` when testing locally (if you check the back end code of this project you will see that 5000 is the port to which the express server is currently listening to) or typically to `https://myserver.com` when deploying the  server.
+    - `NEXT_PUBLIC_CLIENT_URL` - Should be set to `http://localhost:3000` when testing locally or typically to `https://myapp.com` when deploying the server.
 
 ## Available Scripts
 
