@@ -5,6 +5,7 @@ stuff-from-quickstar.js
 
 #dotenv
 .env.local
+.env
 
 # dependencies
 /node_modules

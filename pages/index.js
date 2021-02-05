@@ -5,6 +5,7 @@ import parse from 'remark-parse'
 import remark2react from 'remark-react'
 import { useSearchContext } from '../contexts/search'
 
+
 // COMPONENTS
 import ButtonGeneral from '../components/Button/Button'
 import Countdown from '../components/Countdown2'
@@ -19,6 +20,7 @@ import EventsList from '../components/EventsList'
 function Home({ events, nextEvent }) {
     const { discoverRef } = useSearchContext()
     const classes = useStyles()
+    
 
     function convertDate() {
         const dateFromIso = new DateTime.fromISO(
