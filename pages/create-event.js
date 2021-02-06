@@ -116,7 +116,7 @@ function AdminEventPage() {
         gatherEventDetails(previewSource)
         setPreviewSource(null)
         e.target.reset()
-        window.location.href = '/'
+        //window.location.href = '/'
     }
 
     async function gatherEventDetails(base64EncodedImage) {
