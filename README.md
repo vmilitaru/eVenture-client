@@ -64,7 +64,7 @@ npm i
    - _Allowed Origins (CORS)_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application
 6. Everything else can stay as default
 7. Save the settings
-8. Go to the _APIs_ page from the [Auth0 dashboard](https://manage.auth0.com/) and create an API. Based on the permisions that we are going to assign to this API we are  restricting the users from accessing some of the APIs.
+8. Go to the _APIs_ page from the [Auth0 dashboard](https://manage.auth0.com/) and create an API. Based on the permisions that we are going to assign to this API we are  restricting the users from accessing some of the project APIs.
 9. To create the API you will need to fill in the following inputs:
     - _Name_ : name the API
     - _Identifier_ : logical identifier of the API - this field cannot be modified  👉  _this is the `audience` that you need to add as environment variable in the .env.local file_
