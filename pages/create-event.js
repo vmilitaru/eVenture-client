@@ -122,6 +122,7 @@ function AdminEventPage() {
     async function gatherEventDetails(base64EncodedImage) {
         if (user && isAuthenticated) {
             const accessToken = await getAccessTokenSilently()
+            //console.log(accessToken)
             const time = timeObj.toISOTime({
                 suppressSeconds: true,
                 includeOffset: false,

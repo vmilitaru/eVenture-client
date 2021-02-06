@@ -59,31 +59,39 @@ npm i
 4. Go to the settings tab of the application page
 5. Configure the following settings:
    -  _Allowed Callback URLs_: Should be set to `http://localhost:3000` when testing locally or typically to `https://myapp.com` when deploying your application and any other URL to which you want the user to be redirected to after the autentication
-   - _Allowed Logout URLs_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application or any other URL to which you want the user to be redirected to after logout from Auth0
+   - _Allowed Logout URLs_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application or any other URL to which you want the user to be redirected to after loging out from Auth0
    - _Allowed Web Origins_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application
    - _Allowed Origins (CORS)_: Should be set to `http://localhost:3000/` when testing locally or typically to `https://myapp.com/` when deploying your application
-   - Enable _Absolute Expiration_ option
-   - Enable _Inactivity Expiration_ option
-6. Save the settings
-7. Go to the _APIs_ page from the [Auth0 dashboard](https://manage.auth0.com/) and create an API. This API is used to restriction the access the the organiser APIs
-8. Go to the settings tab of the new created API page
-9. Configure the following settings:
-   - Enable _Enable RBAC_ option
-   - Enable _Add Permissions in the Access Token_ option
-   - Enable _Allow Skipping User Consent_ option
-10. Save the settings
-11. Stay on the new created API page but go to Permisssions tab and add a permission to the API - remember by doing this we are making sure that, based on the role assigned to their account only certain users will have access to the organiser APIs :
+6. Everything else can stay as default
+7. Save the settings
+8. Go to the _APIs_ page from the [Auth0 dashboard](https://manage.auth0.com/) and create an API. Based on the permisions that we are going to assign to this API we are  restricting the users from accessing some of the APIs.
+9. To create the API you will need to fill in the following inputs:
+    - _Name_ : name the API
+    - _Identifier_ : logical identifier of the API - this field cannot be modified  👉  _this is the `audience` that you need to add as environment variable in the .env.local file_
+    - _Signing Algorithm_ : stays as default _`RS256`_
+10. Go to the _Settings_ tab of the new created API page and in the _RBAC_ section configure the following settings:
+     - Enable _Enable RBAC_ option
+     - Enable _Add Permissions in the Access Token_ option
+11. Save the settings
+
+12. Stay on the new created API page but now go to Permisssions tab and add a permission to the API - remember by doing this we are making sure that we are allowing only certain users to have the organiser access permissions 
 
 ```bash
-use:role
+use:role #Permission
+Use permissions based on role #Description
 ```
-12. Go to the _Users & Roles_ page from the [Auth0 dashboard](https://manage.auth0.com/) and create a role :
+13. Go to the _Users & Roles> Roles_ page from the [Auth0 dashboard](https://manage.auth0.com/) and create a role :
 
 ```bash
-Name: organiser
-Description : use:org 
+organiser #Name
+Access permissions based on the organiser role  #Description
 ```
-13. Now in order to assign the user role to the idToken we need to create a rule in the _Rules_ menu from the [Auth0 dashboard](https://manage.auth0.com/). Make sure that the rule that you just created is enabled.
+15. Click on the _Action_ menu (3 dots) of the new created role and select _View details_
+16. Under _Permissions_ tab of the new added role, _organiser_ , page you will be able to _ADD PERMISSIONS_ to the API that we created at _Step 9_ . Every time when we try to acess some protected APIs, we will return the permissions associated to the user account in the _Access Token_, validating the requests based on the user permissions. 
+
+17. To assign the **organiser role** to a particular user account if we stay on the new added role, _organiser_ , page  we just need to go on _Users_ tab _ADD USERS_ and select the account that we want to grant organiser permissions to. Another way of doing this is to go on _Users & Roles >Actions > Assign To Users_  - easy as that .
+
+18. It is not enough for us to return the permissions in the accessToken, because if we want to do conditional rendering we need to have access to the role assign to the user account in our aplication and for that we need to  add the role to the idToken.Therefore we will need to create a rule in the _Rules_ menu from the [Auth0 dashboard](https://manage.auth0.com/). Make sure that the rule that you create using the following code snippet is enabled.
 
 ```bash
 function (user, context, callback) {
@@ -99,9 +107,7 @@ context.idToken = idTokenClaims;
 callback(null, user, context);
 }
 ```
-
-14. Now if we want to assign the **organiser role** to a particular user we just need to go on _Users & Roles >Actions > Assign To Users_ type in the email address of the organiser user and click _Assign_ - easy as that .
-
+19. If you want to allow the users to log in to the application using their Google profile please follow the next [guide](https://auth0.com/docs/connections/social/google).
 
 ### Set up environment variables
 
