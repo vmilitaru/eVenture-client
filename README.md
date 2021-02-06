@@ -90,7 +90,6 @@ Access permissions based on the organiser role  #Description
 16. Under _Permissions_ tab of the new added role, _organiser_ , page you will be able to _ADD PERMISSIONS_ to the API that we created at _Step 9_ . Every time when we try to acess some protected APIs, we will return the permissions associated to the user account in the _Access Token_, validating the requests based on the user permissions. 
 
 17. To assign the **organiser role** to a particular user account if we stay on the new added role, _organiser_ , page  we just need to go on _Users_ tab _ADD USERS_ and select the account that we want to grant organiser permissions to. Another way of doing this is to go on _Users & Roles >Actions > Assign To Users_  - easy as that .
-
 18. It is not enough for us to return the permissions in the accessToken, because if we want to do conditional rendering we need to have access to the role assign to the user account in our aplication and for that we need to  add the role to the idToken.Therefore we will need to create a rule in the _Rules_ menu from the [Auth0 dashboard](https://manage.auth0.com/). Make sure that the rule that you create using the following code snippet is enabled.
 
 ```bash
